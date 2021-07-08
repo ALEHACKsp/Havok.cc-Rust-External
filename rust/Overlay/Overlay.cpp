@@ -119,6 +119,59 @@ void Overlay::Style()
 		D3DCOLORWRITEENABLE_BLUE | D3DCOLORWRITEENABLE_ALPHA);
 }
 
+
+struct Colors
+{
+	Color Red = D3DCOLOR_RGBA(255, 0, 0, 255);
+	Color Orange = D3DCOLOR_RGBA(255, 100, 0, 255);
+	Color Yellow = D3DCOLOR_RGBA(255, 255, 0, 255);
+	Color Green = D3DCOLOR_RGBA(0, 255, 0, 255);
+	Color Turquoise = D3DCOLOR_RGBA(0, 255, 255, 255);
+	Color Blue = D3DCOLOR_RGBA(0, 130, 255, 255);
+	Color Purple = D3DCOLOR_RGBA(130, 0, 255, 255);
+	Color Pink = D3DCOLOR_RGBA(255, 0, 255, 255);
+	Color Black = D3DCOLOR_RGBA(0, 0, 0, 255);
+	Color Gray = D3DCOLOR_RGBA(69, 69, 69, 255);
+	Color White = D3DCOLOR_RGBA(255, 255, 255, 255);
+};
+Colors ColorClass;
+
+
+std::string string_To_UTF8(const std::string& str)
+{
+	int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
+
+	wchar_t* pwBuf = new wchar_t[nwLen + 1];
+	ZeroMemory(pwBuf, nwLen * 2 + 2);
+
+	::MultiByteToWideChar(CP_ACP, 0, str.c_str(), str.length(), pwBuf, nwLen);
+
+	int nLen = ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
+
+	char* pBuf = new char[nLen + 1];
+	ZeroMemory(pBuf, nLen + 1);
+
+	::WideCharToMultiByte(CP_UTF8, 0, pwBuf, nwLen, pBuf, nLen, NULL, NULL);
+
+	std::string retStr(pBuf);
+
+	delete[]pwBuf;
+	delete[]pBuf;
+
+	pwBuf = NULL;
+	pBuf = NULL;
+
+	return retStr;
+}
+
+void __fastcall Render::DrawString(int x, int y, const char* str, Color* color)
+{
+	ImFont a;
+	std::string utf_8_1 = std::string(str);
+	std::string utf_8_2 = string_To_UTF8(utf_8_1);
+	ImGui::GetOverlayDrawList()->AddText(ImVec2(x, y), ImGui::ColorConvertFloat4ToU32(ImVec4(color->R / 255.0, color->G / 255.0, color->B / 255.0, color->A / 255.0)), utf_8_2.c_str());
+}
+
 void __fastcall Overlay::Loop()
 {
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("OverWolf"), NULL };
@@ -190,6 +243,8 @@ void __fastcall Overlay::Loop()
 			ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoInputs);
 
 		ESP::Run();
+		Render::DrawString(20, 25, "HAVOK", &ColorClass.White);
+		Render::DrawString(58, 25, ".CC", &ColorClass.Pink);
 		ImGui::End();
 
 		if (GetKeyState(VK_INSERT) & 0x8000) {  //Menu Key
@@ -298,10 +353,45 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
+/*std::string string_To_UTF8(const std::string& str)
+{
+	int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
+
+	wchar_t* pwBuf = new wchar_t[nwLen + 1];
+	ZeroMemory(pwBuf, nwLen * 2 + 2);
+
+	::MultiByteToWideChar(CP_ACP, 0, str.c_str(), str.length(), pwBuf, nwLen);
+
+	int nLen = ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
+
+	char* pBuf = new char[nLen + 1];
+	ZeroMemory(pBuf, nLen + 1);
+
+	::WideCharToMultiByte(CP_UTF8, 0, pwBuf, nwLen, pBuf, nLen, NULL, NULL);
+
+	std::string retStr(pBuf);
+
+	delete[]pwBuf;
+	delete[]pBuf;
+
+	pwBuf = NULL;
+	pBuf = NULL;
+
+	return retStr;
+}*/
+
 void __fastcall Render::Line(ImVec2 pos, ImVec2 size, ImU32 color, float thickness)
 {
 	ImGui::GetWindowDrawList()->AddLine(pos, size, color, thickness);
 }
+
+/*void __fastcall Render::DrawString(int x, int y, const char* str, Color* color)
+{
+	ImFont a;
+	std::string utf_8_1 = std::string(str);
+	std::string utf_8_2 = string_To_UTF8(utf_8_1);
+	ImGui::GetOverlayDrawList()->AddText(ImVec2(x, y), ImGui::ColorConvertFloat4ToU32(ImVec4(color->R / 255.0, color->G / 255.0, color->B / 255.0, color->A / 255.0)), utf_8_2.c_str());
+}*/
 
 void __fastcall Render::DrawBox(ImVec2 pos, ImVec2 size, ImColor color)
 {

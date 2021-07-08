@@ -121,6 +121,8 @@ void __fastcall DrawMenu()
 
 	ImGui::Begin(safe_str("Medusa"), (bool*)true, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
 	{
+		//Render::DrawString(20, 20, "KAMI", &ColorClass.White);
+		//Render::DrawString(48, 20, ".WTF", &ColorClass.Pink);
 		ImGui::SetScrollY(0);
 
 		ImVec2 p = ImGui::GetCursorScreenPos();

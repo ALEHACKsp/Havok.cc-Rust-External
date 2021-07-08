@@ -160,6 +160,7 @@
     <ClInclude Include="Features\ESP\DrawESP.hpp" />
     <ClInclude Include="Features\ESP\ESP.hpp" />
     <ClInclude Include="Features\MISC\DoMisc.hpp" />
+    <ClInclude Include="Overlay\color.hpp" />
     <ClInclude Include="Overlay\FontData.hpp" />
     <ClInclude Include="Features\MISC\Misc.hpp" />
     <ClInclude Include="Overlay\imgui\imconfig.h" />

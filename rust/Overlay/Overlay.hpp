@@ -1,6 +1,7 @@
 #pragma once
 #include "imgui/imgui.h"
 #include <string>
+#include "color.hpp"
 
 namespace ESP
 {
@@ -25,5 +26,6 @@ namespace Render
 	void __fastcall Text(ImVec2 pos, std::string strText, ImColor color, bool outline, ImFont* font, float fontSize = 0.f);
 	void __fastcall Circle(ImVec2 point, float radius, ImColor color);
 	void __fastcall DrawHealthBar(ImVec2 pos, ImVec2 size, ImColor color);
+	void __fastcall DrawString(int x, int y, const char* str, Color* color);
 	ImU32 __fastcall FtIM(float* a_value);
 }
