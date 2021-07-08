@@ -21,7 +21,6 @@ namespace Misc {
 				}
 				else if (!GetAsyncKeyState(Settings::speedHackkey))
 				{
-					Write<float>(localPlayer->Player->player + 0x714, 0); // normal
 					localPlayer->Movement->speedHack(0);
 				}
 
