@@ -9,6 +9,8 @@ void AimbotTab()
 	{
 		ImGui::Checkbox(safe_str("Enable "), &Settings::enableAimbot);
 		ImGui::Hotkey(safe_str("##On Key"), &Settings::aimbotKey, ImVec2(100, 20));
+		ImGui::Checkbox(safe_str("smoothing"), &Settings::enableSmoothing);
+		ImGui::SliderFloat5(safe_str("smooth"), &Settings::aimbotSmoothing, 1, 100, safe_str("%.2f"));
 	} ImGui::EndChild();
 
 	ImGui::SameLine();
@@ -102,26 +104,31 @@ void MiscTabb()
 		ImGui::Checkbox(safe_str("Spider Climb"), &Settings::spiderClimb);
 
 		ImGui::Checkbox(safe_str("Speedhack"), &Settings::speedhack);
-		ImGui::SameLine();
 		if (Settings::speedhack)
 		{
+			ImGui::SameLine();
 			ImGui::Hotkey(safe_str("##On Key2"), &Settings::speedHackkey, ImVec2(100, 20));
 		}
 		ImGui::Checkbox(safe_str("Walk On Water"), &Settings::walkOnWater);
-		ImGui::SameLine();
 		if (Settings::walkOnWater)
 		{
+			ImGui::SameLine();
 			ImGui::Hotkey(safe_str("##On Key3"), &Settings::walkWaterKEY, ImVec2(100, 20));
 		}
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 		ImGui::Checkbox(safe_str("Nightmode"), &Settings::night_mode);
-
+		
+		if (Settings::night_mode)
+		{
+			ImGui::SameLine();
+			ImGui::SliderFloat(safe_str("Time"),&Settings::time, 0,24);
+		}
 		ImGui::Checkbox(safe_str("instant eoka"), &Settings::tapeoka);
 		ImGui::Checkbox(safe_str("third person"), &Settings::thirdperson);
 		ImGui::Checkbox(safe_str("Long Neck"), &Settings::shootInAir);
-		ImGui::SameLine();
 		if (Settings::shootInAir)
 		{
+			ImGui::SameLine();
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::LongNeckKey, ImVec2(100, 20));
 		}
 

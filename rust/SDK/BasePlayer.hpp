@@ -136,11 +136,11 @@ public:
 
 
 	void setViewAngles(Vector3 angles) { // vector 3
-		Write<Vector3>(Read<uint64_t>(this->player + 0x4C8) + 0x3C, angles);
+		Write<Vector3>(Read<uint64_t>(this->player + 0x4E0) + 0x3C, angles); //public PlayerInput input; | private Vector3 bodyAngles;
 	}
 
 	void setViewAngles(Vector2 angles) { // vector 2
-		Write<Vector2>(Read<uint64_t>(this->player + 0x4C8) + 0x3C, angles);
+		Write<Vector2>(Read<uint64_t>(this->player + 0x4E0) + 0x3C, angles); //public PlayerInput input; | private Vector3 bodyAngles;
 	}
 
 	void setPlayerFlag(BPlayerFlags flag) {
@@ -237,11 +237,11 @@ public:
 	}
 
 	Vector3 getVelocity() {
-		return Read<Vector3>(this->playerModel + 0x1FC); //0x1FC
+		return Read<Vector3>(this->playerModel + 0x21C); //0x1FC
 	}
 
 	Vector3 getNewVelocity() {
-		return Read<Vector3>(this->playerModel + 0x1FC);
+		return Read<Vector3>(this->playerModel + 0x21C);
 	}
 
 	Vector3 getPosition() {
@@ -249,11 +249,11 @@ public:
 	}
 
 	Vector3 getRecoilAngles() {
-		return ReadChain<Vector3>(this->player, { (uint64_t)0x4C8, (uint64_t)0x64 });
+		return ReadChain<Vector3>(this->player, { (uint64_t)0x4E0, (uint64_t)0x64 });
 	}
 
 	Vector3 getViewAngles() {
-		return ReadChain<Vector3>(this->player, { (uint64_t)0x4C8, (uint64_t)0x3C });
+		return ReadChain<Vector3>(this->player, { (uint64_t)0x4E0, (uint64_t)0x3C });// public PlayerInput input;
 	}
 
 	std::string getName() {
@@ -263,7 +263,7 @@ public:
 
 
 	//Testing 
-	void TestNight()
+	void TestNight(float time)
 	{
 		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
 		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
@@ -272,7 +272,7 @@ public:
 		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
 		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
 		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
-		Write<float>(TodCycle + 0x10, 01.00f);
+		Write<float>(TodCycle + 0x10, time);
 	}
 
 	void LongNeck()
@@ -372,8 +372,9 @@ public:
 	void alwaysShoot() {
 		Write<float>(this->playerMovement + 0x48, 1);
 	}
+
 	void speedHack(int speed) {
-		Write<float>(this->playerMovement + 0x48, speed);
+		Write<float>(this->player + 0x714, speed);
 	}
 
 
