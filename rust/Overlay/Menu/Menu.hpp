@@ -99,6 +99,7 @@ void MiscTabb()
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 
 		ImGui::Checkbox(safe_str("instant eoka"), &Settings::tapeoka);
+		ImGui::Checkbox(safe_str("third person"), &Settings::thirdperson);
 	} ImGui::EndChild();
 }
 

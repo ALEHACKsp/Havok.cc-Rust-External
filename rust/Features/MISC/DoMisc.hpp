@@ -21,6 +21,8 @@ namespace Misc {
 					localPlayer->Movement->alwaysShoot();
 				}
 
+				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
+				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
 				//if (Settings::noRecoil) heldItem->noRecoil();
 
 				//localPlayer->Player->blockSprint();

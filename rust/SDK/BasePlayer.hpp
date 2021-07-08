@@ -257,6 +257,12 @@ public:
 		return this->getASCIIName(this->getPlayerName());
 	}
 
+
+	void ThirdPerson(int val)
+	{
+
+	}
+
 	HeldItem getHeldItem()
 	{
 		int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;

@@ -51,6 +51,8 @@ namespace Settings {
 
 	bool shootInAir = false;
 
+	bool thirdperson = false;
+
 	bool fastSwitchWeapons = false;
 
 	bool tapeoka = false;

@@ -10,6 +10,8 @@ namespace Settings {
 	extern bool drawName;
 	extern bool drawSnapLine;
 
+	extern bool thirdperson;
+
 	extern bool enableAimbot;
 
 	extern float aimbotFov;
