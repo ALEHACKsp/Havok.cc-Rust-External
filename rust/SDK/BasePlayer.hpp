@@ -237,15 +237,15 @@ public:
 	}
 
 	Vector3 getVelocity() {
-		return Read<Vector3>(this->playerModel + 0x21C); //0x1FC
+		return Read<Vector3>(this->playerModel + 0x21C); //private Vector3 newVelocity;
 	}
 
 	Vector3 getNewVelocity() {
-		return Read<Vector3>(this->playerModel + 0x21C);
+		return Read<Vector3>(this->playerModel + 0x21C); //private Vector3 newVelocity;
 	}
 
 	Vector3 getPosition() {
-		return Read<Vector3>(this->visualState + 0x90);//0x90
+		return Read<Vector3>(this->visualState + 0x90);
 	}
 
 	Vector3 getRecoilAngles() {
