@@ -41,14 +41,14 @@ namespace Misc {
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
 
 
-				if (Settings::FovSlider > 90) localPlayer->Movement->setFov();
+				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
 				
 
 				if (heldItem->IsWeapon())
 				{
 					if (Settings::noRecoil) heldItem->noRecoil();
 					if (Settings::rapidFire) heldItem->rapidFire();
-					if (Settings::instantCompound) heldItem->instantCompound();
+					//if (Settings::instantCompound) heldItem->instantCompound();
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();
 					if (Settings::tapeoka) heldItem->instantEoka();
 
