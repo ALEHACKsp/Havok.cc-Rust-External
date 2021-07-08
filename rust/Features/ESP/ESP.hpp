@@ -52,23 +52,25 @@ namespace ESP {
 
 		for (unsigned long i = 0; i < local_ore->size(); ++i) {
 			std::unique_ptr<BaseResource> curOre = std::make_unique<BaseResource>(local_ore->at(i));
-
 			auto position = Read<Vector3>(curOre->trans + 0x90);//world position = 0x90
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &position);
-			Vector2 pos;
+			if (distance < 200)
+			{
+				Vector2 pos;
 
-			std::string nameStr = curOre->name;
-			std::string distanceStr = std::to_string(distance) + "M";
+				std::string nameStr = curOre->name;
+				std::string distanceStr = std::to_string(distance) + "M";
 
-			if (!Utils::WorldToScreen(position, pos)) continue;
+				if (!Utils::WorldToScreen(position, pos)) continue;
+				auto text_size = ImGui::CalcTextSize(nameStr.c_str());
+				auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
+				//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
 
-			auto text_size = ImGui::CalcTextSize(nameStr.c_str());
-			//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
+				Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
 
-			Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
-
-			Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
-			//Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+				Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+				Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+			}
 		}
 
 

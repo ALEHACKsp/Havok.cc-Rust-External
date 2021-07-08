@@ -53,6 +53,8 @@ namespace Settings {
 
 	bool adminFlag = false;
 
+	float time = 12.f;
+
 	bool shootInAir = false;
 	bool speedhack = false;
 	int speedHackkey = 0;

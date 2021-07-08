@@ -263,7 +263,7 @@ public:
 
 
 	//Testing 
-	void TestNight()
+	void TestNight(float time)
 	{
 		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
 		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
@@ -272,7 +272,7 @@ public:
 		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
 		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
 		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
-		Write<float>(TodCycle + 0x10, 01.00f);
+		Write<float>(TodCycle + 0x10, time);
 	}
 
 	void LongNeck()
@@ -372,8 +372,9 @@ public:
 	void alwaysShoot() {
 		Write<float>(this->playerMovement + 0x48, 1);
 	}
+
 	void speedHack(int speed) {
-		Write<float>(this->playerMovement + 0x48, speed);
+		Write<float>(this->player + 0x714, speed);
 	}
 
 

@@ -39,7 +39,7 @@ namespace Misc {
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
-				if(Settings::night_mode) localPlayer->Player->TestNight();
+				if (Settings::night_mode) localPlayer->Player->TestNight(Settings::time);
 
 				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
 				

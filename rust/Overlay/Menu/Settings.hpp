@@ -23,7 +23,7 @@ namespace Settings {
 	extern int CrosshairLength;
 	extern int CrosshairGap;
 	extern int CrosshairThickness;
-
+	extern float time;
 	extern int speedHackkey;
 	extern int aimbotKey;
 	extern int jumpKey;
