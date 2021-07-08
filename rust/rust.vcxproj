@@ -81,8 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Program Files\VMProtect Ultimate\Lib\Windows;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;C:\Users\Trix\Desktop\Github\rust-cheat\x64\Release;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\Trix\Desktop\Github\rust-cheat\rust\vmprotect sdk\Include\C;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Sam\source\repos\Havok.cc-Rust-External;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;C:\Users\Trix\Desktop\Github\rust-cheat\x64\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Sam\source\repos\Havok.cc-Rust-External;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

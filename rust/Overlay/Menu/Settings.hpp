@@ -15,10 +15,16 @@ namespace Settings {
 
 	extern bool thirdperson;
 
+	extern bool speedhack;
 	extern bool enableAimbot;
 
 	extern float aimbotFov;
+	extern bool crosshairScoped;
+	extern int CrosshairLength;
+	extern int CrosshairGap;
+	extern int CrosshairThickness;
 
+	extern int speedHackkey;
 	extern int aimbotKey;
 	extern int jumpKey;
 	extern int LongNeckKey;

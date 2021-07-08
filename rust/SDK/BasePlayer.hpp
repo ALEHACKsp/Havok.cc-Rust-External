@@ -372,6 +372,9 @@ public:
 	void alwaysShoot() {
 		Write<float>(this->playerMovement + 0x48, 1);
 	}
+	void speedHack(int speed) {
+		Write<float>(this->playerMovement + 0x48, speed);
+	}
 
 
 	void setFov() {

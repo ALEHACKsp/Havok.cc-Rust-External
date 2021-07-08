@@ -15,6 +15,16 @@ namespace Misc {
 			for (unsigned long i = 0; i < local_players->size(); ++i)	{
 				*heldItem = localPlayer->Player->getHeldItem();
 
+				if (Settings::speedhack && GetAsyncKeyState(Settings::speedHackkey))
+				{
+					localPlayer->Movement->speedHack(-1); // fast
+				}
+				else if (!GetAsyncKeyState(Settings::speedHackkey))
+				{
+					Write<float>(localPlayer->Player->player + 0x714, 0); // normal
+					localPlayer->Movement->speedHack(0);
+				}
+
 				if (Settings::shootInAir)
 				{
 					localPlayer->Player->LongNeck();

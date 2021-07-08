@@ -117,14 +117,29 @@ namespace ESP {
 	}
 
 	void __fastcall DrawCrosshair() {
-		float midX = screenWidth / 2;
-		float midY = screenHeight / 2;
+		float MidX = screenWidth / 2;
+		float MidY = screenHeight / 2;
+		Render::Line({ MidX - Settings::CrosshairLength, MidY }, { MidX - Settings::CrosshairGap, MidY }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+		Render::Line({ MidX, MidY - Settings::CrosshairLength }, { MidX, MidY - Settings::CrosshairGap }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+		Render::Line({ MidX + Settings::CrosshairLength, MidY }, { MidX + Settings::CrosshairGap, MidY }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+		Render::Line({ MidX, MidY + Settings::CrosshairLength }, { MidX, MidY + Settings::CrosshairGap }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+		
+		/*
+		if (Settings::crosshairScoped && Settings::drawCrosshair)
+		{
+			Render::Line({ MidX - Settings::CrosshairLength, MidY }, { MidX - Settings::CrosshairGap, MidY }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+			Render::Line({ MidX, MidY - Settings::CrosshairLength }, { MidX, MidY - Settings::CrosshairGap }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+			Render::Line({ MidX + Settings::CrosshairLength, MidY }, { MidX + Settings::CrosshairGap, MidY }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+			Render::Line({ MidX, MidY + Settings::CrosshairLength }, { MidX, MidY + Settings::CrosshairGap }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+		}
+		else if (Settings::drawCrosshair && !Scoped)
+		{
+			Render::Line({ MidX - Settings::CrosshairLength, MidY }, { MidX - Settings::CrosshairGap, MidY }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+			Render::Line({ MidX, MidY - Settings::CrosshairLength }, { MidX, MidY - Settings::CrosshairGap }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+			Render::Line({ MidX + Settings::CrosshairLength, MidY }, { MidX + Settings::CrosshairGap, MidY }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+			Render::Line({ MidX, MidY + Settings::CrosshairLength }, { MidX, MidY + Settings::CrosshairGap }, Render::FtIM(Settings::drawColor_crosshair), Settings::CrosshairThickness);
+		}*/
 
-		Render::Line({ midX, (midY - 8) }, { midX, (midY - 4) }, Render::FtIM(Settings::drawColor_crosshair), 1.1f);
-		Render::Line({ (midX - 8), midY }, { (midX - 4), midY }, Render::FtIM(Settings::drawColor_crosshair), 1.1f);
-
-		Render::Line({ midX, (midY + 8) }, { midX, (midY + 4) }, Render::FtIM(Settings::drawColor_crosshair), 1.1f);
-		Render::Line({ (midX + 8), midY }, { (midX + 4), midY }, Render::FtIM(Settings::drawColor_crosshair), 1.1f);
 	}
 
 	void __fastcall Nigger()

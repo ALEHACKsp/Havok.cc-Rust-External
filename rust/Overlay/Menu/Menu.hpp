@@ -43,6 +43,18 @@ void VisualsTab()
 			ImGui::SliderInt5(safe_str("Distance##Distance4"), &Settings::nameDistance, 100, 300);
 
 		ImGui::Checkbox(safe_str("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
+
+		if (Settings::drawCrosshair)
+		{
+			ImGui::Checkbox("while scoped", &Settings::crosshairScoped);
+			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15);
+			ImGui::SliderInt("Length", &Settings::CrosshairLength, 1, 24);
+			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15);
+			ImGui::SliderInt("Gap", &Settings::CrosshairGap, 0, 24);
+			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15);
+			ImGui::SliderInt("Thickness", &Settings::CrosshairThickness, 1, 24);
+		}
+
 		ImGui::Checkbox(safe_str("Niggers"), &Settings::niggerCross); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
 
 
@@ -89,6 +101,12 @@ void MiscTabb()
 		}
 		ImGui::Checkbox(safe_str("Spider Climb"), &Settings::spiderClimb);
 
+		ImGui::Checkbox(safe_str("Speedhack"), &Settings::speedhack);
+		ImGui::SameLine();
+		if (Settings::speedhack)
+		{
+			ImGui::Hotkey(safe_str("##On Key2"), &Settings::speedHackkey, ImVec2(100, 20));
+		}
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 
 		ImGui::Checkbox(safe_str("instant eoka"), &Settings::tapeoka);

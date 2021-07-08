@@ -54,7 +54,8 @@ namespace Settings {
 	bool adminFlag = false;
 
 	bool shootInAir = false;
-
+	bool speedhack = false;
+	int speedHackkey = 0;
 	bool thirdperson = false;
 
 	bool fastSwitchWeapons = false;
@@ -81,6 +82,10 @@ namespace Settings {
 	float drawColor_friendly[4] = { 0.332143, 0.779874, 0.2011, 1 };
 
 	bool stoneESP = false;
+	bool crosshairScoped = false;
+	int CrosshairLength = 17;
+	int CrosshairGap = 6;
+	int CrosshairThickness = 1;
 
 	bool metalOreESP = false;
 	bool sulfurOreESP = false;
