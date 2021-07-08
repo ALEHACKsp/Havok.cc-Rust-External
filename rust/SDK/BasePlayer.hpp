@@ -260,13 +260,13 @@ public:
 	HeldItem getHeldItem()
 	{
 		int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;
-		                                                              //0x688
-		uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x608, (uint64_t)0x28, (uint64_t)0x38, 0x10 });
+
+		uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
 
 
 		//std::cout << active_weapon_id << std::endl;
 
-		//std::cout << "Held weapon: found :" <<  active_weapon_id << std::endl;
+		//std::cout << "Held weapon: found :" <<  items << std::endl;
 
 
 		for (int items_on_belt = 0; items_on_belt <= 6; items_on_belt++)

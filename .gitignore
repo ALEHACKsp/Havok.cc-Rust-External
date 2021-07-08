@@ -1,0 +1,4 @@
+.vs/
+x64/
+rust/imgui.ini
+rust/vmprotect sdk/

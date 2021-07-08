@@ -72,7 +72,7 @@ public:
 
 
 	void rapidFire() {
-			Write<float>(this->bp + 0x1DC, Settings::rapidfirevalue);
+			Write<float>(this->bp + 0x1F4, Settings::rapidfirevalue);
 			Write<bool>(this->bp + 0x270, true); //this is automatic fire
 	}
 

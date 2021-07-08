@@ -21,7 +21,7 @@ namespace Misc {
 					localPlayer->Movement->alwaysShoot();
 				}
 
-				if (Settings::noRecoil) heldItem->noRecoil();
+				//if (Settings::noRecoil) heldItem->noRecoil();
 
 				//localPlayer->Player->blockSprint();
 
@@ -32,13 +32,12 @@ namespace Misc {
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
 
-				//if (Settings::flyHack) localPlayer->Movement->Fly();
 
 				if (Settings::FovSlider > 90) localPlayer->Movement->setFov(); 
 
 				if (heldItem->IsWeapon())
 				{
-					//if (Settings::noRecoil) heldItem->noRecoil();
+					if (Settings::noRecoil) heldItem->noRecoil();
 					if (Settings::rapidFire) heldItem->rapidFire();
 					if (Settings::instantCompound) heldItem->instantCompound();
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();

@@ -69,11 +69,11 @@ void MiscTabb()
 	{
 		ImGui::Text(safe_str("Weapon Options"));
 		//ImGui::Checkbox(safe_str("Shoot in the Air"), &Settings::shootInAir);
-		//ImGui::Checkbox(safe_str("Rapid Fire"), &Settings::rapidFire);
-		/*if (Settings::rapidFire)
+		ImGui::Checkbox(safe_str("Rapid Fire"), &Settings::rapidFire);
+		if (Settings::rapidFire)
 		{
 			ImGui::SliderFloat5(safe_str("Rapid Fire Value"), &Settings::rapidfirevalue, 0.01, 0.09);
-		}*/
+		}
 		ImGui::Checkbox(safe_str("No Recoil"), &Settings::noRecoil);
 		ImGui::Checkbox(safe_str("Instant Compound"), &Settings::instantCompound);
 		ImGui::Checkbox(safe_str("Instant Switch"), &Settings::fastSwitchWeapons);
