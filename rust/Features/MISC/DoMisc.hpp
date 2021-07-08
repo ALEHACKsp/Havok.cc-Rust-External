@@ -30,6 +30,7 @@ namespace Misc {
 				//localPlayer->Player->blockSprint();
 					
 				//if (Settings::adminFlag) localPlayer->Player->setAdmin();
+				if (Settings::freeze) localPlayer->Player->isFrozen();
 
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();

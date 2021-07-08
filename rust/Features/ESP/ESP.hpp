@@ -53,7 +53,7 @@ namespace ESP {
 			Vector2 pos;
 
 			std::string nameStr = curOre->name;
-			//std::string distanceStr = std::to_string(distance) + "M";
+			std::string distanceStr = std::to_string(distance) + "M";
 
 			if (!Utils::WorldToScreen(position, pos)) continue;
 
@@ -76,8 +76,8 @@ namespace ESP {
 
 			if (curCorpse->name.find("player/player_corpse") != std::string::npos) {
 
-				std::string nameStr = "Dead Player";
-				//std::string distanceStr = std::to_string(distance) + "M";
+				std::string nameStr = "Dead Body";
+				std::string distanceStr = std::to_string(distance) + "M";
 
 				if (!Utils::WorldToScreen(position, pos)) continue;
 
@@ -95,7 +95,7 @@ namespace ESP {
 		{
 			std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));
 
-			Vector3 entityPosition = curEntity->getPosition();
+			//Vector3 entityPosition = curEntity->getPosition();
 
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &curEntity->position);
 

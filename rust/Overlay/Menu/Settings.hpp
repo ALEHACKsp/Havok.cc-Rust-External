@@ -9,6 +9,8 @@ namespace Settings {
 	extern bool drawHealthBar;
 	extern bool drawName;
 	extern bool drawSnapLine;
+	extern bool drawSnaplines;
+	extern bool freeze;
 
 	extern bool thirdperson;
 

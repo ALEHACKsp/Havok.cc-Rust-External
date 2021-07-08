@@ -1,18 +1,4 @@
-﻿  Main.cpp
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(270,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(272,19): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(274,19): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(276,19): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(277,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(286,66): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(82,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(101,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(159,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(180,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(195,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(213,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(5,1): warning C4005: 'M_PI': macro redefinition
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Math.hpp(131): message : see previous definition of 'M_PI'
+﻿  Overlay.cpp
 C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(17,27): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(18,27): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(19,26): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
@@ -23,73 +9,28 @@ C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay
 C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(85,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(84,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\color.hpp(83,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(213,38): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\Aimbot\Aimbot.hpp(60,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\Aimbot\Aimbot.hpp(107,66): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\Aimbot\Aimbot.hpp(107,48): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(30,87): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(55,87): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(78,88): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(83,11): warning C4101: 'res': unreferenced local variable
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(94,90): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(120,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\DrawESP.hpp(121,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\ESP.hpp(36,56): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\ESP\ESP.hpp(36,38): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Features\MISC\Misc.hpp(17,15): warning C4244: 'initializing': conversion from 'T' to 'INT16', possible loss of data
-          with
-          [
-              T=uint64_t
-          ]
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Entity\EntityLoop.hpp(31,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(123,1): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\Driver.hpp(241): message : see reference to function template instantiation 'T Read<uint64_t>(UINT_PTR)' being compiled
-          with
-          [
-              T=uint64_t
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(2468,23): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
-          with
-          [
-              _Elem=char
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(2479): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
-          with
-          [
-              _Iter=wchar_t *
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(2479): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
-          with
-          [
-              _Iter=wchar_t *
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(2459): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
-          with
-          [
-              _Iter=wchar_t *
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xstring(2459): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
-          with
-          [
-              _Iter=wchar_t *
-          ]
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\HeldItem.hpp(32): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
-C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\SDK\HeldItem.hpp(32): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(75,91): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(121,47): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(121,34): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(127,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(156,79): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(14,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h(42): message : see previous definition of 'DIRECTINPUT_VERSION'
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(61,62): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(72,63): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(147,74): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,154): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,136): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,118): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,100): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(241,48): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(241,35): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
   Generating code
-  10 of 2358 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
-    3 functions were new in current compilation
-    47 functions had inline decision re-evaluated but remain unchanged
+  1 of 2359 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    20 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   rust.vcxproj -> C:\Users\negr\Desktop\havok.cc\havok-rust.cc\Havok.cc-Rust-External\x64\Release\rust.exe

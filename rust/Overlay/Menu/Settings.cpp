@@ -7,8 +7,10 @@ namespace Settings {
 	bool drawCrosshair = false;
 	bool drawHealthBar = false;
 	bool drawName = false;
+	bool drawSnaplines = false;
 
 	bool enableAimbot = false;
+	bool freeze = false;
 
 	bool shootAnywhere = false;
 	bool noRecoil = false;

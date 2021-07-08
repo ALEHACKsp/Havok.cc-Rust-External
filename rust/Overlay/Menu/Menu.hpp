@@ -107,6 +107,12 @@ void MiscTabb()
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::LongNeckKey, ImVec2(100, 20));
 		}
 
+		ImGui::Checkbox(safe_str("Freeze Player"), &Settings::freeze);
+		if (Settings::freeze)
+		{
+			ImGui::Hotkey(safe_str("##On Key1"), &Settings::flyKey, ImVec2(100, 20));
+		}
+
 	} ImGui::EndChild();
 }
 
@@ -127,10 +133,8 @@ void __fastcall DrawMenu()
 	ImGui::SetNextWindowSize(ImVec2(700, 330));
 	ImGui::SetNextWindowPos(ImVec2((1920 - 840) * .5, (1080 - 500) * .5), ImGuiCond_Once);
 
-	ImGui::Begin(safe_str("Medusa"), (bool*)true, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
+	ImGui::Begin(safe_str("Havok"), (bool*)true, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
 	{
-		//Render::DrawString(20, 20, "KAMI", &ColorClass.White);
-		//Render::DrawString(48, 20, ".WTF", &ColorClass.Pink);
 		ImGui::SetScrollY(0);
 
 		ImVec2 p = ImGui::GetCursorScreenPos();
@@ -145,7 +149,7 @@ void __fastcall DrawMenu()
 
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 8);
 		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 3);
-		ImGui::Text(safe_str("terry davis"));
+		ImGui::Text(safe_str("havok.cc"));
 
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.117f, 0.117f, 0.152f, 1.f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(78 / 255.f, 78 / 255.f, 87 / 255.f, 1));

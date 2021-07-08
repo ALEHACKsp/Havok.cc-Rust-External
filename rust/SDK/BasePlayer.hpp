@@ -195,7 +195,10 @@ public:
 	}
 
 	bool isFrozen() {
-		return Read<bool>(this->player + 0x4C8); //public bool Frozen;
+		if (GetAsyncKeyState(Settings::flyKey))
+		{
+			return Read<bool>(this->player + 0x4C8); //public bool Frozen;
+		}
 	}
 
 	bool isDead() {
