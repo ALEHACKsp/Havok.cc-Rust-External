@@ -95,6 +95,8 @@ namespace ESP {
 		{
 			std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));
 
+			Vector3 entityPosition = curEntity->getPosition();
+
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &curEntity->position);
 
 			if (curEntity->isLocalPlayer()) continue;

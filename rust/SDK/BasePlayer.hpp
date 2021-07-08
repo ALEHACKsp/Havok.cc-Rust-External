@@ -258,9 +258,27 @@ public:
 	}
 
 
-	void ThirdPerson(int val)
-	{
 
+	//Testing 
+	void TestNight()
+	{
+		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
+		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
+		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10);
+		DWORD64 ObjClass = Read<DWORD64>(GameObject + 0x30);
+		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
+		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
+		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
+		Write<float>(TodCycle + 0x10, 01.00f);
+	}
+
+	void LongNeck()
+	{
+		if (GetAsyncKeyState(Settings::LongNeckKey))
+		{
+			DWORD64 eyes = Read<DWORD64>(this->player + 0x658);
+			Write<Vector3>(eyes + 0x38, Vector3(0, (0.8f), 0));
+		}
 	}
 
 	HeldItem getHeldItem()

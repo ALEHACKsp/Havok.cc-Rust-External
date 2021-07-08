@@ -17,6 +17,8 @@ namespace Misc {
 
 				if (Settings::shootInAir)
 				{
+					///localPlayer->Player->TestNight();
+					localPlayer->Player->LongNeck();
 					localPlayer->Player->setModelFlag(MStateFlags::OnGround);
 					localPlayer->Movement->alwaysShoot();
 				}
@@ -26,7 +28,6 @@ namespace Misc {
 				//if (Settings::noRecoil) heldItem->noRecoil();
 
 				//localPlayer->Player->blockSprint();
-
 					
 				//if (Settings::adminFlag) localPlayer->Player->setAdmin();
 
@@ -35,7 +36,8 @@ namespace Misc {
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
 
 
-				if (Settings::FovSlider > 90) localPlayer->Movement->setFov(); 
+				if (Settings::FovSlider > 90) localPlayer->Movement->setFov();
+				
 
 				if (heldItem->IsWeapon())
 				{

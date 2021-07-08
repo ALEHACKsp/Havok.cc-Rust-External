@@ -36,6 +36,7 @@ namespace Settings {
 	int aimbotKey = 0;
 
 	int jumpKey = 0;
+	int LongNeckKey = 0;
 	int flyKey = 0;
 	int walkWaterKEY = 0;
 	bool walkOnWater = false;

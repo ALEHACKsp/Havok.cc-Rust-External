@@ -18,6 +18,7 @@ namespace Settings {
 
 	extern int aimbotKey;
 	extern int jumpKey;
+	extern int LongNeckKey;
 	extern int flyKey;
 
 	extern bool adminFlag;

@@ -81,7 +81,7 @@ void MiscTabb()
 		ImGui::Separator();
 
 		ImGui::Text(safe_str("Player Options"));
-		ImGui::Checkbox(safe_str("Infinate Jump"), &Settings::infinateJump);
+		//ImGui::Checkbox(safe_str("Infinate Jump"), &Settings::infinateJump);
 		if (Settings::infinateJump)
 		{
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::jumpKey, ImVec2(100, 20));
@@ -100,6 +100,13 @@ void MiscTabb()
 
 		ImGui::Checkbox(safe_str("instant eoka"), &Settings::tapeoka);
 		ImGui::Checkbox(safe_str("third person"), &Settings::thirdperson);
+		ImGui::Checkbox(safe_str("Long Neck"), &Settings::shootInAir);
+		ImGui::SameLine();
+		if (Settings::shootInAir)
+		{
+			ImGui::Hotkey(safe_str("##On Key1"), &Settings::LongNeckKey, ImVec2(100, 20));
+		}
+
 	} ImGui::EndChild();
 }
 
