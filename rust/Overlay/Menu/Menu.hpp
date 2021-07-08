@@ -142,7 +142,7 @@ void __fastcall DrawMenu()
 
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 8);
 		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 3);
-		ImGui::Text(safe_str("chump"));
+		ImGui::Text(safe_str("Havok.cc"));
 
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.117f, 0.117f, 0.152f, 1.f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(78 / 255.f, 78 / 255.f, 87 / 255.f, 1));
