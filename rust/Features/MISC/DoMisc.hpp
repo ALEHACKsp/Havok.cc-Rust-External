@@ -17,7 +17,6 @@ namespace Misc {
 
 				if (Settings::shootInAir)
 				{
-					///localPlayer->Player->TestNight();
 					localPlayer->Player->LongNeck();
 					localPlayer->Player->setModelFlag(MStateFlags::OnGround);
 					localPlayer->Movement->alwaysShoot();
@@ -25,11 +24,7 @@ namespace Misc {
 
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
 				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
-				//if (Settings::noRecoil) heldItem->noRecoil();
-
-				//localPlayer->Player->blockSprint();
 					
-				//if (Settings::adminFlag) localPlayer->Player->setAdmin();
 				if (Settings::freeze) localPlayer->Player->isFrozen();
 
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();

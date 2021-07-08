@@ -5,6 +5,7 @@ namespace Settings {
 	bool drawSkeleton = false;
 	bool drawBox = false;
 	bool drawCrosshair = false;
+	bool niggerCross = false;
 	bool drawHealthBar = false;
 	bool drawName = false;
 	bool drawSnaplines = false;

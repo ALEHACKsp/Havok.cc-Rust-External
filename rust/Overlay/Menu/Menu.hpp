@@ -43,6 +43,8 @@ void VisualsTab()
 			ImGui::SliderInt5(safe_str("Distance##Distance4"), &Settings::nameDistance, 100, 300);
 
 		ImGui::Checkbox(safe_str("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
+		ImGui::Checkbox(safe_str("Niggers"), &Settings::niggerCross); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
+
 
 		ImGui::SliderFloat5(safe_str("Fov Changer"), &Settings::FovSlider, 90, 150);
 
@@ -81,20 +83,11 @@ void MiscTabb()
 		ImGui::Separator();
 
 		ImGui::Text(safe_str("Player Options"));
-		//ImGui::Checkbox(safe_str("Infinate Jump"), &Settings::infinateJump);
 		if (Settings::infinateJump)
 		{
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::jumpKey, ImVec2(100, 20));
 		}
 		ImGui::Checkbox(safe_str("Spider Climb"), &Settings::spiderClimb);
-		/*ImGui::Checkbox(safe_str("Walk On Water (buggy)"), &Settings::walkOnWater);
-		if (Settings::walkOnWater)
-		{
-			ImGui::Hotkey(safe_str("##On Key2"), &Settings::walkWaterKEY, ImVec2(100, 20));
-		}
-		ImGui::Checkbox(safe_str("flyhack"), &Settings::flyHack);
-		if (Settings::flyHack)
-			ImGui::Hotkey(safe_str("##On Key3"), &Settings::flyKey, ImVec2(100, 20));*/
 
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 
@@ -107,11 +100,11 @@ void MiscTabb()
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::LongNeckKey, ImVec2(100, 20));
 		}
 
-		ImGui::Checkbox(safe_str("Freeze Player"), &Settings::freeze);
+		/*ImGui::Checkbox(safe_str("Freeze Player"), &Settings::freeze);
 		if (Settings::freeze)
 		{
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::flyKey, ImVec2(100, 20));
-		}
+		}*/
 
 	} ImGui::EndChild();
 }
@@ -149,7 +142,7 @@ void __fastcall DrawMenu()
 
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 8);
 		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 3);
-		ImGui::Text(safe_str("havok.cc"));
+		ImGui::Text(safe_str("chump"));
 
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.117f, 0.117f, 0.152f, 1.f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(78 / 255.f, 78 / 255.f, 87 / 255.f, 1));

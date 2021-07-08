@@ -122,13 +122,13 @@ public:
 		this->player = Read<uintptr_t>(_ent + 0x28); //Entity
 		this->visualState = Read<uintptr_t>(_trans + 0x38);
 
-		this->playerFlags = Read<int32_t>(_ent + 0x650); //0x5F8 //public BasePlayer.PlayerFlags playerFlags;
+		this->playerFlags = Read<int32_t>(_ent + 0x650); //public BasePlayer.PlayerFlags playerFlags;
 		this->name = ReadNative(_obj + 0x60);
 
 		this->playerModel = Read<uintptr_t>(this->player + 0x4C0); //BasePlayer -> public PlayerModel playerModel;
 		this->modelState = Read<uintptr_t>(this->player + 0x5E0); //0x588 // public ModelState modelState;
 
-		this->position = Read<Vector3>(this->visualState + 0x90); // class PlayerModel | offset : internal Vector3 position;
+		this->position = Read<Vector3>(this->visualState + 0x90); //internal Vector3 position;
 		this->health = Read<float>(this->player + 0x224);//private float _health;
 	}
 

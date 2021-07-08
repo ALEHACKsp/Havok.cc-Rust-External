@@ -11,6 +11,7 @@ namespace Settings {
 	extern bool drawSnapLine;
 	extern bool drawSnaplines;
 	extern bool freeze;
+	extern bool niggerCross;
 
 	extern bool thirdperson;
 

@@ -32,6 +32,11 @@ namespace ESP {
 		if (Settings::drawCrosshair)
 			DrawCrosshair();
 
+		if (Settings::niggerCross)
+			Nigger();
+
+
+
 		if (Settings::enableAimbot)
 			Render::Circle(ImVec2(screenWidth / 2, screenHeight / 2), Settings::aimbotFov, ImColor(255, 255, 255));
 
