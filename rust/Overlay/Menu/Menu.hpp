@@ -107,6 +107,12 @@ void MiscTabb()
 		{
 			ImGui::Hotkey(safe_str("##On Key2"), &Settings::speedHackkey, ImVec2(100, 20));
 		}
+		ImGui::Checkbox(safe_str("Walk On Water"), &Settings::walkOnWater);
+		ImGui::SameLine();
+		if (Settings::walkOnWater)
+		{
+			ImGui::Hotkey(safe_str("##On Key3"), &Settings::walkWaterKEY, ImVec2(100, 20));
+		}
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 
 		ImGui::Checkbox(safe_str("instant eoka"), &Settings::tapeoka);

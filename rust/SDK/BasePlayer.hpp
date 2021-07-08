@@ -402,8 +402,8 @@ public:
 
 	void walkOnWater() {
 		if (GetAsyncKeyState(Settings::walkWaterKEY)) {
-			Write<float>(this->playerMovement + 0xAC, 0.f);//groundAngle
-			Write<float>(this->playerMovement + 0xB0, 0.f);//groundAngleNew
+			Write<float>(this->playerMovement + 0xB4, 0.f);//groundAngle
+			Write<float>(this->playerMovement + 0xB8, 0.f);//groundAngleNew
 			Write<float>(this->playerMovement + 0x74, 0.f);//gravityMultiplier
 		}
 		else {
