@@ -64,6 +64,15 @@ namespace Entity {
 
 				}
 
+
+				//scan through prefab list
+				/*example for how it works for notSam - love from john <3 
+				* so we itterate our prefab.name and the way it does this is it gets the prefab assets class but it only scans from there 
+				* the way this works is that prefabName is already set to maintaining assets/bundled/prefabs/ it just requires the rest after so no need to include the full prefab name
+				* this is confusing for some but since its not pasted and its my own dumb complicated way of doing stuff.
+				* 
+				* will eventually clean this code up and make it more efficient and cleaner instead of having to add a new setting for each ore
+				*/
 				if (prefebName.find(safe_str("autospawn/resource/ores")) != std::string::npos || prefebName.find(safe_str("autospawn/collectable/")) != std::string::npos || prefebName.find(safe_str("deployable/small stash/")) != std::string::npos) {
 					if (prefebName.find(safe_str("stone-ore")) != std::string::npos) {
 						if (Settings::selectedOres[0] == false) continue;

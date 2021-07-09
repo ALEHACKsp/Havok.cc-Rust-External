@@ -81,7 +81,7 @@ namespace ESP {
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &position);
 			Vector2 pos;
 
-			if (curCorpse->name.find("player/player_corpse") != std::string::npos || curCorpse->name.find("item drop/item_drop_backpack.prefab") != std::string::npos) {
+			if (curCorpse->name.find("player/player_corpse") != std::string::npos || curCorpse->name.find("item drop/item_drop_backpack") != std::string::npos) {
 
 				std::string nameStr = "Dead Body";
 				std::string distanceStr = std::to_string(distance) + "M";
