@@ -237,11 +237,11 @@ public:
 	}
 
 	Vector3 getVelocity() {
-		return Read<Vector3>(this->playerModel + 0x21C); //0x1FC
+		return Read<Vector3>(this->playerModel + 0x21C); //private Vector3 newVelocity;
 	}
 
 	Vector3 getNewVelocity() {
-		return Read<Vector3>(this->playerModel + 0x21C);
+		return Read<Vector3>(this->playerModel + 0x21C); //private Vector3 newVelocity;
 	}
 
 	Vector3 getPosition() {
@@ -283,6 +283,7 @@ public:
 			Write<Vector3>(eyes + 0x38, Vector3(0, (0.8f), 0));
 		}
 	}
+
 
 	HeldItem getHeldItem()
 	{
@@ -445,6 +446,8 @@ public:
 			this->name = safe_str("sulfur");
 		else if (this->name.find(safe_str("wood-collectable")) != std::string::npos)
 			this->name = safe_str("wood");
+		else if (this->name.find(safe_str("small_stash.item")) != std::string::npos)
+			this->name = safe_str("Stash");
 		else
 			this->name = safe_str("resource");
 

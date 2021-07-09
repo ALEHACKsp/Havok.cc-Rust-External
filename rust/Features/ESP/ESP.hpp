@@ -98,6 +98,7 @@ namespace ESP {
 			}
 		}
 
+
 		for (unsigned long i = 0; i < local_players->size(); ++i)
 		{
 			std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));

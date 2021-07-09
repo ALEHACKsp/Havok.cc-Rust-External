@@ -8,6 +8,7 @@ namespace Settings {
 	bool niggerCross = false;
 	bool drawHealthBar = false;
 	bool drawName = false;
+	bool drawWeapon = false;
 	bool drawSnaplines = false;
 
 	bool enableAimbot = false;
@@ -30,6 +31,7 @@ namespace Settings {
 	bool enableCompensateRecoil = false;
 
 	int boxDistance = 100;
+	int weaponDistance = 100;
 	int skeletonDistance = 100;
 	int healthDistance = 100;
 	int nameDistance = 100;
@@ -72,8 +74,8 @@ namespace Settings {
 
 	const char* bones[]{ safe_str("Head"), safe_str("Chest"), safe_str("Pelvis"), safe_str("Penis") };
 
-	const char* oresItems[]{ safe_str("Stone Ore"), safe_str("Sulfur Ore"), safe_str("Metal Ore"), safe_str("Hemp"), safe_str("Metal"), safe_str("Stone"), safe_str("Sulfur"), safe_str("Wood") };
-	bool selectedOres[8]{ false, false, false, false, false, false, false, false };
+	const char* oresItems[]{ safe_str("Stone Ore"), safe_str("Sulfur Ore"), safe_str("Metal Ore"), safe_str("Hemp"), safe_str("Metal"), safe_str("Stone"), safe_str("Sulfur"), safe_str("Wood"), safe_str("Stash")};
+	bool selectedOres[9]{ false, false, false, false, false, false, false, false, false };
 
 	float drawColor_box[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_skeleton[4] = { 1.f, 1.f, 1.f, 1.f };

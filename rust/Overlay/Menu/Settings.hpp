@@ -10,6 +10,7 @@ namespace Settings {
 	extern bool drawName;
 	extern bool drawSnapLine;
 	extern bool drawSnaplines;
+	extern bool drawWeapon;
 	extern bool freeze;
 	extern bool niggerCross;
 
@@ -52,6 +53,7 @@ namespace Settings {
 	extern int skeletonDistance;
 	extern int healthDistance;
 	extern int nameDistance;
+	extern int weaponDistance;
 
 	extern int typeBox;
 
@@ -65,7 +67,7 @@ namespace Settings {
 
 	extern const char* oresItems[];
 
-	extern bool selectedOres[8];
+	extern bool selectedOres[9];
 
 	extern float drawColor_box[4];
 	extern float drawColor_skeleton[4];

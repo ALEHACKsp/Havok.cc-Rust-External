@@ -32,6 +32,10 @@ void VisualsTab()
 			ImGui::SliderInt5(safe_str("Distance##Distance1"), &Settings::boxDistance, 100, 300);
 		}
 
+		ImGui::Checkbox(safe_str("Weapon"), &Settings::drawWeapon);
+		if(Settings::drawWeapon)
+			ImGui::SliderInt5(safe_str("Distance##Distance1"), &Settings::weaponDistance, 100, 300);
+
 		ImGui::Checkbox(safe_str("Health"), &Settings::drawHealthBar), ImGui::ColorEdit4(safe_str("Health Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
 		if (Settings::drawHealthBar)
 			ImGui::SliderInt5(safe_str("Distance##Distance2"), &Settings::healthDistance, 100, 300);
@@ -57,7 +61,7 @@ void VisualsTab()
 			ImGui::SliderInt("Thickness", &Settings::CrosshairThickness, 1, 24);
 		}
 
-		ImGui::Checkbox(safe_str("Niggers"), &Settings::niggerCross); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
+		ImGui::Checkbox(safe_str("Meme Crosss"), &Settings::niggerCross); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
 
 
 		ImGui::SliderFloat5(safe_str("Fov Changer"), &Settings::FovSlider, 90, 150);

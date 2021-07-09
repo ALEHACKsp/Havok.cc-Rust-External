@@ -136,7 +136,7 @@ namespace Aimbot {
 		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		Vector3 PlayerPos = Prediction(Local, BPlayer, BonesList::neck);
 
-		Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
+		//Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
 
 		Vector2 AngleToAim = Math::CalcAngle(Local, PlayerPos);
 		Normalize(AngleToAim.y, AngleToAim.x);
@@ -149,9 +149,9 @@ namespace Aimbot {
 			AngleToAim += Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
 		}
 
-		if (Settings::enableCompensateRecoil) {
+		/*if (Settings::enableCompensateRecoil) {
 			AngleToAim -= recoil_angles;
-		}
+		}*/
 
 		localPlayer->Player->setViewAngles(AngleToAim);
 	}

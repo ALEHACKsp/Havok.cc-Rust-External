@@ -90,6 +90,22 @@ namespace ESP {
 		}
 	}
 
+	void _fastcall DrawPlayerWeapon(uint64_t player, std::string buffer, int distance)
+	{
+		Vector3 Head = (Utils::GetBonePosition(player, BonesList::head) + Vector3(0, 0.23, 0));
+		Vector3 Feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
+		Vector2 tempFeet;
+		Vector2 tempHead;
+
+		wchar_t res[256];
+		std::string full_str = buffer + " - " + std::to_string(distance) + "m";
+		if (Utils::WorldToScreen(Feet, tempFeet) && Utils::WorldToScreen(Head, tempHead)) {
+			auto text_size = ImGui::CalcTextSize(full_str.c_str());
+
+			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), full_str, Render::FtIM(Settings::drawColor_health), true, Overlay::playerName);
+		}
+	}
+
 	void _fastcall DrawPlayerHealth(uint64_t player, float health) {
 		Vector3 Head = (Utils::GetBonePosition(player, BonesList::l_foot) + Vector3(0, 0.23, 0));
 		Vector3 Feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
