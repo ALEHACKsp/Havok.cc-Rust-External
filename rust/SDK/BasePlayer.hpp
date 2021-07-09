@@ -291,9 +291,6 @@ public:
 
 		uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
 
-
-		//std::cout << active_weapon_id << std::endl;
-
 		//std::cout << "Held weapon: found :" <<  items << std::endl;
 
 
@@ -446,8 +443,8 @@ public:
 			this->name = safe_str("sulfur");
 		else if (this->name.find(safe_str("wood-collectable")) != std::string::npos)
 			this->name = safe_str("wood");
-		else if (this->name.find(safe_str("small_stash.item")) != std::string::npos)
-			this->name = safe_str("Stash");
+		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
+			this->name = safe_str("stash");
 		else
 			this->name = safe_str("resource");
 

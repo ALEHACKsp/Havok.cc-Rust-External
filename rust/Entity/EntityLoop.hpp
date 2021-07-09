@@ -64,7 +64,7 @@ namespace Entity {
 
 				}
 
-				if (prefebName.find(safe_str("autospawn/resource/ores")) != std::string::npos || prefebName.find(safe_str("autospawn/collectable/")) != std::string::npos) {
+				if (prefebName.find(safe_str("autospawn/resource/ores")) != std::string::npos || prefebName.find(safe_str("autospawn/collectable/")) != std::string::npos || prefebName.find(safe_str("deployable/small stash/")) != std::string::npos) {
 					if (prefebName.find(safe_str("stone-ore")) != std::string::npos) {
 						if (Settings::selectedOres[0] == false) continue;
 					}
@@ -88,6 +88,9 @@ namespace Entity {
 					}
 					else if (prefebName.find(safe_str("wood-collectable")) != std::string::npos) {
 						if (Settings::selectedOres[7] == false) continue;
+					}
+					else if (prefebName.find(safe_str("small_stash_deployed")) != std::string::npos) {
+						if (Settings::selectedOres[8] == false) continue;
 					}
 					else continue;
 

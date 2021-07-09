@@ -24,7 +24,7 @@ C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Ov
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(84,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(83,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(216,38): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(378,38): warning C4244: 'argument': conversion from 'int' to 'const S', possible loss of data
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(375,38): warning C4244: 'argument': conversion from 'int' to 'const S', possible loss of data
           with
           [
               S=float
@@ -101,8 +101,8 @@ C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SD
               _Alloc=std::allocator<char>
           ]
   Generating code
-  1 of 2391 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 2391 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    22 functions had inline decision re-evaluated but remain unchanged
+    24 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   rust.vcxproj -> C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\x64\Release\rust.exe
