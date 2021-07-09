@@ -56,6 +56,16 @@ public:
 		Write<float>(this->bp + 0x2E8, 0.f);
 	}
 
+
+	void AntiSpread()
+	{
+		Write<float>(this->bp + 0x31C, 0.f);
+		Write<float>(this->bp + 0x320, 0.f);
+		Write<float>(this->bp + 0x2E8, 0.f);
+		Write<float>(this->bp + 0x2EC, 0.f);
+		Write<float>(this->bp + 0x2F0, 0.f);
+	}
+
 	void setNoSway() {
 		Write<float>(this->bp + 0x2B8, 0.f);
 		Write<float>(this->bp + 0x2BC, 0.f);
