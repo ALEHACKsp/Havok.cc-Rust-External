@@ -14,6 +14,8 @@ namespace Settings {
 	bool enableAimbot = false;
 	bool freeze = false;
 
+
+	bool bradleyESP = true;
 	bool shootAnywhere = false;
 	bool noRecoil = false;
 	bool rapidFire = false;

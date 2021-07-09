@@ -92,6 +92,9 @@ namespace Entity {
 					else if (prefebName.find(safe_str("small_stash_deployed")) != std::string::npos) {
 						if (Settings::selectedOres[8] == false) continue;
 					}
+					else if (prefebName.find(safe_str("bradleyapc")) != std::string::npos) {
+						if (Settings::bradleyESP) continue;
+					}
 					else continue;
 
 					auto objectClass = Read<uintptr_t>(object + 0x30);

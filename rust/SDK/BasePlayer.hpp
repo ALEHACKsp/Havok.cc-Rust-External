@@ -445,6 +445,11 @@ public:
 			this->name = safe_str("wood");
 		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
 			this->name = safe_str("stash");
+		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
+			this->name = safe_str("stash");
+		else if (this->name.find(safe_str("bradleyapc")) != std::string::npos)
+			this->name = safe_str("bradley");
+		
 		else
 			this->name = safe_str("resource");
 

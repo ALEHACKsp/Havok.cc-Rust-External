@@ -28,6 +28,7 @@ namespace Settings {
 	extern int speedHackkey;
 	extern int aimbotKey;
 	extern int jumpKey;
+	extern bool bradleyESP;
 	extern int LongNeckKey;
 	extern int flyKey;
 
