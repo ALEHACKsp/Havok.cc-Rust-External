@@ -77,9 +77,9 @@ public:
 	}
 
 	void instantCompound() {
-			Write<float>(bp + 0x358, 0);//stringHoldDurationMax
-			Write<float>(bp + 0x35C, 1000000);//stringBonusDamage
-			Write<float>(bp + 0x368, 1000000);//movementPenaltyRampUpTime
+			Write<float>(bp + 0x378, 0);//stringHoldDurationMax
+			Write<float>(bp + 0x37C, 1000000);//stringBonusDamage
+			Write<float>(bp + 0x388, 1000000);//movementPenaltyRampUpTime
 	}
 
 	void fastSwitch() {
