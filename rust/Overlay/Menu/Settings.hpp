@@ -9,6 +9,7 @@ namespace Settings {
 	extern bool drawHealthBar;
 	extern bool drawName;
 	extern bool drawSnapLine;
+	extern bool healthNiggers;
 	extern bool drawSnaplines;
 	extern bool drawWeapon;
 	extern bool freeze;
@@ -44,6 +45,7 @@ namespace Settings {
 	extern bool shootInAir;
 
 	extern bool noRecoil;
+	extern bool noSpread;
 	extern bool rapidFire;
 	extern bool shootAnywhere;
 	extern bool spiderClimb;

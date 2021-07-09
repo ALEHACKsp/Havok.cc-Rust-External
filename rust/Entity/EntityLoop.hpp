@@ -59,7 +59,7 @@ namespace Entity {
 					t_corpseList->push_back(*CEntity); continue;
 				}
 
-				if (tag == 20011) //sky ?
+				if (tag == 20011) //sky dome tag;
 				{
 
 				}

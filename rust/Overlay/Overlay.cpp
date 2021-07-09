@@ -418,6 +418,20 @@ void __fastcall Render::DrawFilledBox(ImVec2 pos, ImVec2 size, ImColor color)
 	ImGui::GetWindowDrawList()->AddRectFilled(rect_bb.Min, rect_bb.Max, color, 0.5f, 15);
 }
 
+
+void __fastcall Render::DrawFilledRect(float x, float y, float w, float h, ImVec4 color)
+{
+	ImGui::GetOverlayDrawList()->AddRectFilled(ImVec2(x, y), ImVec2(x + w, y + h), ImGui::ColorConvertFloat4ToU32(ImVec4(color)), NULL, NULL);
+}
+
+
+void __fastcall Render::DrawHealthbarVertical(float x, float y, float w, float h, float value, float max)
+{
+	Render::DrawFilledRect(x, y, w, h, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+	if (value <= 225.0f) Render::DrawFilledRect(x, y, w, value / max * h, ImVec4(0.0f, 0.502f, 1.0f, 1.0f)); // player with shield
+	if (value <= 100.0f) Render::DrawFilledRect(x, y, w, value / max * h, ImVec4(0.0f, 1.0f, 0.0f, 1.0f)); // health only
+}
+
 void __fastcall Render::DrawCornerBox(ImVec2 pos, ImVec2 size, ImColor color)
 {
 	float line_w = (size.x / 5);

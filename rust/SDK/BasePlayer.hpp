@@ -113,33 +113,6 @@ enum class MStateFlags {
 #pragma region BPClass
 
 
-class Offsets
-{
-public:
-
-	Offsets()
-	{
-		/*
-		* testing this new style of offsets
-		* update offsets each update
-		*/
-	}
-
-public:
-
-	//public PlayerInput input;
-	uint64_t playerInput = 0x4E0;
-
-	//public BasePlayer.PlayerFlags playerFlags;
-	uint64_t playerFlags = 0x650;
-
-	//private Vector3 bodyAngles;
-	uint64_t bodyAngles = 0x3C;
-
-
-
-}; Offsets* offsets;
-
 
 class BasePlayer {
 public:
@@ -165,15 +138,15 @@ public:
 
 
 	void setViewAngles(Vector3 angles) { // vector 3
-		Write<Vector3>(Read<uint64_t>(this->player + offsets->playerInput) + offsets->bodyAngles, angles); //public PlayerInput input; | private Vector3 bodyAngles;
+		Write<Vector3>(Read<uint64_t>(this->player + 0x4E0) + 0x3C, angles); //public PlayerInput input; | private Vector3 bodyAngles;
 	}
 
 	void setViewAngles(Vector2 angles) { // vector 2
-		Write<Vector2>(Read<uint64_t>(this->player + offsets->playerInput) + offsets->bodyAngles, angles); //public PlayerInput input; | private Vector3 bodyAngles;
+		Write<Vector2>(Read<uint64_t>(this->player + 0x4E0) + 0x3C, angles); //public PlayerInput input; | private Vector3 bodyAngles;
 	}
 
 	void setPlayerFlag(BPlayerFlags flag) {
-		Write(this->player + offsets->playerFlags, flag); //public BasePlayer.PlayerFlags playerFlags;
+		Write(this->player + 0x650, flag); //0x5F8 //public BasePlayer.PlayerFlags playerFlags;
 	}
 
 	void setModelFlag(MStateFlags flag) {
@@ -197,7 +170,7 @@ public:
 	
 	bool isVisible()
 	{
-		return Read<bool>(this->playerModel + 0x1F8);
+		return Read<bool>(this->playerModel + 0xD0);
 	}
 
 

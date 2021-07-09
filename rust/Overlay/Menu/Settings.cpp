@@ -7,6 +7,7 @@ namespace Settings {
 	bool drawCrosshair = false;
 	bool niggerCross = false;
 	bool drawHealthBar = false;
+	bool healthNiggers = false;
 	bool drawName = false;
 	bool drawWeapon = false;
 	bool drawSnaplines = false;
@@ -18,6 +19,7 @@ namespace Settings {
 	bool bradleyESP = true;
 	bool shootAnywhere = false;
 	bool noRecoil = false;
+	bool noSpread = false;
 	bool rapidFire = false;
 	bool instantCompound = false;
 

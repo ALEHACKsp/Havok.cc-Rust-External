@@ -48,11 +48,12 @@ void VisualsTab()
 		if (Settings::drawName)
 			ImGui::SliderInt5(safe_str("Distance##Distance4"), &Settings::nameDistance, 100, 300);
 		
-		ImGui::Checkbox(safe_str("Dead Players"), &Settings::corpseESP); 
+		ImGui::Checkbox(safe_str("Dead Players"), &Settings::corpseESP);
 		if (Settings::corpseESP)
 			ImGui::SliderInt5(safe_str("Distance##Distance34"), &Settings::corpseESPdistance, 100, 300);
 
 		ImGui::Checkbox(safe_str("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
+
 
 		if (Settings::drawCrosshair)
 		{
@@ -99,6 +100,7 @@ void MiscTabb()
 			ImGui::SliderFloat5(safe_str("Rapid Fire Value"), &Settings::rapidfirevalue, 0.01, 0.09);
 		}
 		ImGui::Checkbox(safe_str("No Recoil"), &Settings::noRecoil);
+		ImGui::Checkbox(safe_str("No Spread"), &Settings::noSpread);
 		ImGui::Checkbox(safe_str("Instant Compound"), &Settings::instantCompound);
 		ImGui::Checkbox(safe_str("Instant Switch"), &Settings::fastSwitchWeapons);
 
@@ -125,16 +127,15 @@ void MiscTabb()
 		}
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 		ImGui::Checkbox(safe_str("Nightmode"), &Settings::night_mode);
+		if (Settings::night_mode)
+		{
+			ImGui::SameLine();
+			ImGui::SliderFloat(safe_str("Time"), &Settings::time, 0, 24);
+		}
 
 		ImGui::Checkbox(safe_str("Long Hit"), &Settings::longhit);
 		ImGui::Checkbox(safe_str("Long Med"), &Settings::longmed);
 		ImGui::Checkbox(safe_str("Run Attack"), &Settings::runhit);
-		
-		if (Settings::night_mode)
-		{
-			ImGui::SameLine();
-			ImGui::SliderFloat(safe_str("Time"),&Settings::time, 0,24);
-		}
 		ImGui::Checkbox(safe_str("instant eoka"), &Settings::tapeoka);
 		ImGui::Checkbox(safe_str("third person"), &Settings::thirdperson);
 		ImGui::Checkbox(safe_str("Long Neck"), &Settings::shootInAir);

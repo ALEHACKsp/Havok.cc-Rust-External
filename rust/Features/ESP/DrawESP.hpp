@@ -123,6 +123,13 @@ namespace ESP {
 		}
 	}
 
+	void _fastcall DrawVerticalHealth(float x, float y, float w, float h, float value, float max)
+	{
+		Render::DrawFilledRect(x, y, w, h, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
+		if (value <= 225.0f) Render::DrawFilledRect(x, y, w, value / max * h, ImVec4(0.0f, 0.502f, 1.0f, 1.0f)); // player with shield
+		if (value <= 100.0f) Render::DrawFilledRect(x, y, w, value / max * h, ImVec4(0.0f, 1.0f, 0.0f, 1.0f)); // health only
+	}
+
 	void _fastcall DrawCurrentWeapon(uint64_t player, std::string buffer) {
 		Vector3 Feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
 		Vector2 tempFeet;

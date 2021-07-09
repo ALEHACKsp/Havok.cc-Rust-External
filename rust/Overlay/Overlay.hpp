@@ -23,6 +23,8 @@ namespace Render
 	void __fastcall Line(ImVec2 pos, ImVec2 size, ImU32 color, float thickness);
 	void __fastcall DrawBox(ImVec2 pos, ImVec2 size, ImColor color);
 	void __fastcall DrawFilledBox(ImVec2 pos, ImVec2 size, ImColor color);
+	void __fastcall DrawFilledRect(float x, float y, float w, float h, ImVec4 color);
+	void __fastcall DrawHealthbarVertical(float x, float y, float w, float h, float value, float max);
 	void __fastcall DrawCornerBox(ImVec2 pos, ImVec2 size, ImColor color);
 	void __fastcall Text(ImVec2 pos, std::string strText, ImColor color, bool outline, ImFont* font, float fontSize = 0.f);
 	void __fastcall Circle(ImVec2 point, float radius, ImColor color);

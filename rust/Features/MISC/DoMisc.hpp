@@ -46,7 +46,8 @@ namespace Misc {
 
 				if (heldItem->IsWeapon())
 				{
-					if (Settings::noRecoil) heldItem->noRecoil(); heldItem->AntiSpread();
+					if (Settings::noRecoil) heldItem->noRecoil(); 
+					if (Settings::noSpread) heldItem->AntiSpread();
 					if (Settings::rapidFire) heldItem->rapidFire();
 					if (Settings::instantCompound) heldItem->instantCompound();
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();

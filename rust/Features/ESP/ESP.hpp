@@ -98,11 +98,10 @@ namespace ESP {
 			}
 		}
 
-
+		Vector2 pos;
 		for (unsigned long i = 0; i < local_players->size(); ++i)
 		{
 			std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));
-
 			//Vector3 entityPosition = curEntity->getPosition();
 
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &curEntity->position);
@@ -110,7 +109,7 @@ namespace ESP {
 			if (curEntity->isLocalPlayer()) continue;
 
 			if (!curEntity->IsInView()) continue;
-
+			
 			if (Settings::drawSkeleton && distance < Settings::skeletonDistance)
 				DrawSkeleton(curEntity->player);
 
