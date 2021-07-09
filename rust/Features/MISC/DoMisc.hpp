@@ -48,7 +48,7 @@ namespace Misc {
 				{
 					if (Settings::noRecoil) heldItem->noRecoil();
 					if (Settings::rapidFire) heldItem->rapidFire();
-					//if (Settings::instantCompound) heldItem->instantCompound();
+					if (Settings::instantCompound) heldItem->instantCompound();
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();
 					if (Settings::tapeoka) heldItem->instantEoka();
 
