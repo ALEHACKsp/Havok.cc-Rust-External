@@ -43,7 +43,7 @@ namespace Settings {
 
 	float FovSlider = 10;
 
-	int aimbotKey = 0;
+	int aimbotKey = 0x05;
 
 	int jumpKey = 0;
 	int LongNeckKey = 0;

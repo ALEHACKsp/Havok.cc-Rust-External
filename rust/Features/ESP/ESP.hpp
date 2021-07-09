@@ -130,7 +130,7 @@ namespace ESP {
 
 			if (Settings::drawName && distance < Settings::nameDistance)
 				DrawPlayerName(curEntity->player, curEntity->getName(), distance, curEntity->isSameTeam(localPlayer->Player));
-			if (Settings::drawWeapon && distance < Settings::weaponDistance)
+			if (Settings::drawWeapon && distance < Settings::weaponDistance && curEntity->getHeldItem().IsWeapon())
 				DrawPlayerWeapon(curEntity->player, curEntity->getHeldItem().GetItemName());
 
 			if (Settings::drawHealthBar && distance < Settings::healthDistance)

@@ -36,8 +36,9 @@ void VisualsTab()
 		if (Settings::drawWeapon)
 		{
 			//ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
-			ImGui::SliderInt5(safe_str("Distance##Distance1"), &Settings::weaponDistance, 100, 300);
+			ImGui::SliderInt5(safe_str("Distance##Distance123798"), &Settings::weaponDistance, 100, 300);
 		}
+
 		ImGui::Checkbox(safe_str("Health"), &Settings::drawHealthBar), ImGui::ColorEdit4(safe_str("Health Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
 		if (Settings::drawHealthBar)
 		{
