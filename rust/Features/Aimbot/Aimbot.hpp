@@ -119,7 +119,6 @@ namespace Aimbot {
 		} return BonePos;
 	}
 
-
 	void Normalize(float& Yaw, float& Pitch) {
 		if (Pitch < -89) Pitch = -89;
 		else if (Pitch > 89) Pitch = 89;
@@ -132,8 +131,6 @@ namespace Aimbot {
 		Angle.x /= smooth;
 		Angle.y /= smooth;
 	}
-
-
 
 	void AimbotTarget(std::unique_ptr<BasePlayer>& BPlayer) {
 		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);

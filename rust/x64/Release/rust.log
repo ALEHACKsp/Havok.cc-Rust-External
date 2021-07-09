@@ -10,34 +10,11 @@ C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Ov
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(84,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(83,34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Driver.hpp(82,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Driver.hpp(101,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Driver.hpp(159,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Driver.hpp(180,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Driver.hpp(195,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Driver.hpp(213,29): warning C4229: anachronism used: modifiers on data are ignored
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(131,1): warning C4005: 'M_PI': macro redefinition
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(5): message : see previous definition of 'M_PI'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(270,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(272,19): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(274,19): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(276,19): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(277,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Math.hpp(286,66): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(238,38): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(397,38): warning C4244: 'argument': conversion from 'int' to 'const S', possible loss of data
-          with
-          [
-              S=float
-          ]
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(103,91): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(151,49): error C2660: '_swprintf': function does not take 1 arguments
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdio.h(1438,37): message : see declaration of '_swprintf'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(151,50): error C2143: syntax error: missing ')' before ';'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(159,47): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(159,34): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(165,76): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(194,79): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(100,91): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(153,47): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(153,34): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(159,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Menu.hpp(188,79): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(14,1): warning C4005: 'DIRECTINPUT_VERSION': macro redefinition
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h(42): message : see previous definition of 'DIRECTINPUT_VERSION'
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(61,62): warning C4305: 'argument': truncation from 'double' to 'float'
@@ -51,3 +28,9 @@ C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Ov
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(172,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(241,48): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(241,35): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
+  Generating code
+  10 of 2398 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    71 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  rust.vcxproj -> C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\x64\Release\rust.exe

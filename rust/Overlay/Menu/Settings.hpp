@@ -12,7 +12,6 @@ namespace Settings {
 	extern bool healthNiggers;
 	extern bool drawSnaplines;
 	extern bool drawWeapon;
-	extern bool snapLinez;
 	extern bool freeze;
 	extern bool niggerCross;
 	extern bool corpseESP;
