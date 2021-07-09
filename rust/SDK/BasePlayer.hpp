@@ -165,6 +165,11 @@ public:
 	bool isLocalPlayer() {
 		return Read<bool>(this->playerModel + 0x279); //internal bool isLocalPlayer;
 	}
+	
+	bool isVisible()
+	{
+		return Read<bool>(this->playerModel + 0x1F8);
+	}
 
 
 
