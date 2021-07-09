@@ -33,45 +33,46 @@ void VisualsTab()
 		}
 
 		ImGui::Checkbox(safe_str("Weapon"), &Settings::drawWeapon);
-		if(Settings::drawWeapon)
+		if (Settings::drawWeapon)
+		{
+			//ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
 			ImGui::SliderInt5(safe_str("Distance##Distance1"), &Settings::weaponDistance, 100, 300);
-
+		}
 		ImGui::Checkbox(safe_str("Health"), &Settings::drawHealthBar), ImGui::ColorEdit4(safe_str("Health Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
 		if (Settings::drawHealthBar)
+		{
+			//ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
 			ImGui::SliderInt5(safe_str("Distance##Distance2"), &Settings::healthDistance, 100, 300);
+		}
 
 		ImGui::Checkbox(safe_str("Skeleton"), &Settings::drawSkeleton); ImGui::ColorEdit4(safe_str("Skeleton Color"), Settings::drawColor_skeleton, ImGuiColorEditFlags_NoInputs);
 		if (Settings::drawSkeleton)
+		{
+			//ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
 			ImGui::SliderInt5(safe_str("Distance##Distance3"), &Settings::skeletonDistance, 100, 300);
-
+		}
 		ImGui::Checkbox(safe_str("Name"), &Settings::drawName); ImGui::ColorEdit4(safe_str("Name Color"), Settings::drawColor_name, ImGuiColorEditFlags_NoInputs);
 		if (Settings::drawName)
+		{
+			//ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
 			ImGui::SliderInt5(safe_str("Distance##Distance4"), &Settings::nameDistance, 100, 300);
-		
+		}
 		ImGui::Checkbox(safe_str("Dead Players"), &Settings::corpseESP);
 		if (Settings::corpseESP)
+		{
+			//ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
 			ImGui::SliderInt5(safe_str("Distance##Distance34"), &Settings::corpseESPdistance, 100, 300);
-
+		}
 		ImGui::Checkbox(safe_str("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
-
-
 		if (Settings::drawCrosshair)
 		{
 			ImGui::Checkbox("while scoped", &Settings::crosshairScoped);
-			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15);
-			ImGui::SliderInt("Length", &Settings::CrosshairLength, 1, 24);
-			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15);
-			ImGui::SliderInt("Gap", &Settings::CrosshairGap, 0, 24);
-			ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15);
-			ImGui::SliderInt("Thickness", &Settings::CrosshairThickness, 1, 24);
+			ImGui::SliderInt5("Length", &Settings::CrosshairLength, 1, 24);
+			ImGui::SliderInt5("Gap", &Settings::CrosshairGap, 0, 24);
+			ImGui::SliderInt5("Thickness", &Settings::CrosshairThickness, 1, 24);
 		}
-
-		ImGui::Checkbox(safe_str("Meme Crosss"), &Settings::niggerCross); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
-
-
 		ImGui::SliderFloat5(safe_str("Fov Changer"), &Settings::FovSlider, 90, 150);
-
-		if (ImGui::BeginCombo(safe_str("Resources"), safe_str("")))
+		if (ImGui::BeginCombo(safe_str("Other ESP"), safe_str("")))
 		{
 			for (size_t i = 0; i < IM_ARRAYSIZE(Settings::selectedOres); i++) {
 				ImGui::Selectable(Settings::oresItems[i], &Settings::selectedOres[i], ImGuiSelectableFlags_::ImGuiSelectableFlags_DontClosePopups);

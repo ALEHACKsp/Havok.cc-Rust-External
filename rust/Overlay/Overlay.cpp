@@ -480,7 +480,10 @@ void __fastcall Render::DrawCornerBox(ImVec2 pos, ImVec2 size, ImColor color)
 		ImGui::GetWindowDrawList()->AddLine(ImVec2{ (pos.x), (pos.y) }, ImVec2{ (pos.x + line_w), (pos.y) }, ImColor(0, 0, 0), 1.f);
 	}
 }
-
+void __fastcall Render::Line2(const ImVec2& Start, const ImVec2& End, const ImColor color, float Thickk = 1.5f)
+{
+	ImGui::GetWindowDrawList()->AddLine(Start, End, color, Thickk);
+}
 void __fastcall Render::Text(ImVec2 pos, std::string strText, ImColor color, bool outline, ImFont* font, float fontSize)
 {
 	ImGuiContext& g = *GImGui;

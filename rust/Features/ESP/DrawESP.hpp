@@ -54,23 +54,23 @@ namespace ESP {
 	void _fastcall DrawHealthBar(uint64_t player, float health) {
 		Vector3 head = (Utils::GetBonePosition(player, BonesList::head) + Vector3(0, 0.2, 0));
 		Vector3 feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
-
-		Vector2 tempHead, tempFeet;
-
+		Vector2 tempFeet, tempHead;
 		if (Utils::WorldToScreen(head, tempHead) && Utils::WorldToScreen(feet, tempFeet)) {
 			float height = (tempHead.y - tempFeet.y);
 			float width = height / 4.0f;
 
 			float Entity_x = tempFeet.x - width;
 			float Entity_y = tempFeet.y;
-			float Entity_w = height / 2;
+			float flBoxes = std::ceil(health / 10.f);
+			float flX = Entity_x + 4; float flY = Entity_y;
+			float flHeight = height / 10.f;
+			float flMultiplier = 12 / 360.f; flMultiplier *= flBoxes - 1;
+			Color ColHealth = Color::FromHSB(flMultiplier, 1, 1);
 
-			bool npc = false;
-			int health = (int)localPlayer->Player->health;
-			float maxheal = (npc ? 300.f : 100.f);
-			float minheal = (npc ? 300.f : 100.f);
-
-			//Render::DrawFilledBox(ImVec2((tempFeet.x + (width / 8.f)) - 5, Entity_y), ImVec2(Entity_w, height * (health / maxheal)), Render::FtIM(Settings::drawColor_box));
+			Render::DrawFilledRect(flX + 1, flY, 2, flHeight * flBoxes + 1, ImColor(ColHealth.R, ColHealth.G, ColHealth.B, ColHealth.A));
+			Render::DrawFilledRect(flX, flY, 4, height + 2, ImColor(80, 80, 80, 160));
+			for (int i = 0; i < 10; i++)
+				Render::Line(ImVec2(flX, flY + i * flHeight), ImVec2(flX + 4, flY + i * flHeight), ImColor(0,0,0,255), 1.5f);
 		}
 	}
 
@@ -92,7 +92,7 @@ namespace ESP {
 		}
 	}
 
-	void _fastcall DrawPlayerWeapon(uint64_t player, std::string buffer, int distance)
+	void _fastcall DrawPlayerWeapon(uint64_t player, std::string buffer)
 	{
 		Vector3 Head = (Utils::GetBonePosition(player, BonesList::head) + Vector3(0, 0.23, 0));
 		Vector3 Feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
@@ -100,11 +100,10 @@ namespace ESP {
 		Vector2 tempHead;
 
 		wchar_t res[256];
-		std::string full_str = buffer + " - " + std::to_string(distance) + "m";
 		if (Utils::WorldToScreen(Feet, tempFeet) && Utils::WorldToScreen(Head, tempHead)) {
-			auto text_size = ImGui::CalcTextSize(full_str.c_str());
+			auto text_size = ImGui::CalcTextSize(buffer.c_str());
 
-			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), full_str, Render::FtIM(Settings::drawColor_health), true, Overlay::playerName);
+			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), buffer, Render::FtIM(Settings::drawColor_health), true, Overlay::playerName);
 		}
 	}
 
