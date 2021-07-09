@@ -23,8 +23,8 @@ namespace Aimbot {
 
 						if (!curEntity->IsInView()) continue;
 
-						localPlayer->Player->getHeldItem().setNoAimCone();
-						localPlayer->Player->getHeldItem().setNoSway();
+						//localPlayer->Player->getHeldItem().setNoAimCone();
+						//localPlayer->Player->getHeldItem().setNoSway();
 
 						if (AimFov(curEntity) < Settings::aimbotFov) {
 							AimbotTarget(curEntity);
