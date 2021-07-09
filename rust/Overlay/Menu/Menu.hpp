@@ -2,7 +2,6 @@
 #include "Overlay.hpp"
 #include "../SDK/Imports.hpp"
 #include "Settings.hpp"
-#include "../../SDK/BasePlayer.hpp"
 
 void AimbotTab()
 {
