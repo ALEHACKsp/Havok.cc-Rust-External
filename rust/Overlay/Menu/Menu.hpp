@@ -10,7 +10,7 @@ void AimbotTab()
 		ImGui::Checkbox(safe_str("Enable "), &Settings::enableAimbot);
 		ImGui::Hotkey(safe_str("##On Key"), &Settings::aimbotKey, ImVec2(100, 20));
 		ImGui::Checkbox(safe_str("smoothing"), &Settings::enableSmoothing);
-		ImGui::SliderFloat5(safe_str("smooth"), &Settings::aimbotSmoothing, 1, 5, safe_str("%d"));
+		ImGui::SliderFloat5(safe_str("smooth"), &Settings::aimbotSmoothing, 1, 10, safe_str("%d"));
 	} ImGui::EndChild();
 
 	ImGui::SameLine();

@@ -92,7 +92,10 @@ namespace ESP {
 				//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
 				if (Settings::corpseESP && distance < Settings::corpseESPdistance)
 				{
+					static float screenX = GetSystemMetrics(SM_CXSCREEN);
+					static float screenY = GetSystemMetrics(SM_CYSCREEN);
 					Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
+					Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 2, pos.y - 2), ImColor(255, 255, 255), 1.5f);
 					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 				}
 			}
@@ -102,7 +105,16 @@ namespace ESP {
 		for (unsigned long i = 0; i < local_players->size(); ++i)
 		{
 			std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));
-			//Vector3 entityPosition = curEntity->getPosition();
+
+			Vector2 pos;
+			auto position = Read<Vector3>(curEntity->visualState + 0x90);//world position
+			if (!Utils::WorldToScreen(position, pos)) continue;
+			if (Settings::snapLinez)
+			{
+				static float screenX = GetSystemMetrics(SM_CXSCREEN);
+				static float screenY = GetSystemMetrics(SM_CYSCREEN);
+				Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 2, pos.y - 2), ImColor(255, 255, 255), 1.5f);
+			}
 
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &curEntity->position);
 

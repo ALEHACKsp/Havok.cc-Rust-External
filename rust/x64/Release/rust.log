@@ -1,4 +1,7 @@
-﻿  Overlay.cpp
+﻿  Settings.cpp
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Settings.cpp(30,29): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Menu\Settings.cpp(96,64): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Overlay.cpp
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(17,27): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(18,27): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\color.hpp(19,26): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
@@ -29,8 +32,8 @@ C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Ov
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(241,48): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
 C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\Overlay\Overlay.cpp(241,35): warning C4244: 'argument': conversion from 'const unsigned int' to 'float', possible loss of data
   Generating code
-  10 of 2398 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  1 of 2398 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    71 functions had inline decision re-evaluated but remain unchanged
+    21 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   rust.vcxproj -> C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\x64\Release\rust.exe

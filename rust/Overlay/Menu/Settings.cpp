@@ -22,6 +22,7 @@ namespace Settings {
 	bool noSpread = false;
 	bool rapidFire = false;
 	bool instantCompound = false;
+	bool snapLinez = false;
 
 	float aimbotFov = 10;
 

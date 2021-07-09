@@ -61,7 +61,7 @@ namespace Entity {
 
 				if (tag == 20011) //sky dome tag;
 				{
-
+					//DWORD64 Dome = Read<DWORD64>(entity + 0x28);
 				}
 
 

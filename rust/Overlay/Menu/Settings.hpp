@@ -15,7 +15,7 @@ namespace Settings {
 	extern bool freeze;
 	extern bool niggerCross;
 	extern bool corpseESP;
-
+	extern bool snapLinez;
 
 	extern bool longhit;
 	extern bool runhit;
