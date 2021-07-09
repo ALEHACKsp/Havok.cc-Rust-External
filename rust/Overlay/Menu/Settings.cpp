@@ -21,6 +21,7 @@ namespace Settings {
 	bool noRecoil = false;
 	bool noSpread = false;
 	bool rapidFire = false;
+	bool snapLinez = false;
 	bool instantCompound = false;
 
 	float aimbotFov = 10;

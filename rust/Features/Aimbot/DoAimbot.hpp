@@ -32,7 +32,7 @@ namespace Aimbot {
 					}
 				}
 			}
-			else SleepEx(550, false); //550
+			else SleepEx(20, false); //550
 		}
 	}
 }

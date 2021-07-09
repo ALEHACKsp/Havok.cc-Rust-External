@@ -21,6 +21,7 @@ namespace Overlay
 namespace Render
 {
 	void __fastcall Line(ImVec2 pos, ImVec2 size, ImU32 color, float thickness);
+	void __fastcall Line2(const ImVec2& Start, const ImVec2& End, const ImColor color, float Thickk);
 	void __fastcall DrawBox(ImVec2 pos, ImVec2 size, ImColor color);
 	void __fastcall DrawFilledBox(ImVec2 pos, ImVec2 size, ImColor color);
 	void __fastcall DrawFilledRect(float x, float y, float w, float h, ImVec4 color);

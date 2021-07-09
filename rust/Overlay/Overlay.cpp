@@ -385,6 +385,11 @@ void __fastcall Render::Line(ImVec2 pos, ImVec2 size, ImU32 color, float thickne
 	ImGui::GetWindowDrawList()->AddLine(pos, size, color, thickness);
 }
 
+void __fastcall Render::Line2(const ImVec2& Start, const ImVec2& End, const ImColor color, float Thickk = 1.5f)
+{
+	ImGui::GetWindowDrawList()->AddLine(Start, End, color, Thickk);
+}
+
 /*void __fastcall Render::DrawString(int x, int y, const char* str, Color* color)
 {
 	ImFont a;
