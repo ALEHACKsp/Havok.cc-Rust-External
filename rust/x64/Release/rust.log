@@ -101,8 +101,9 @@ C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SD
               _Alloc=std::allocator<char>
           ]
   Generating code
-  8 of 2395 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    24 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\BasePlayer.hpp(207): warning C4715: 'BasePlayer::isFrozen': not all control paths return a value
+C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\rust\SDK\Utils.hpp(101): warning C4715: 'Utils::GetPosition': not all control paths return a value
+  All 2395 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   rust.vcxproj -> C:\Users\negr\Desktop\havok.cc\Havok.CC-Rust-Main\Havok.cc-Rust-External\x64\Release\rust.exe
