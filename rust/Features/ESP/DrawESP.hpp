@@ -67,6 +67,8 @@ namespace ESP {
 			float flMultiplier = 12 / 360.f; flMultiplier *= flBoxes - 1;
 			Color ColHealth = Color::FromHSB(flMultiplier, 1, 1);
 
+			Render::Text(ImVec2(flX, flY), std::to_string((int)health), ImColor(255, 255, 255, 255), true, Overlay::playerName);
+
 			Render::DrawFilledRect(flX + 1, flY, 2, flHeight * flBoxes + 1, ImColor(ColHealth.R, ColHealth.G, ColHealth.B, ColHealth.A));
 			Render::DrawFilledRect(flX, flY, 4, height + 2, ImColor(80, 80, 80, 160));
 			for (int i = 0; i < 10; i++)
@@ -97,13 +99,11 @@ namespace ESP {
 		Vector3 Head = (Utils::GetBonePosition(player, BonesList::head) + Vector3(0, 0.23, 0));
 		Vector3 Feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
 		Vector2 tempFeet;
-		Vector2 tempHead;
 
 		wchar_t res[256];
-		if (Utils::WorldToScreen(Feet, tempFeet) && Utils::WorldToScreen(Head, tempHead)) {
+		if (Utils::WorldToScreen(Feet, tempFeet)) {
 			auto text_size = ImGui::CalcTextSize(buffer.c_str());
-
-			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), buffer, Render::FtIM(Settings::drawColor_health), true, Overlay::playerName);
+			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, (tempFeet.y + 15)- text_size.y), buffer, Render::FtIM(Settings::drawColor_health), true, Overlay::weaponName);
 		}
 	}
 
