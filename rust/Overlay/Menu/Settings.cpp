@@ -51,16 +51,22 @@ namespace Settings {
 	int aimBone = 0;
 
 	bool spiderClimb = false;
+	bool corpseESP = false;
 
 	bool flyHack = false;
 	bool infinateJump = false;
 
 	bool adminFlag = false;
 
+	bool longhit;
+	bool runhit;
+	bool longmed;
+
 	float time = 12.f;
 
 	bool shootInAir = false;
 	bool speedhack = false;
+	int corpseESPdistance = 100;
 	int speedHackkey = 0;
 	bool thirdperson = false;
 

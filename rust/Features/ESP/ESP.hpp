@@ -81,7 +81,7 @@ namespace ESP {
 			auto distance = (int)Math::Distance(&localPlayer->Player->position, &position);
 			Vector2 pos;
 
-			if (curCorpse->name.find("player/player_corpse") != std::string::npos) {
+			if (curCorpse->name.find("player/player_corpse") != std::string::npos || curCorpse->name.find("item drop/item_drop_backpack.prefab") != std::string::npos) {
 
 				std::string nameStr = "Dead Body";
 				std::string distanceStr = std::to_string(distance) + "M";
@@ -90,11 +90,11 @@ namespace ESP {
 
 				auto text_size = ImGui::CalcTextSize(nameStr.c_str());
 				//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
-
-				Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
-
-				Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
-				//Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+				if (Settings::corpseESP && distance < Settings::corpseESPdistance)
+				{
+					Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
+					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+				}
 			}
 		}
 
@@ -118,7 +118,7 @@ namespace ESP {
 				DrawBox(curEntity->player, curEntity->isSameTeam(localPlayer->Player));
 
 			if (Settings::drawName && distance < Settings::nameDistance)
-				DrawPlayerName(curEntity->player, curEntity->getName(), distance);
+				DrawPlayerName(curEntity->player, curEntity->getName(), distance, curEntity->isSameTeam(localPlayer->Player));
 
 			if (Settings::drawHealthBar && distance < Settings::healthDistance)
 				DrawPlayerHealth(curEntity->player, curEntity->health);

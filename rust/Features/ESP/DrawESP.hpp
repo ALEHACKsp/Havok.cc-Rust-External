@@ -74,7 +74,7 @@ namespace ESP {
 		}
 	}
 
-	void _fastcall DrawPlayerName(uint64_t player, std::string buffer, int distance) {
+	void _fastcall DrawPlayerName(uint64_t player, std::string buffer, int distance, bool sameTeam) {
 		Vector3 Head = (Utils::GetBonePosition(player, BonesList::head) + Vector3(0, 0.23, 0));
 		Vector3 Feet = (Utils::GetBonePosition(player, BonesList::l_foot) + Utils::GetBonePosition(player, BonesList::r_foot)) / 2.f;
 		Vector2 tempFeet;
@@ -85,7 +85,9 @@ namespace ESP {
 
 		if (Utils::WorldToScreen(Feet, tempFeet) && Utils::WorldToScreen(Head, tempHead)) {
 			auto text_size = ImGui::CalcTextSize(full_str.c_str());
-
+			if(sameTeam)
+				Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), full_str, Render::FtIM(Settings::drawColor_friendly), true, Overlay::playerName);
+			else
 			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), full_str, Render::FtIM(Settings::drawColor_name), true, Overlay::playerName);
 		}
 	}

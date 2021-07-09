@@ -70,6 +70,16 @@ public:
 				Write<float>(recoil_properties + 0x18 + i * 4, 0);
 	}
 
+	void fatBullet()
+	{
+		auto List = Read<DWORD64>(this->bp + 0x358);
+		List = Read<DWORD64>(List + 0x10);
+		for (int i = 0; i < 8; ++i)
+		{
+			UINT64 Item = Read<UINT64>(List + 0x20 + (i * 0x8));
+			Write<float>(Item + 0x2C, 0.40f);
+		}
+	}
 
 	void rapidFire() {
 			Write<float>(this->bp + 0x1F4, Settings::rapidfirevalue);
@@ -77,9 +87,19 @@ public:
 	}
 
 	void instantCompound() {
-			Write<float>(bp + 0x378, 0);//stringHoldDurationMax
-			Write<float>(bp + 0x37C, 1000000);//stringBonusDamage
-			Write<float>(bp + 0x388, 1000000);//movementPenaltyRampUpTime
+			Write<float>(bp + 0x358, 0);//stringHoldDurationMax
+	}
+	void setLonghit(float input)
+	{
+		Write(this->bp + 0x290, input);
+	}
+	void RunHit(bool input)
+	{
+		Write(this->bp + 0x299, input);
+	}
+	void FastMed(float input)
+	{
+		Write(this->bp + 0x280, input);
 	}
 
 	void fastSwitch() {

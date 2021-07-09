@@ -13,6 +13,12 @@ namespace Settings {
 	extern bool drawWeapon;
 	extern bool freeze;
 	extern bool niggerCross;
+	extern bool corpseESP;
+
+
+	extern bool longhit;
+	extern bool runhit;
+	extern bool longmed;
 
 	extern bool thirdperson;
 
@@ -26,6 +32,7 @@ namespace Settings {
 	extern int CrosshairThickness;
 	extern float time;
 	extern int speedHackkey;
+	extern int corpseESPdistance;
 	extern int aimbotKey;
 	extern int jumpKey;
 	extern bool bradleyESP;

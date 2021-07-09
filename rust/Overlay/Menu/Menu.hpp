@@ -47,6 +47,10 @@ void VisualsTab()
 		ImGui::Checkbox(safe_str("Name"), &Settings::drawName); ImGui::ColorEdit4(safe_str("Name Color"), Settings::drawColor_name, ImGuiColorEditFlags_NoInputs);
 		if (Settings::drawName)
 			ImGui::SliderInt5(safe_str("Distance##Distance4"), &Settings::nameDistance, 100, 300);
+		
+		ImGui::Checkbox(safe_str("Dead Players"), &Settings::corpseESP); 
+		if (Settings::corpseESP)
+			ImGui::SliderInt5(safe_str("Distance##Distance34"), &Settings::corpseESPdistance, 100, 300);
 
 		ImGui::Checkbox(safe_str("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(safe_str("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
 
@@ -121,6 +125,10 @@ void MiscTabb()
 		}
 		ImGui::Checkbox(safe_str("admin flag"), &Settings::adminFlag);
 		ImGui::Checkbox(safe_str("Nightmode"), &Settings::night_mode);
+
+		ImGui::Checkbox(safe_str("Long Hit"), &Settings::longhit);
+		ImGui::Checkbox(safe_str("Long Med"), &Settings::longmed);
+		ImGui::Checkbox(safe_str("Run Attack"), &Settings::runhit);
 		
 		if (Settings::night_mode)
 		{

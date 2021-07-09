@@ -48,8 +48,15 @@ namespace Misc {
 				{
 					if (Settings::noRecoil) heldItem->noRecoil();
 					if (Settings::rapidFire) heldItem->rapidFire();
+					if (Settings::instantCompound) heldItem->instantCompound();
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();
 					if (Settings::tapeoka) heldItem->instantEoka();
+					if (Settings::longhit) heldItem->setLonghit(5.f);
+					if (Settings::runhit) heldItem->RunHit(true);
+					else heldItem->RunHit(false);
+					if (Settings::longmed) heldItem->FastMed(3.5f);
+					
+
 
 					heldItem->setNoAimCone();
 				}
