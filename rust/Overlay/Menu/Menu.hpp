@@ -2,6 +2,7 @@
 #include "Overlay.hpp"
 #include "../SDK/Imports.hpp"
 #include "Settings.hpp"
+#include "../../SDK/BasePlayer.hpp"
 
 void AimbotTab()
 {
@@ -146,12 +147,6 @@ void MiscTabb()
 			ImGui::SameLine();
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::LongNeckKey, ImVec2(100, 20));
 		}
-
-		/*ImGui::Checkbox(safe_str("Freeze Player"), &Settings::freeze);
-		if (Settings::freeze)
-		{
-			ImGui::Hotkey(safe_str("##On Key1"), &Settings::flyKey, ImVec2(100, 20));
-		}*/
 
 	} ImGui::EndChild();
 }

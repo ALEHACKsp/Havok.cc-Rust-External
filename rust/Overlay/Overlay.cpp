@@ -407,6 +407,12 @@ void __fastcall Render::DrawBox(ImVec2 pos, ImVec2 size, ImColor color)
 	ImGui::GetWindowDrawList()->AddRect(rect_bb.Min, rect_bb.Max, color, 0.0f, 15, 2);
 }
 
+
+void __fastcall Render::DrawLootBox(const ImVec2& Start, const ImVec2& End, const ImColor color, float Thickk = 1.5f)
+{
+	ImGui::GetWindowDrawList()->AddRect(Start, End, color, Thickk);
+}
+
 void __fastcall Render::DrawHealthBar(ImVec2 pos, ImVec2 size, ImColor color)
 {
 	const ImRect rect_bb(pos, pos + size);
