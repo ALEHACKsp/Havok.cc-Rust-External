@@ -3,6 +3,7 @@
 #include "../SDK/Imports.hpp"
 #include "Settings.hpp"
 
+
 void AimbotTab()
 {
 	ImGui::BeginChild(safe_str("Aimbot"), ImVec2(170, 248), true);
@@ -18,9 +19,13 @@ void AimbotTab()
 	ImGui::BeginChild(safe_str("Settings"), ImVec2(506, 248), true);
 	{
 		ImGui::SliderFloat5(safe_str("Aimbot FOV"), &Settings::aimbotFov, 1, 360, safe_str("%.2f"));
-		//ImGui::Checkbox(safe_str("thick bullet"), &Settings::night_mode);
+
+		const char* listbox_items[] = { "Head", "Chest", "Pevlis" };
+		ImGui::ListBox("Hitbox", &Settings::aimbotHitbox, listbox_items, IM_ARRAYSIZE(listbox_items));
+		//std::cout << Settings::aimbotHitbox << std::endl;
 	} ImGui::EndChild();
 }
+
 
 void VisualsTab()
 {                                           //238 //248
@@ -81,6 +86,7 @@ void VisualsTab()
 
 			ImGui::EndCombo();
 		}
+		ImGui::PushItemWidth((ImGui::GetWindowWidth()));
 	} ImGui::EndChild();
 
 	ImGui::SameLine();

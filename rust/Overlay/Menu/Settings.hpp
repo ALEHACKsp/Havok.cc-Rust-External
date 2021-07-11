@@ -3,6 +3,15 @@
 #include "../../SDK/Imports.hpp"
 
 namespace Settings {
+	//Aimbot:
+	extern int aimbotHitbox;
+	extern bool enableAimbot;
+	extern float aimbotFov;
+	extern int aimbotKey;
+	extern float aimbotSmoothing;
+
+
+
 	extern bool drawSkeleton;
 	extern bool drawBox;
 	extern bool drawCrosshair;
@@ -24,9 +33,6 @@ namespace Settings {
 	extern bool thirdperson;
 
 	extern bool speedhack;
-	extern bool enableAimbot;
-
-	extern float aimbotFov;
 	extern bool crosshairScoped;
 	extern int CrosshairLength;
 	extern int CrosshairGap;
@@ -34,7 +40,6 @@ namespace Settings {
 	extern float time;
 	extern int speedHackkey;
 	extern int corpseESPdistance;
-	extern int aimbotKey;
 	extern int jumpKey;
 	extern bool bradleyESP;
 	extern int LongNeckKey;
@@ -51,9 +56,8 @@ namespace Settings {
 	extern bool spiderClimb;
 	extern bool infinateJump;
 	extern bool instantCompound;
-
+	
 	extern bool enableSmoothing;
-	extern float aimbotSmoothing;
 
 	extern float FovSlider;
 

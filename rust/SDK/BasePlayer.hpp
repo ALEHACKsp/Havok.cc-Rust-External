@@ -76,6 +76,7 @@ enum BonesList : int
 	r_foot = 3,
 	l_knee = 2,
 	l_hip = 1,
+	pelvis = 6,
 	l_foot = 15,
 	r_knee = 14,
 	r_hip = 13,

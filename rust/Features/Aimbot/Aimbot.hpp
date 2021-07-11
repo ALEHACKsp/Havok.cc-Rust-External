@@ -100,15 +100,15 @@ namespace Aimbot {
 		return 300.0f;
 	}
 
-	float AimFov(std::unique_ptr<BasePlayer>& BPlayer)
+	float AimFov(std::unique_ptr<BasePlayer>& BPlayer, BonesList bone)
 	{
 		Vector2 ScreenPos;
-		if (!Utils::WorldToScreen(Utils::GetBonePosition(BPlayer->player, BonesList::neck), ScreenPos)) return 1000.f;
+		if (!Utils::WorldToScreen(Utils::GetBonePosition(BPlayer->player, bone), ScreenPos)) return 1000.f;
 		return Math::Calc2D_Dist(Vector2(screenWidth / 2, screenHeight / 2), ScreenPos);
 	}
 
 	Vector3 Prediction(const Vector3& LP_Pos, std::unique_ptr<BasePlayer>& Player, BonesList Bone) {
-		Vector3 BonePos = Utils::GetBonePosition(Player->player, BonesList::neck);
+		Vector3 BonePos = Utils::GetBonePosition(Player->player, Bone);
 		float Dist = Math::Calc3D_Dist(LP_Pos, BonePos);
 
 		if (Dist > 0.001f) {
@@ -126,15 +126,14 @@ namespace Aimbot {
 		else if (Yaw > 360) Yaw -= 360;
 	}
 
-
 	void SmoothAim(Vector2& Angle, float smooth) {
 		Angle.x /= smooth;
 		Angle.y /= smooth;
 	}
 
-	void AimbotTarget(std::unique_ptr<BasePlayer>& BPlayer) {
-		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
-		Vector3 PlayerPos = Prediction(Local, BPlayer, BonesList::neck);
+	void AimbotTarget(std::unique_ptr<BasePlayer>& BPlayer, BonesList Bone) {
+		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::head);
+		Vector3 PlayerPos = Prediction(Local, BPlayer, Bone);
 
 		Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
 

@@ -23,11 +23,20 @@ namespace Aimbot {
 
 						if (!curEntity->IsInView()) continue;
 
+						if (curEntity->health < 0.00f) continue;
+
 						//localPlayer->Player->getHeldItem().setNoAimCone();
 						//localPlayer->Player->getHeldItem().setNoSway();
+						BonesList bone;
+						switch (Settings::aimbotHitbox)
+						{
+						case 0: bone = BonesList::neck; break;
+						case 1: bone = BonesList::spine1; break;
+						case 2: bone = BonesList::pelvis; break;
+						}
 
-						if (AimFov(curEntity) < Settings::aimbotFov) {
-							AimbotTarget(curEntity);
+						if (AimFov(curEntity, bone) < Settings::aimbotFov) {
+							AimbotTarget(curEntity, bone);
 						}
 					}
 				}

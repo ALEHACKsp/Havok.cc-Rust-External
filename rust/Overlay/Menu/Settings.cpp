@@ -2,6 +2,13 @@
 #include "Settings.hpp"
 
 namespace Settings {
+	//Aimbot:
+	float aimbotSmoothing = 10;
+	int aimbotKey = 0x05;
+	bool enableAimbot = false;
+	float aimbotFov = 10;
+	int aimbotHitbox = 0;
+
 	bool drawSkeleton = false;
 	bool drawBox = false;
 	bool drawCrosshair = false;
@@ -12,7 +19,6 @@ namespace Settings {
 	bool drawWeapon = false;
 	bool drawSnaplines = false;
 
-	bool enableAimbot = false;
 	bool freeze = false;
 
 
@@ -24,14 +30,12 @@ namespace Settings {
 	bool instantCompound = false;
 	bool snapLinez = false;
 
-	float aimbotFov = 10;
 
 	float FiledVIEWW = 90;
 
 	float rapidfirevalue = 0.01; //0.09
 
 	bool enableSmoothing = false;
-	float aimbotSmoothing = 10;
 
 	bool enableCompensateRecoil = false;
 
@@ -43,7 +47,6 @@ namespace Settings {
 
 	float FovSlider = 10;
 
-	int aimbotKey = 0x05;
 
 	int jumpKey = 0;
 	int LongNeckKey = 0;
