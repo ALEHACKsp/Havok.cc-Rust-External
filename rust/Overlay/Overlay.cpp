@@ -11,6 +11,9 @@
 #include <dwmapi.h>
 #include "Menu/Menu.hpp"
 
+#include "../fonts/FontAwesome.h"
+#include "../fonts/RudaBolt.h"
+
 #define DIRECTINPUT_VERSION 0x0800
 
 static LPDIRECT3D9              g_pD3D = NULL;
@@ -28,7 +31,7 @@ void Overlay::Style()
 	style.Alpha = 1.0f;
 	style.WindowPadding = ImVec2(0, 0);
 	style.WindowMinSize = ImVec2(32, 32);
-	style.WindowRounding = 0.0f;
+	style.WindowRounding = 5;
 	style.WindowTitleAlign = ImVec2(0.0f, 0.5f);
 	//style.ChildWindowRounding = 0.0f;
 	style.FramePadding = ImVec2(4, 3);
@@ -70,13 +73,13 @@ void Overlay::Style()
 	colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(149 / 255.f, 20 / 255.f, 255 / 255.f, 1.f);
 	colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(149 / 255.f, 20 / 255.f, 255 / 255.f, 1.f);
 	colors[ImGuiCol_Separator] = ImVec4(0.654, 0.094, 0.278, 1.f);
-	colors[ImGuiCol_CheckMark] = ImVec4{ 1.f, 0.13f, 0.f, 1.f };
+	colors[ImGuiCol_CheckMark] = ImColor(88, 0, 255, 255);
 	colors[ImGuiCol_SliderGrab] = ImVec4(1.00f, 1.00f, 1.00f, 0.30f);
 	colors[ImGuiCol_SliderGrabActive] = ImVec4(0.80f, 0.50f, 0.50f, 1.00f);
 	colors[ImGuiCol_Button] = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
 	colors[ImGuiCol_ButtonHovered] = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
-	colors[ImGuiCol_ButtonActive] = ImVec4(78 / 255.f, 78 / 255.f, 87 / 255.f, 1);
-	colors[ImGuiCol_Header] = ImColor(12, 12, 12,255);
+	colors[ImGuiCol_ButtonActive] = ImColor(88, 0, 255, 255);
+	colors[ImGuiCol_Header] = ImColor(12, 12, 12, 255);
 	colors[ImGuiCol_HeaderHovered] = ImVec4(0.26f, 0.26f, 0.26f, 1.f);
 	colors[ImGuiCol_HeaderActive] = ImColor(0.2f, 0.2f, 0.2f, 1.f);
 	colors[ImGuiCol_ResizeGrip] = ImVec4(1.00f, 1.00f, 1.00f, 0.30f);
@@ -93,6 +96,11 @@ void Overlay::Style()
 	//playerName = ImGui::GetIO().Fonts->AddFontFromMemoryTTF(FontData::rawData_TeenyTinyPixls, 12, 9);
 	playerName = ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 12);
 
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+	ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.PixelSnapH = true; icons_config.GlyphOffset = ImVec2(0.f, 12.0f);
+	menuIcon = io.Fonts->AddFontFromMemoryCompressedTTF(RudaCompressed, RudaSize, 14);
+	menuIcon = io.Fonts->AddFontFromMemoryCompressedTTF(FontAwesome_compressed_data, FontAwesome_compressed_size, 32.f, &icons_config, icons_ranges);
 
 	g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_ARGB(0, 0, 0, 0), 1.0f, 0);
 	g_pd3dDevice->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE);

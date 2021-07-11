@@ -3,12 +3,14 @@
 
 namespace Settings {
 	//Aimbot:
-	float aimbotSmoothing = 10;
+	int aimbotSmoothingValue = 10;
 	int aimbotKey = 0x05;
 	bool enableAimbot = false;
-	float aimbotFov = 10;
+	bool aimbotSmoothing = false;
+	int aimbotFov = 10;
 	int aimbotHitbox = 0;
 
+	bool enableVisuals = false;
 	bool drawSkeleton = false;
 	bool drawBox = false;
 	bool drawCrosshair = false;
@@ -46,7 +48,7 @@ namespace Settings {
 	int healthDistance = 100;
 	int nameDistance = 100;
 
-	float FovSlider = 10;
+	int FovSlider = 90;
 
 	float GravitySlider = 10;
 

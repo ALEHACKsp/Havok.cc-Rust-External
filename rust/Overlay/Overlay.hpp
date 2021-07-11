@@ -16,6 +16,7 @@ namespace Overlay
 	inline ImFont* fontMenu;
 	inline ImFont* playerName;
 	inline ImFont* weaponName;
+	inline ImFont* menuIcon;
 }
 
 namespace Render

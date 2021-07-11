@@ -6,11 +6,13 @@ namespace Settings {
 	//Aimbot:
 	extern int aimbotHitbox;
 	extern bool enableAimbot;
-	extern float aimbotFov;
+	extern int aimbotFov;
 	extern int aimbotKey;
-	extern float aimbotSmoothing;
+	extern int aimbotSmoothingValue;
+	extern bool aimbotSmoothing;
 
 
+	extern bool enableVisuals;
 
 	extern bool drawSkeleton;
 	extern bool drawBox;
@@ -60,7 +62,7 @@ namespace Settings {
 	extern bool enableSmoothing;
 	extern bool SuperJump;
 
-	extern float FovSlider;
+	extern int FovSlider;
 	extern float GravitySlider;
 
 	extern bool enableCompensateRecoil;
