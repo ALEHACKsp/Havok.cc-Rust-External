@@ -67,6 +67,10 @@ void MiscTab()
         if (Settings::night_mode)
             ImGui::SliderFloat(("Time"), &Settings::time, 0, 24);
 
+        ImGui::Checkbox("Sky Color", &Settings::skyColorBool);
+        if (Settings::skyColorBool)
+            ImGui::SliderFloat("color", &Settings::SkyColor, 0, 100);
+
 
         ImGui::Checkbox(("Long Hit"), &Settings::longhit);
         ImGui::Checkbox(("Long Med"), &Settings::longmed);
@@ -79,6 +83,15 @@ void MiscTab()
             ImGui::SameLine();
             ImGui::Hotkey(("##On Key1"), &Settings::LongNeckKey, ImVec2(80, 15));
         }
+        ImGui::Checkbox("High Jump", &Settings::SuperJump);
+        if (Settings::SuperJump)
+        {
+            ImGui::SliderFloat5("value", &Settings::GravitySlider, 10, 0);
+        }
+        ImGui::Checkbox("Debug Camera", &Settings::debugFlag);
+        ImGui::Checkbox("Fix Debug", &Settings::DebugFix);
+
+
         ImGui::EndChild();
     }
 }

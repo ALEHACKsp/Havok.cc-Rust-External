@@ -123,4 +123,8 @@ namespace Settings {
 	extern bool sky_changer;
 
 	extern bool thickBullet;
+	extern bool DebugFix;
+	extern bool debugFlag;
+	extern float SkyColor;
+	extern bool skyColorBool;
 };

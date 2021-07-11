@@ -68,6 +68,7 @@ namespace Settings {
 	bool infinateJump = false;
 
 	bool adminFlag = false;
+	bool debugFlag = false;
 
 	bool longhit;
 	bool runhit;
@@ -128,4 +129,8 @@ namespace Settings {
 	float cloud_brightness = 1;
 
 	bool thickBullet = false;
+
+	bool DebugFix = false;
+	float SkyColor = 1;
+	bool skyColorBool = false;
 }

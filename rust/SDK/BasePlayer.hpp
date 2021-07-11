@@ -38,7 +38,8 @@ enum class BPlayerFlags {
 	ServerFall = 262144,
 	Workbench1 = 1048576,
 	Workbench2 = 2097152,
-	Workbench3 = 4194304
+	Workbench3 = 4194304,
+	DebugCamera = 260
 };
 
 enum class BMapNoteType {
@@ -290,12 +291,35 @@ public:
 	{
 		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
 		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
-		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10);
+		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10); //tagged object
 		DWORD64 ObjClass = Read<DWORD64>(GameObject + 0x30);
 		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
 		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
 		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
+
 		Write<float>(TodCycle + 0x10, time);
+	}
+
+	void TestColor(float time)
+	{
+		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
+		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
+		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10); //tagged object
+		DWORD64 ObjClass = Read<DWORD64>(GameObject + 0x30);
+		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
+		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
+		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
+
+
+		uint64_t test1 = Read<uint64_t>(GameObject + 0x30);//night
+		uint64_t test2 = Read<uint64_t>(test1 + 0x18); //world
+		uint64_t test3 = Read<uint64_t>(test2 + 0x28); //day
+		uint64_t AtmosphereParameters = Read<uint64_t>(test3 + 0x48); //light
+		uint64_t CycleParameters = Read<uint64_t>(test3 + 0x38); //sun
+		uint64_t StarParameters = Read<uint64_t>(test3 + 0x50);
+
+
+		Write<float>(AtmosphereParameters + 0x10, Settings::SkyColor);
 	}
 
 	void LongNeck()
@@ -403,6 +427,13 @@ public:
 		auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
 		auto staticFields = Read<DWORD64>(klass + 0xB8);
 		Write<float>(staticFields + 0x18, Settings::FovSlider);//0x18 => m_camera
+	}
+
+	void FixDebug()
+	{
+		DWORD64 Client = Read<DWORD64>(gBase + 0x3233158 + 0xB8);//ConVar_Client_c*
+		Write<float>(Client + 0x2C, 1.f);// camspeed
+		Write<float>(Client + 0x20, 1.f);// camlerp
 	}
 
 

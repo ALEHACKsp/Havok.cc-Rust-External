@@ -33,6 +33,8 @@ namespace Misc {
 
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
 				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
+				if (Settings::debugFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::DebugCamera);
+
 					
 				if (Settings::freeze) localPlayer->Player->isFrozen();
 
@@ -41,7 +43,9 @@ namespace Misc {
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
+				if (Settings::DebugFix) localPlayer->Movement->FixDebug();
 				if (Settings::night_mode) localPlayer->Player->TestNight(Settings::time);
+				if (Settings::skyColorBool) localPlayer->Player->TestColor(Settings::SkyColor);
 
 				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
 				
