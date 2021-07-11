@@ -152,6 +152,11 @@ void MiscTabb()
 			ImGui::SameLine();
 			ImGui::Hotkey(safe_str("##On Key1"), &Settings::LongNeckKey, ImVec2(100, 20));
 		}
+		ImGui::Checkbox(safe_str("High Jump"), &Settings::SuperJump);
+		if (Settings::SuperJump)
+		{
+			ImGui::SliderFloat5("value", &Settings::GravitySlider, 0, 10);
+		}
 
 	} ImGui::EndChild();
 }

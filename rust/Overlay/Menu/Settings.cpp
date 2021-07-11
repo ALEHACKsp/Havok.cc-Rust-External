@@ -29,6 +29,7 @@ namespace Settings {
 	bool rapidFire = false;
 	bool instantCompound = false;
 	bool snapLinez = false;
+	bool SuperJump = false;
 
 
 	float FiledVIEWW = 90;
@@ -46,6 +47,8 @@ namespace Settings {
 	int nameDistance = 100;
 
 	float FovSlider = 10;
+
+	float GravitySlider = 10;
 
 
 	int jumpKey = 0;

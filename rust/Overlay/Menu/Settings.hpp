@@ -58,8 +58,10 @@ namespace Settings {
 	extern bool instantCompound;
 	
 	extern bool enableSmoothing;
+	extern bool SuperJump;
 
 	extern float FovSlider;
+	extern float GravitySlider;
 
 	extern bool enableCompensateRecoil;
 

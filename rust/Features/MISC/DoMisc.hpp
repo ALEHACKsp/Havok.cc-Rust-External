@@ -36,6 +36,8 @@ namespace Misc {
 					
 				if (Settings::freeze) localPlayer->Player->isFrozen();
 
+
+				if (Settings::SuperJump) localPlayer->Movement->Gravity();
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();

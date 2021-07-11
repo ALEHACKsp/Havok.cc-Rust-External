@@ -422,6 +422,11 @@ public:
 		Write<float>(this->playerMovement + 0xC0, 0.f);
 	}
 
+	void Gravity()
+	{
+		Write<float>(this->playerMovement + 0x7C, Settings::GravitySlider);
+	}
+
 	void walkOnWater() {
 		if (GetAsyncKeyState(Settings::walkWaterKEY)) {
 			Write<float>(this->playerMovement + 0xB4, 0.f);//groundAngle
