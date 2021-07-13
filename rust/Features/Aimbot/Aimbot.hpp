@@ -100,7 +100,7 @@ namespace Aimbot {
 		return 300.0f;
 	}
 
-	float AimFov(std::unique_ptr<BasePlayer>& BPlayer, BonesList bone)
+	float AimFov(std::unique_ptr<BaseEntity>& BPlayer, BonesList bone)
 	{
 		Vector2 ScreenPos;
 		if (!Utils::WorldToScreen(Utils::GetBonePosition(BPlayer->player, bone), ScreenPos)) return 1000.f;
@@ -109,7 +109,7 @@ namespace Aimbot {
 
 	
 
-	Vector3 Prediction(const Vector3& LP_Pos, std::unique_ptr<BasePlayer>& Player, BonesList Bone) {
+	Vector3 Prediction(const Vector3& LP_Pos, std::unique_ptr<BaseEntity>& Player, BonesList Bone) {
 		Vector3 BonePos = Utils::GetBonePosition(Player->player, Bone);
 		float Dist = Math::Calc3D_Dist(LP_Pos, BonePos);
 
@@ -166,7 +166,7 @@ namespace Aimbot {
 		return { std::asin(direction.y / direction.Length()) * r2d, -std::atan2(direction.x, -direction.z) * r2d, 0.f };
 	}
 
-	void NewAim(std::unique_ptr<BasePlayer>& BPlayer, BonesList Bone)
+	void NewAim(std::unique_ptr<BaseEntity>& BPlayer, BonesList Bone)
 	{
 		Vector3 localpos = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		//Vector3 posTargetPlayer = localPlayer->Player->getPosition();
@@ -212,7 +212,7 @@ namespace Aimbot {
 	}
 
 
-	void AimbotTarget(std::unique_ptr<BasePlayer>& BPlayer, BonesList Bone) {
+	void AimbotTarget(std::unique_ptr<BaseEntity>& BPlayer, BonesList Bone) {
 		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		Vector3 PlayerPos = Prediction(Local, BPlayer, Bone);
 

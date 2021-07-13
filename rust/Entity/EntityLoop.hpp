@@ -17,9 +17,9 @@ namespace Entity {
 
 		while (true)
 		{
-			std::unique_ptr<std::vector<BasePlayer>> t_entList = std::make_unique<std::vector<BasePlayer>>();
-			std::unique_ptr<std::vector<PlayerCorpse>> t_corpseList = std::make_unique<std::vector<PlayerCorpse>>();
-			std::unique_ptr<std::vector<BaseResource>> t_oreList = std::make_unique<std::vector<BaseResource>>();
+			std::unique_ptr<std::vector<BaseEntity>> t_entList = std::make_unique<std::vector<BaseEntity>>();
+			std::unique_ptr<std::vector<EntityCorpse>> t_corpseList = std::make_unique<std::vector<EntityCorpse>>();
+			std::unique_ptr<std::vector<BaseMiscEntity>> t_oreList = std::make_unique<std::vector<BaseMiscEntity>>();
 
 			auto unk1 = Read<uintptr_t>(BaseNetworkable + 0xB8);
 			auto clientEntities = Read<uintptr_t>(unk1);
@@ -40,40 +40,24 @@ namespace Entity {
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
 					auto transform = Read<uintptr_t>(objectClass + 0x8);
 
-					std::unique_ptr<BasePlayer> BPlayer = std::make_unique<BasePlayer>(entity, transform, object);
+					std::unique_ptr<BaseEntity> BPlayer = std::make_unique<BaseEntity>(entity, transform, object);
 
 					if (BPlayer->isLocalPlayer()) {
-						localPlayer->Player = std::make_unique<BasePlayer>(entity, transform, object);
-						localPlayer->Movement = std::make_unique<PlayerMovement>(localPlayer->Player->player);
+						localPlayer->Player = std::make_unique<BaseEntity>(entity, transform, object);
+						localPlayer->Movement = std::make_unique<EntityMovment>(localPlayer->Player->player);
 					}
 
 					if (!BPlayer->isDead()) t_entList->push_back(*BPlayer); continue;
 				}
 
-
+				
 				if (prefebName.find(safe_str("assets/prefabs/misc/item drop/item_drop_backpack.prefab")) != std::string::npos || prefebName.find(safe_str("assets/prefabs/player/player_corpse.prefab")) != std::string::npos) {
 					auto objectClass = Read<uintptr_t>(object + 0x30);
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
 					auto transform = Read<uintptr_t>(objectClass + 0x8);
 
-					std::unique_ptr<PlayerCorpse> CEntity = std::make_unique<PlayerCorpse>(entity, transform, object);
+					std::unique_ptr<EntityCorpse> CEntity = std::make_unique<EntityCorpse>(entity, transform, object);
 					t_corpseList->push_back(*CEntity); continue;
-				}
-
-				if (prefebName.find(safe_str("pistol.nailgun")) != std::string::npos) {
-
-					auto objectClass = Read<uintptr_t>(object + 0x30);
-					DWORD64 Res = Read<DWORD64>(object + 28);
-					DWORD64 gameObject = Read<DWORD64>(objectClass + 0x30); //Tag 449
-					DWORD64 Trans = Read<DWORD64>(gameObject + 0x8);
-					DWORD64 Vec = Read<DWORD64>(Trans + 0x38);
-					Vector3 pos = Read<Vector3>(Vec + 0x90);
-					Vector2 Pos;
-
-					if (!Utils::WorldToScreen(pos, Pos))
-					{
-
-					}
 				}
 
 				if (prefebName.find(safe_str("autospawn/resource/ores")) != std::string::npos || prefebName.find(safe_str("autospawn/collectable/")) != std::string::npos || prefebName.find(safe_str("deployable/small stash/")) != std::string::npos) {
@@ -102,7 +86,16 @@ namespace Entity {
 						if (Settings::selectedOres[7] == false) continue;
 					}
 					else if (prefebName.find(safe_str("small_stash_deployed")) != std::string::npos) {
-						if (Settings::selectedOres[8] == false) continue;
+						if (Settings::selectedOres[8] == false) 
+							continue;
+						else
+						{
+							uintptr_t stashstatus = Read<uintptr_t>(curObject + 0x130);
+
+							if (stashstatus != 2048)
+								continue;
+							//std::cout << std::hex << curObject << std::endl;
+						}
 					}
 					
 					else continue;
@@ -111,7 +104,7 @@ namespace Entity {
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
 					auto transform = Read<uintptr_t>(objectClass + 0x8);
 
-					std::unique_ptr<BaseResource> oreEntity = std::make_unique<BaseResource>(entity, transform, object);
+					std::unique_ptr<BaseMiscEntity> oreEntity = std::make_unique<BaseMiscEntity>(entity, transform, object);
 
 					t_oreList->push_back(*oreEntity); continue;
 				}

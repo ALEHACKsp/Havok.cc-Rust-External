@@ -47,9 +47,9 @@ int main()
 		Mutex->PlayerSync = std::make_unique<sf::contention_free_shared_mutex<>>();
 		Mutex->WriteSync = std::make_unique<sf::contention_free_shared_mutex<>>();
 
-		entityList = std::make_unique<std::vector<BasePlayer>>();
-		corpseList = std::make_unique<std::vector<PlayerCorpse>>();
-		oreList = std::make_unique<std::vector<BaseResource>>();
+		entityList = std::make_unique<std::vector<BaseEntity>>();
+		corpseList = std::make_unique<std::vector<EntityCorpse>>();
+		oreList = std::make_unique<std::vector<BaseMiscEntity>>();
 		localPlayer = std::make_unique<LocalPlayer>();
 
 		pId = get_process_id(safe_str("RustClient.exe"));

@@ -1,21 +1,20 @@
 #pragma once
 #include "Aimbot.hpp"
 
-static bool isEnabled;
 
 namespace Aimbot {
 	void DoAimbot() {
 		while (true) {
 			if (Settings::enableAimbot) {
 				if (GetAsyncKeyState(Settings::aimbotKey)) {
-					std::unique_ptr<std::vector<BasePlayer>> local_players = std::make_unique<std::vector<BasePlayer>>();
+					std::unique_ptr<std::vector<BaseEntity>> local_players = std::make_unique<std::vector<BaseEntity>>();
 
 					Mutex->PlayerSync->lock();
 					*local_players = *entityList;
 					Mutex->PlayerSync->unlock();
 
 					for (unsigned long i = 0; i < local_players->size(); ++i) {
-						std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));
+						std::unique_ptr<BaseEntity> curEntity = std::make_unique<BaseEntity>(local_players->at(i));
 
 						if (curEntity->isLocalPlayer()) continue;
 

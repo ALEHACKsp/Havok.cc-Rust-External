@@ -43,9 +43,9 @@ namespace ESP {
 			if (Settings::enableAimbot)
 				Render::Circle(ImVec2(screenWidth / 2, screenHeight / 2), Settings::aimbotFov, ImColor(255, 255, 255));
 
-			std::unique_ptr<std::vector<BasePlayer>> local_players = std::make_unique<std::vector<BasePlayer>>();
-			std::unique_ptr<std::vector<PlayerCorpse>> local_corpse = std::make_unique<std::vector<PlayerCorpse>>();
-			std::unique_ptr<std::vector<BaseResource>> local_ore = std::make_unique<std::vector<BaseResource>>();
+			std::unique_ptr<std::vector<BaseEntity>> local_players = std::make_unique<std::vector<BaseEntity>>();
+			std::unique_ptr<std::vector<EntityCorpse>> local_corpse = std::make_unique<std::vector<EntityCorpse>>();
+			std::unique_ptr<std::vector<BaseMiscEntity>> local_ore = std::make_unique<std::vector<BaseMiscEntity>>();
 
 			Mutex->PlayerSync->lock();
 			*local_players = *entityList;
@@ -54,7 +54,7 @@ namespace ESP {
 			Mutex->PlayerSync->unlock();
 
 			for (unsigned long i = 0; i < local_ore->size(); ++i) {
-				std::unique_ptr<BaseResource> curOre = std::make_unique<BaseResource>(local_ore->at(i));
+				std::unique_ptr<BaseMiscEntity> curOre = std::make_unique<BaseMiscEntity>(local_ore->at(i));
 				auto position = Read<Vector3>(curOre->trans + 0x90);//world position = 0x90
 				auto distance = (int)Math::Distance(&localPlayer->Player->position, &position);
 				if (distance < 200)
@@ -79,6 +79,8 @@ namespace ESP {
 					}
 					Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
 
+					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 50 - text_size.y), std::to_string(curOre->ent), ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+
 
 					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 					Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
@@ -87,7 +89,7 @@ namespace ESP {
 			
 
 			for (unsigned long i = 0; i < local_corpse->size(); ++i) {
-				std::unique_ptr<PlayerCorpse> curCorpse = std::make_unique<PlayerCorpse>(local_corpse->at(i));
+				std::unique_ptr<EntityCorpse> curCorpse = std::make_unique<EntityCorpse>(local_corpse->at(i));
 
 				auto position = Read<Vector3>(curCorpse->trans + 0x90);//world position
 				auto distance = (int)Math::Distance(&localPlayer->Player->position, &position);
@@ -116,7 +118,7 @@ namespace ESP {
 			Vector2 pos;
 			for (unsigned long i = 0; i < local_players->size(); ++i)
 			{
-				std::unique_ptr<BasePlayer> curEntity = std::make_unique<BasePlayer>(local_players->at(i));
+				std::unique_ptr<BaseEntity> curEntity = std::make_unique<BaseEntity>(local_players->at(i));
 
 				Vector2 pos;
 				auto position = Read<Vector3>(curEntity->visualState + 0x90);//world position

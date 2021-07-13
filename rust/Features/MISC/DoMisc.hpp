@@ -5,7 +5,7 @@
 namespace Misc {
 	void DoMisc() {
 		while (true) {
-				std::unique_ptr<std::vector<BasePlayer>> local_players = std::make_unique<std::vector<BasePlayer>>();
+				std::unique_ptr<std::vector<BaseEntity>> local_players = std::make_unique<std::vector<BaseEntity>>();
 				std::unique_ptr<HeldItem> heldItem = std::make_unique<HeldItem>();
 
 				Mutex->PlayerSync->lock();
@@ -29,9 +29,6 @@ namespace Misc {
 					localPlayer->Player->LongNeck();  localPlayer->Player->setModelFlag(MStateFlags::OnGround); localPlayer->Movement->alwaysShoot();
 				}
 
-				localPlayer->Player->setModelFlag(MStateFlags::OnGround);
-				localPlayer->Movement->alwaysShoot();
-
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
 				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
 				if (Settings::debugFlag) localPlayer->Player->setModelFlag(MStateFlags::Sleeping);
@@ -45,7 +42,9 @@ namespace Misc {
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
 				if (Settings::DebugFix) localPlayer->Movement->FixDebug();
-				if (Settings::flyHackkk) localPlayer->Movement->FlyHack();
+				
+				
+				localPlayer->Movement->FlyHack();
 
 
 				//Sky Shit
@@ -56,7 +55,6 @@ namespace Misc {
 				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
 				if (Settings::zoom) localPlayer->Movement->zoom();
 				if (Settings::waterLevel) localPlayer->Player->SetWater();
-				if (Settings::sprinttt) localPlayer->Movement->niggersss();
 				
 
 				if (heldItem->IsWeapon())

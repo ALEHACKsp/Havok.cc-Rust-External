@@ -137,12 +137,12 @@ std::string Utility::wstring_to_string(const std::wstring& wstring)
 	WideCharToMultiByte(CP_ACP, 0, wstring.c_str(), slength, &r[0], len, 0, 0);
 	return r;
 }
-class BasePlayer {
+class BaseEntity {
 public:
 
-	BasePlayer() {}
+	BaseEntity() {}
 
-	BasePlayer(uintptr_t _ent, uintptr_t _trans, uintptr_t _obj) {
+	BaseEntity(uintptr_t _ent, uintptr_t _trans, uintptr_t _obj) {
 
 		this->player = Read<uintptr_t>(_ent + 0x28); //Entity
 		this->visualState = Read<uintptr_t>(_trans + 0x38);
@@ -181,6 +181,10 @@ public:
 		Write(this->entityFlags + 0x130, flag);
 	}
 
+	void speedHack(int speed) {
+		Write<float>(this->player + 0x714, speed);
+	}
+
 public:
 
 	bool IsInView() {
@@ -210,7 +214,7 @@ public:
 
 
 
-	bool isSameTeam(std::unique_ptr<BasePlayer>& localPlayer) {
+	bool isSameTeam(std::unique_ptr<BaseEntity>& localPlayer) {
 		auto localTeam = Read<uint32_t>(localPlayer->player + 0x590);//public PlayerTeam clientTeam;
 		auto playerTeam = Read<uint32_t>(this->player + 0x590); //0x580
 
@@ -254,11 +258,11 @@ public:
 		return Read<uint64_t>(this->player + 0x698); //public ulong userID;
 	}
 
-	int getDistance(std::unique_ptr<BasePlayer>& player) {
+	int getDistance(std::unique_ptr<BaseEntity>& player) {
 		return this->getPosition().Distance(player->position);
 	}
 
-	std::string getDistanceStr(std::unique_ptr<BasePlayer>& player) {
+	std::string getDistanceStr(std::unique_ptr<BaseEntity>& player) {
 		return std::to_string(this->getDistance(player));
 	}
 
@@ -458,16 +462,16 @@ public:
 	uint64_t modelState{};
 	float health{};
 
-}; std::unique_ptr<std::vector<BasePlayer>> entityList;
+}; std::unique_ptr<std::vector<BaseEntity>> entityList;
 
 #pragma endregion
 
-class PlayerCorpse {
+class EntityCorpse {
 public:
 
-	PlayerCorpse() {}
+	EntityCorpse() {}
 
-	PlayerCorpse(uintptr_t _ent, uintptr_t _trans, uintptr_t _obj) {
+	EntityCorpse(uintptr_t _ent, uintptr_t _trans, uintptr_t _obj) {
 		this->ent = Read<uintptr_t>(_ent + 0x28);
 		this->trans = Read<uintptr_t>(_trans + 0x38);
 
@@ -479,16 +483,16 @@ public:
 	uintptr_t ent{};
 	uintptr_t trans{};
 	std::string name{};
-}; std::unique_ptr<std::vector<PlayerCorpse>> corpseList;
+}; std::unique_ptr<std::vector<EntityCorpse>> corpseList;
 
 #pragma region PMClass
 
-class PlayerMovement : public BasePlayer, PlayerCorpse {
+class EntityMovment : public BaseEntity, EntityCorpse {
 public:
 
-	PlayerMovement() {}
+	EntityMovment() {}
 
-	PlayerMovement(uintptr_t player) {        //0x4D0
+	EntityMovment(uintptr_t player) {        //0x4D0
 		this->playerMovement = Read<uintptr_t>(player + 0x4E8); //public BaseMovement movement;
 	}
 
@@ -496,9 +500,7 @@ public:
 		Write<float>(this->playerMovement + 0x48, 1);
 	}
 
-	void speedHack(int speed) {
-		Write<float>(this->player + 0x714, speed);
-	}
+	
 
 
 
@@ -541,18 +543,26 @@ public:
 			Write<Vector3>(this->playerMovement + 0xBC, Vector3(9999999, 9999999, 9999999));
 		}
 	}
-
+	//Set waterheight and to swimming
+	//set clothing reduct to -1
 	void FlyHack()
 	{
-		uintptr_t Model = Read<uintptr_t>(this->player + modelState);
-		Write<float>(this->modelState + 0x14, 99999.f);
-		Write<bool>(this->playerMovement + 0x144, 1);
-	}
-
-	void niggersss()
-	{
-		Write<float>(this->playerMovement + 0x40, 1.f);
-		Write<int>(this->playerModel + 0x24, playerModelFlags != 16);
+		if (Settings::flyHackkk)
+		{
+			if (GetAsyncKeyState(Settings::flyhackKey))
+			{
+				Write<float>(this->modelState + 0x14, 0.65f);
+				Write<float>(this->modelState + 0x14, 3000);
+				Write<float>(this->playerMovement + 0x60, Settings::flyhackCapsuleHeight);
+				Write<float>(this->playerMovement + 0x64, Settings::flyhackCapsuleCenter);
+			}
+			else
+			{
+				Write<float>(this->modelState + 0x14, 0);
+				Write<float>(this->playerMovement + 0x60, 1.79);
+				Write<float>(this->playerMovement + 0x64, 0.899);
+			}
+		}
 	}
 
 	void spiderClimb() {
@@ -585,18 +595,14 @@ public:
 
 #pragma endregion
 
-class BaseResource {
+class BaseMiscEntity {
 public:
-	BaseResource() {}
+	BaseMiscEntity() {}
 
-	BaseResource(uintptr_t _ent, uintptr_t _trans, uintptr_t _obj) {
+	BaseMiscEntity(uintptr_t _ent, uintptr_t _trans, uintptr_t _obj) {
 		this->ent = Read<uintptr_t>(_ent + 0x28);
 		this->trans = Read<uintptr_t>(_trans + 0x38);
-
 		this->name = ReadNative(_obj + 0x60);
-
-
-
 
 		if (this->name.find(safe_str("stone-ore")) != std::string::npos)
 			this->name = safe_str("stone ore");
@@ -626,14 +632,14 @@ public:
 	uintptr_t ent{};
 	uintptr_t trans{};
 	std::string name{};
-}; std::unique_ptr<std::vector<BaseResource>> oreList;//scans for ores
+}; std::unique_ptr<std::vector<BaseMiscEntity>> oreList;//scans for ores
 
 #pragma region LPClass
 
 class LocalPlayer {
 public:
-	std::unique_ptr<BasePlayer> Player;
-	std::unique_ptr<PlayerMovement> Movement;
+	std::unique_ptr<BaseEntity> Player;
+	std::unique_ptr<EntityMovment> Movement;
 }; std::unique_ptr<LocalPlayer> localPlayer;
 
 #pragma endregion
