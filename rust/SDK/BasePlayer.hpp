@@ -111,6 +111,11 @@ enum class MStateFlags {
 	Relaxed = 1024,
 };
 
+enum class BaseEntityFlag
+{
+	stash = 2048,
+};
+
 #pragma endregion
 
 #pragma region BPClass
@@ -144,6 +149,7 @@ public:
 
 		this->playerFlags = Read<int32_t>(_ent + 0x650); //public BasePlayer.PlayerFlags playerFlags;
 		this->name = ReadNative(_obj + 0x60);
+		this->entityFlags = Read<int32_t>(_ent + 0x130);
 
 		this->playerModel = Read<uintptr_t>(this->player + 0x4C0); //BasePlayer -> public PlayerModel playerModel;
 		this->modelState = Read<uintptr_t>(this->player + 0x5E0); //0x588 // public ModelState modelState;
@@ -169,6 +175,10 @@ public:
 
 	void setModelFlag(MStateFlags flag) {
 		Write(this->modelState + 0x24, flag);
+	}
+
+	void setBaseFlag(BaseEntityFlag flag) {
+		Write(this->entityFlags + 0x130, flag);
 	}
 
 public:
@@ -443,6 +453,7 @@ public:
 	std::wstring nameW{};
 	Vector3 position{};
 	uint32_t playerFlags{};
+	int entityFlags{};
 	uint64_t playerModel{};
 	uint64_t modelState{};
 	float health{};
@@ -584,6 +595,9 @@ public:
 
 		this->name = ReadNative(_obj + 0x60);
 
+
+
+
 		if (this->name.find(safe_str("stone-ore")) != std::string::npos)
 			this->name = safe_str("stone ore");
 		else if (this->name.find(safe_str("sulfur-ore")) != std::string::npos)
@@ -602,8 +616,8 @@ public:
 			this->name = safe_str("wood");
 		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
 			this->name = safe_str("stash");
-		
-		else
+
+		else;
 			this->name = safe_str("resource");
 
 	}

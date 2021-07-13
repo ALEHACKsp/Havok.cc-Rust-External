@@ -91,6 +91,8 @@ namespace Settings {
 
 	extern bool selectedOres[9];
 
+	extern bool pistol;
+
 	extern float drawColor_box[4];
 	extern float drawColor_skeleton[4];
 	extern float drawColor_crosshair[4];

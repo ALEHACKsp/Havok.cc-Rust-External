@@ -35,6 +35,7 @@ namespace Aimbot {
 
 						if (AimFov(curEntity, bone) < Settings::aimbotFov) {
 							AimbotTarget(curEntity, bone);
+							//NewAim(curEntity, bone);
 						}
 					}
 				}

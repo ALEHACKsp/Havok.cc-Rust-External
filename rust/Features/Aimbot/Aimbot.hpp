@@ -133,9 +133,89 @@ namespace Aimbot {
 		Angle.y /= smooth;
 	}
 
+	Vector4 calculate_quaternion(Vector3 euler)
+	{
+		Vector4 result{};
+
+		const auto yaw = (euler.z * 0.01745329251f) * 0.5f;
+		const auto sy = std::sin(yaw);
+		const auto cy = std::cos(yaw);
+
+		const auto roll = (euler.x * 0.01745329251f) * 0.5f;
+		const auto sr = std::sin(roll);
+		const auto cr = std::cos(roll);
+
+		constexpr auto sp = 0.f;
+		constexpr auto cp = 1.f;
+
+		result.x = cy * sr * cp - sy * cr * sp;
+		result.y = cy * cr * sp + sy * sr * cp;
+		result.z = sy * cr * cp - cy * sr * sp;
+		result.w = cy * cr * cp + sy * sr * sp;
+
+		return result;
+	}
+
+
+	Vector3 calculate_angle(const Vector3& source, const Vector3& destination)
+	{
+		constexpr auto r2d = 57.2957795131f; /* 180 / pi, used for conversion from radians to degrees */
+		constexpr auto d2r = 0.01745329251f; /* pi / 180, used for conversion from degrees to radians */
+
+		Vector3 direction = source - destination;
+		return { std::asin(direction.y / direction.Length()) * r2d, -std::atan2(direction.x, -direction.z) * r2d, 0.f };
+	}
+
+	void NewAim(std::unique_ptr<BasePlayer>& BPlayer, BonesList Bone)
+	{
+		Vector3 localpos = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
+		//Vector3 posTargetPlayer = localPlayer->Player->getPosition();
+		Vector3 PlayerPos = Prediction(localpos, BPlayer, Bone);
+		Vector2 AngleToAim = Math::CalcAngle(localpos, PlayerPos);
+		bool flag = localpos != Vector3(0, 0, 0);
+		if (flag)
+		{
+			float number1 = AngleToAim.x;
+			float number2 = AngleToAim.y;
+			while (number1 >= 180.0f)
+			{
+				number1 -= 360.0f;
+			}
+			while (number1 <= -180.0f)
+			{
+				number1 += 360.0f;
+			}
+			if (number1 > 89.0f)
+			{
+				number1 = 89.0f;
+			}
+			else if (number1 < -89.0f)
+			{
+				number1 = -89.0f;
+			}
+			while (number2 >= 360.0f)
+			{
+				number2 -= 360.0f;
+			}
+			while (number2 <= -360.0f)
+			{
+				number2 += 75.0f;
+			}
+			uint64_t playerInput = Read<uint64_t>(localPlayer->Player->player + 0x4E0);
+			if (!playerInput);
+			Vector3 bodyAngles = Vector3(number1, number2, 0.0f);
+			Vector4 bodyRoations = calculate_quaternion(bodyAngles);
+
+			//Write<Vector3>(playerInput + 0x3C, calculate_angle(localpos, bodyAngles));
+			localPlayer->Player->setViewAngles(AngleToAim);
+		}
+	}
+
+
 	void AimbotTarget(std::unique_ptr<BasePlayer>& BPlayer, BonesList Bone) {
 		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		Vector3 PlayerPos = Prediction(Local, BPlayer, Bone);
+
 
 
 			Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
@@ -152,10 +232,9 @@ namespace Aimbot {
 			}
 
 			if (Settings::enableCompensateRecoil) {
-				//AngleToAim -= recoil_angles;
+				AngleToAim -= recoil_angles;
 			}
 
-			//std::cout << "Target " << "x: " << AngleToAim.x << " " << AngleToAim.y  << "distance " << Math::Calc3D_Dist(Local, PlayerPos) << "fov " << AimFov(BPlayer, Bone) << std::endl;
 			localPlayer->Player->setViewAngles(AngleToAim);
 	}
 }

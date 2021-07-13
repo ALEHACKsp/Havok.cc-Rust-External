@@ -93,6 +93,7 @@ namespace Settings {
 	int fov_changer_key;
 
 	int typeBox = 0;
+	bool pistol = true;
 
 	const char* boxTypes[] = { safe_str("Static Box"), safe_str("Corner Box"), safe_str("Filled Box") };
 

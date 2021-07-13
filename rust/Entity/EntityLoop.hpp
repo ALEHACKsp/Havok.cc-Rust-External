@@ -50,6 +50,7 @@ namespace Entity {
 					if (!BPlayer->isDead()) t_entList->push_back(*BPlayer); continue;
 				}
 
+
 				if (prefebName.find(safe_str("assets/prefabs/misc/item drop/item_drop_backpack.prefab")) != std::string::npos || prefebName.find(safe_str("assets/prefabs/player/player_corpse.prefab")) != std::string::npos) {
 					auto objectClass = Read<uintptr_t>(object + 0x30);
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
@@ -57,6 +58,22 @@ namespace Entity {
 
 					std::unique_ptr<PlayerCorpse> CEntity = std::make_unique<PlayerCorpse>(entity, transform, object);
 					t_corpseList->push_back(*CEntity); continue;
+				}
+
+				if (prefebName.find(safe_str("pistol.nailgun")) != std::string::npos) {
+
+					auto objectClass = Read<uintptr_t>(object + 0x30);
+					DWORD64 Res = Read<DWORD64>(object + 28);
+					DWORD64 gameObject = Read<DWORD64>(objectClass + 0x30); //Tag 449
+					DWORD64 Trans = Read<DWORD64>(gameObject + 0x8);
+					DWORD64 Vec = Read<DWORD64>(Trans + 0x38);
+					Vector3 pos = Read<Vector3>(Vec + 0x90);
+					Vector2 Pos;
+
+					if (!Utils::WorldToScreen(pos, Pos))
+					{
+
+					}
 				}
 
 				if (prefebName.find(safe_str("autospawn/resource/ores")) != std::string::npos || prefebName.find(safe_str("autospawn/collectable/")) != std::string::npos || prefebName.find(safe_str("deployable/small stash/")) != std::string::npos) {

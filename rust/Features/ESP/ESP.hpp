@@ -18,6 +18,7 @@ namespace ESP {
 		uintptr_t gameObject = Read<uintptr_t>(taggedObjects + 0x10);
 		uintptr_t objectClass = Read<uintptr_t>(gameObject + 0x30);
 		uintptr_t entity = Read<uintptr_t>(objectClass + 0x18);
+		
 
 		pViewMatrix = Read<Matrix4x4>(entity + 0x2E4); //camera
 
@@ -63,18 +64,27 @@ namespace ESP {
 					std::string nameStr = curOre->name;
 					std::string distanceStr = std::to_string(distance) + "M";
 
+
 					if (!Utils::WorldToScreen(position, pos)) continue;
 					auto text_size = ImGui::CalcTextSize(nameStr.c_str());
 					auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
 					//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
 
+
+					static float screenX = GetSystemMetrics(SM_CXSCREEN);
+					static float screenY = GetSystemMetrics(SM_CYSCREEN);
+					if (distance < 300)
+					{
+						Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 10, pos.y - 10), ImColor(255, 255, 255), 1.5f);
+					}
 					Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
+
 
 					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 					Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 				}
 			}
-
+			
 
 			for (unsigned long i = 0; i < local_corpse->size(); ++i) {
 				std::unique_ptr<PlayerCorpse> curCorpse = std::make_unique<PlayerCorpse>(local_corpse->at(i));
