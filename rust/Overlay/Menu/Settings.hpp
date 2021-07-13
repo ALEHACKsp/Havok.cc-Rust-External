@@ -7,6 +7,9 @@ namespace Settings {
 	extern int aimbotHitbox;
 	extern bool enableAimbot;
 	extern int aimbotFov;
+	extern int zoomKey;
+	extern bool zoom;
+	extern bool waterLevel;
 	extern int aimbotKey;
 	extern int aimbotSmoothingValue;
 	extern bool aimbotSmoothing;
@@ -31,6 +34,7 @@ namespace Settings {
 	extern bool longhit;
 	extern bool runhit;
 	extern bool longmed;
+	extern bool flyHackkk;
 
 	extern bool thirdperson;
 
@@ -127,4 +131,6 @@ namespace Settings {
 	extern bool debugFlag;
 	extern float SkyColor;
 	extern bool skyColorBool;
+	extern bool nightSky;
+	extern bool sprinttt;
 };

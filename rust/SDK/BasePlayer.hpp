@@ -42,6 +42,7 @@ enum class BPlayerFlags {
 	DebugCamera = 260
 };
 
+
 enum class BMapNoteType {
 	Death = 0,
 	PointOfInterest = 1
@@ -187,7 +188,14 @@ public:
 	
 	bool isVisible()
 	{
-		return Read<bool>(this->playerModel + 0xD0);
+		return Read<bool>(this->playerModel + 0x268);
+	}
+
+	bool iSMenu()
+	{
+		if (!this) return true;
+		DWORD64 Input = Read<DWORD64>(this->player + 0x4E0);
+		return !(Read<bool>(Input + 0x94));
 	}
 
 
@@ -285,7 +293,28 @@ public:
 	}
 
 
+	void AntiHeavy()
+	{
+		float Reduction = Read<float>(this->player + 0x724);
+		if (Reduction == 0.f) { Write<float>(this->player, -0.1f); }
+		else if ((Reduction > 0.15f) && (Reduction < 0.35f))
+		{
+			Write<float>(this->player + 0x724, 0.15f);
+		}
+		else if (Reduction > 0.39f)
+		{
+			Write<float>(this->player + 0x724, 0.15f);
+		}
+	}
 
+
+	void SetWater()
+	{
+			Write<float>(this->modelState + 0x14, 0.65f);
+	}
+
+
+#pragma region SkyClass+World
 	//Testing 
 	void TestNight(float time)
 	{
@@ -300,6 +329,8 @@ public:
 		Write<float>(TodCycle + 0x10, time);
 	}
 
+
+	//sky color changer
 	void TestColor(float time)
 	{
 		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
@@ -315,12 +346,48 @@ public:
 		uint64_t test2 = Read<uint64_t>(test1 + 0x18); //world
 		uint64_t test3 = Read<uint64_t>(test2 + 0x28); //day
 		uint64_t AtmosphereParameters = Read<uint64_t>(test3 + 0x48); //light
-		uint64_t CycleParameters = Read<uint64_t>(test3 + 0x38); //sun
-		uint64_t StarParameters = Read<uint64_t>(test3 + 0x50);
 
 
 		Write<float>(AtmosphereParameters + 0x10, Settings::SkyColor);
 	}
+
+
+	void NightMode()
+	{
+		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
+		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
+		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10); //tagged object
+		DWORD64 ObjClass = Read<DWORD64>(GameObject + 0x30);
+		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
+		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
+		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
+
+
+		uint64_t test1 = Read<uint64_t>(GameObject + 0x30);//night
+		uint64_t test2 = Read<uint64_t>(test1 + 0x18); //world
+		uint64_t test3 = Read<uint64_t>(test2 + 0x28); //day
+		uint64_t AtmosphereParameters = Read<uint64_t>(test3 + 0x48); //light
+		uint64_t CycleParameters = Read<uint64_t>(test3 + 0x38); //sun
+		
+		uint64_t TOD_CycleParameters = Read<uint64_t>(test3 + 0x38);
+		uint64_t TOD_DayParameters = Read<uint64_t>(test3 + 0x50);
+		uint64_t TOD_NightParameters = Read<uint64_t>(test3 + 0x58);
+		uint64_t TOD_CloudParamaters = Read<uint64_t>(test3 + 0x78);
+		uint64_t TOD_AmbientParameters = Read<uint64_t>(test3 + 0x90);
+
+
+		Write<float>(TOD_AmbientParameters + 0x18, 1.f);//AmbientMultiplier
+		Write<float>(TOD_NightParameters + 0x50, 6.f);//AmbientMultiplier
+		Write<float>(TOD_NightParameters + 0x54, 1.f);//ReflectionMultiplier
+		Write<float>(TOD_DayParameters + 0x50, 1.f);//AmbientMultiplier
+		Write<float>(TOD_DayParameters + 0x54, 1.f);//ReflectionMultiplier
+	}
+#pragma endregion
+
+
+
+
+
 
 	void LongNeck()
 	{
@@ -332,40 +399,40 @@ public:
 	}
 
 
-	HeldItem getHeldItem()
+HeldItem getHeldItem()
+{
+	int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;
+
+	uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
+
+	//std::cout << "Held weapon: found :" <<  items << std::endl;
+
+
+	for (int items_on_belt = 0; items_on_belt <= 6; items_on_belt++)
 	{
-		int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;
+		uint64_t item = Read<uint64_t>(items + 0x20 + (items_on_belt * 0x8));
 
-		uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
+		int active_weapon = Read<uint32_t>(item + 0x28);
 
-		//std::cout << "Held weapon: found :" <<  items << std::endl;
-
-
-		for (int items_on_belt = 0; items_on_belt <= 6; items_on_belt++)
+		if (active_weapon_id == active_weapon)
 		{
-			uint64_t item = Read<uint64_t>(items + 0x20 + (items_on_belt * 0x8));
+			HeldItem item_obj = HeldItem(item);
 
-			int active_weapon = Read<uint32_t>(item + 0x28);
-
-			if (active_weapon_id == active_weapon)
-			{
-				HeldItem item_obj = HeldItem(item);
-
-				return item_obj;
-			}
+			return item_obj;
 		}
-
-		return 0;
 	}
 
-	std::wstring getPlayerName() {
-		std::wstring name = ReadUnicode(Read<uint64_t>(this->player + 0x6B0) + 0x14); //BasePlayer -> protected string _displayName
+	return 0;
+}
 
-		if (name.find(safe_strW(L"Scientist")) == 0)
-			return safe_strW(L"Scientist");
+std::wstring getPlayerName() {
+	std::wstring name = ReadUnicode(Read<uint64_t>(this->player + 0x6B0) + 0x14); //BasePlayer -> protected string _displayName
 
-		return name;
-	}
+	if (name.find(safe_strW(L"Scientist")) == 0)
+		return safe_strW(L"Scientist");
+
+	return name;
+}
 
 public:
 
@@ -423,15 +490,32 @@ public:
 	}
 
 
+
 	void setFov() {
 		auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
 		auto staticFields = Read<DWORD64>(klass + 0xB8);
 		Write<float>(staticFields + 0x18, Settings::FovSlider);//0x18 => m_camera
 	}
 
+	void zoom()
+	{
+		if (GetAsyncKeyState(Settings::zoomKey))
+		{
+			auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
+			auto staticFields = Read<DWORD64>(klass + 0xB8);
+			Write<float>(staticFields + 0x18, 20.f);//0x18 => m_camera
+		}
+		else
+		{
+			auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
+			auto staticFields = Read<DWORD64>(klass + 0xB8);
+			Write<float>(staticFields + 0x18, 90.f);//0x18 => m_camera
+		}
+	}
+
 	void FixDebug()
 	{
-		DWORD64 Client = Read<DWORD64>(gBase + 0x3233158 + 0xB8);//ConVar_Client_c*
+		DWORD64 Client = Read<DWORD64>(get_module_base_address(("GameAssembly.dll")) + 0x3233158 + 0xB8);//ConVar_Client_c*
 		Write<float>(Client + 0x2C, 1.f);// camspeed
 		Write<float>(Client + 0x20, 1.f);// camlerp
 	}
@@ -442,11 +526,23 @@ public:
 		if (GetAsyncKeyState(Settings::jumpKey))
 		{
 			Write<float>(this->playerMovement + 0xC0, 0);
-			Write<float>(this->playerMovement + 0xC4, 0);
-			Write<float>(this->playerMovement + 0xBC, 100000);
+			Write<float>(this->playerMovement + 0xC0, 0);
+			Write<Vector3>(this->playerMovement + 0xBC, Vector3(9999999, 9999999, 9999999));
 		}
 	}
 
+	void FlyHack()
+	{
+		uintptr_t Model = Read<uintptr_t>(this->player + modelState);
+		Write<float>(this->modelState + 0x14, 99999.f);
+		Write<bool>(this->playerMovement + 0x144, 1);
+	}
+
+	void niggersss()
+	{
+		Write<float>(this->playerMovement + 0x40, 1.f);
+		Write<int>(this->playerModel + 0x24, playerModelFlags != 16);
+	}
 
 	void spiderClimb() {
 		Write<float>(this->playerMovement + 0xBC, 0.f);
@@ -472,6 +568,8 @@ public:
 public:
 
 	uint64_t playerMovement{};
+	uint64_t playerModelFlags{};
+	uint64_t Mounted{};
 };
 
 #pragma endregion

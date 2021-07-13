@@ -251,8 +251,8 @@ void __fastcall Overlay::Loop()
 			ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoInputs);
 
 		ESP::Run();
-		Render::DrawString(20, 25, "Havok", &ColorClass.White);
-		Render::DrawString(58, 25, ".cc", &ColorClass.Pink);
+		//Render::DrawString(20, 25, "", &ColorClass.White);
+		//Render::DrawString(58, 25, ".", &ColorClass.Pink);
 		ImGui::End();
 
 		if (GetKeyState(VK_INSERT) & 0x8000) {  //Menu Key

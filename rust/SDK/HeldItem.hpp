@@ -36,7 +36,6 @@ public:
 		return safe_str("No Item");
 	}
 
-
 	std::string GetActiveWeaponName(uint64_t myWeapon)
 	{
 		uint64_t itemDefinition = Read<uint64_t>(myWeapon + 0x20);
@@ -56,7 +55,6 @@ public:
 		Write<float>(this->bp + 0x2E8, 0.f);
 	}
 
-
 	void AntiSpread()
 	{
 		Write<float>(this->bp + 0x31C, 0.f);
@@ -69,6 +67,11 @@ public:
 	void setNoSway() {
 		Write<float>(this->bp + 0x2B8, 0.f);
 		Write<float>(this->bp + 0x2BC, 0.f);
+	}
+
+
+	void RunHit() {
+		Write<int>(this->bp + 0x299, 0);
 	}
 
 	void noRecoil() {
@@ -109,10 +112,7 @@ public:
 	{
 		Write(this->bp + 0x290, input);
 	}
-	void RunHit(bool input)
-	{
-		Write(this->bp + 0x299, input);
-	}
+
 	void FastMed(float input)
 	{
 		Write(this->bp + 0x280, input);

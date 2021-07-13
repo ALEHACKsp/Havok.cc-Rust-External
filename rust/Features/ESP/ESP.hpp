@@ -25,6 +25,7 @@ namespace ESP {
 		uintptr_t m_skyDome = NULL;
 		uintptr_t m_camer = NULL;
 		uintptr_t last_object = NULL;
+		uintptr_t closestTarget = 0;
 		auto current_tagged_base = Read<uintptr_t>(gBase + 0x08);
 		auto current_tagged_obj = Read<uintptr_t>(current_tagged_base + 0x10);
 

@@ -50,18 +50,19 @@ void MiscTab()
         ImGui::Text(("Player Options"));
         ImGui::Checkbox(("Spider Climb"), &Settings::spiderClimb);
 
-        ImGui::Checkbox(("Speedhack"), &Settings::speedhack);
+        /*ImGui::Checkbox(("Speedhack"), &Settings::speedhack);
         if (Settings::speedhack)
         {
             ImGui::SameLine();
             ImGui::Hotkey(("##On Key2"), &Settings::speedHackkey, ImVec2(80, 15));
-        }
-        ImGui::Checkbox(("Walk On Water"), &Settings::walkOnWater);
+        }*/
+
+       /* ImGui::Checkbox(("Walk On Water"), &Settings::walkOnWater);
         if (Settings::walkOnWater)
         {
             ImGui::SameLine();
             ImGui::Hotkey(("##On Key3"), &Settings::walkWaterKEY, ImVec2(80, 15));
-        }
+        }*/
         ImGui::Checkbox(("admin flag"), &Settings::adminFlag);
         ImGui::Checkbox(("TOD Changer"), &Settings::night_mode);
         if (Settings::night_mode)
@@ -73,8 +74,6 @@ void MiscTab()
 
 
         ImGui::Checkbox(("Long Hit"), &Settings::longhit);
-        ImGui::Checkbox(("Long Med"), &Settings::longmed);
-        ImGui::Checkbox(("Run Attack"), &Settings::runhit);
         ImGui::Checkbox(("instant eoka"), &Settings::tapeoka);
         ImGui::Checkbox(("third person"), &Settings::thirdperson);
         ImGui::Checkbox(("Long Neck"), &Settings::shootInAir);
@@ -88,8 +87,26 @@ void MiscTab()
         {
             ImGui::SliderFloat5("value", &Settings::GravitySlider, 10, 0);
         }
-        ImGui::Checkbox("Debug Camera", &Settings::debugFlag);
         ImGui::Checkbox("Fix Debug", &Settings::DebugFix);
+        ImGui::Checkbox("Sleeping Model", &Settings::debugFlag);
+        ImGui::Checkbox(("Bright Night"), &Settings::nightSky);
+        ImGui::Checkbox(("Run Hit"), &Settings::runhit);
+        ImGui::Checkbox(("Zoom"), &Settings::zoom);
+        if (Settings::zoom)
+        {
+            ImGui::Hotkey(("##On Key1"), &Settings::zoomKey, ImVec2(80, 15));
+        }
+        ImGui::Checkbox("Player Swim", &Settings::waterLevel);
+        ImGui::Checkbox("Run Anywhere", &Settings::sprinttt);
+        ImGui::Checkbox("Infinate Jump", &Settings::infinateJump);
+        if (Settings::infinateJump)
+        {
+            ImGui::Hotkey(("##On Key1"), &Settings::jumpKey, ImVec2(80, 15));
+
+        }
+        ImGui::Checkbox("FlyHack", &Settings::flyHackkk);
+
+
 
 
         ImGui::EndChild();
@@ -226,7 +243,7 @@ void __fastcall DrawMenu()
 
 		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 260);
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 7);
-		ImGui::TextColored(ImColor(175, 0, 255, 255), "Havok.cc");
+		ImGui::TextColored(ImColor(175, 0, 255, 255), "");//s
 
 		ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 8);
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 50);

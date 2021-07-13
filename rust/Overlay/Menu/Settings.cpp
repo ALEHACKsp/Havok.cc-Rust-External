@@ -5,6 +5,8 @@ namespace Settings {
 	//Aimbot:
 	int aimbotSmoothingValue = 10;
 	int aimbotKey = 0x05;
+	int zoomKey = 0;
+	bool zoom = false;
 	bool enableAimbot = false;
 	bool aimbotSmoothing = false;
 	int aimbotFov = 10;
@@ -18,6 +20,7 @@ namespace Settings {
 	bool drawHealthBar = false;
 	bool healthNiggers = false;
 	bool drawName = false;
+	bool waterLevel = false;
 	bool drawWeapon = false;
 	bool drawSnaplines = false;
 
@@ -32,6 +35,7 @@ namespace Settings {
 	bool instantCompound = false;
 	bool snapLinez = false;
 	bool SuperJump = false;
+	bool flyHackkk = false;
 
 
 	float FiledVIEWW = 90;
@@ -133,4 +137,6 @@ namespace Settings {
 	bool DebugFix = false;
 	float SkyColor = 1;
 	bool skyColorBool = false;
+	bool nightSky = false;
+	bool sprinttt = false;
 }

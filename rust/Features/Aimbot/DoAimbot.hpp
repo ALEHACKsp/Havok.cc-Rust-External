@@ -25,8 +25,6 @@ namespace Aimbot {
 
 						if (curEntity->health < 0.00f) continue;
 
-						//localPlayer->Player->getHeldItem().setNoAimCone();
-						//localPlayer->Player->getHeldItem().setNoSway();
 						BonesList bone;
 						switch (Settings::aimbotHitbox)
 						{
@@ -41,7 +39,7 @@ namespace Aimbot {
 					}
 				}
 			}
-			else SleepEx(550, false); //550
+			else SleepEx(20, false); //550
 		}
 	}
 }

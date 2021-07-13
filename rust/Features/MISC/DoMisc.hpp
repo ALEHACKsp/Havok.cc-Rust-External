@@ -26,14 +26,15 @@ namespace Misc {
 
 				if (Settings::shootInAir)
 				{
-					localPlayer->Player->LongNeck();
-					localPlayer->Player->setModelFlag(MStateFlags::OnGround);
-					localPlayer->Movement->alwaysShoot();
+					localPlayer->Player->LongNeck();  localPlayer->Player->setModelFlag(MStateFlags::OnGround); localPlayer->Movement->alwaysShoot();
 				}
+
+				localPlayer->Player->setModelFlag(MStateFlags::OnGround);
+				localPlayer->Movement->alwaysShoot();
 
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
 				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
-				if (Settings::debugFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::DebugCamera);
+				if (Settings::debugFlag) localPlayer->Player->setModelFlag(MStateFlags::Sleeping);
 
 					
 				if (Settings::freeze) localPlayer->Player->isFrozen();
@@ -44,10 +45,18 @@ namespace Misc {
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
 				if (Settings::DebugFix) localPlayer->Movement->FixDebug();
+				if (Settings::flyHackkk) localPlayer->Movement->FlyHack();
+
+
+				//Sky Shit
 				if (Settings::night_mode) localPlayer->Player->TestNight(Settings::time);
 				if (Settings::skyColorBool) localPlayer->Player->TestColor(Settings::SkyColor);
+				if (Settings::nightSky) localPlayer->Player->NightMode();
 
 				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
+				if (Settings::zoom) localPlayer->Movement->zoom();
+				if (Settings::waterLevel) localPlayer->Player->SetWater();
+				if (Settings::sprinttt) localPlayer->Movement->niggersss();
 				
 
 				if (heldItem->IsWeapon())
@@ -59,11 +68,7 @@ namespace Misc {
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();
 					if (Settings::tapeoka) heldItem->instantEoka();
 					if (Settings::longhit) heldItem->setLonghit(5.f);
-					if (Settings::runhit) heldItem->RunHit(true);
-					else heldItem->RunHit(false);
-					if (Settings::longmed) heldItem->FastMed(3.5f);
-					
-
+					if (Settings::runhit) heldItem->RunHit();
 
 					heldItem->setNoAimCone();
 				}

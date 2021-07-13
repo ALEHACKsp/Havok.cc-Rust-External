@@ -107,6 +107,8 @@ namespace Aimbot {
 		return Math::Calc2D_Dist(Vector2(screenWidth / 2, screenHeight / 2), ScreenPos);
 	}
 
+	
+
 	Vector3 Prediction(const Vector3& LP_Pos, std::unique_ptr<BasePlayer>& Player, BonesList Bone) {
 		Vector3 BonePos = Utils::GetBonePosition(Player->player, Bone);
 		float Dist = Math::Calc3D_Dist(LP_Pos, BonePos);
@@ -132,26 +134,28 @@ namespace Aimbot {
 	}
 
 	void AimbotTarget(std::unique_ptr<BasePlayer>& BPlayer, BonesList Bone) {
-		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::head);
+		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		Vector3 PlayerPos = Prediction(Local, BPlayer, Bone);
 
-		Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
 
-		Vector2 AngleToAim = Math::CalcAngle(Local, PlayerPos);
-		Normalize(AngleToAim.y, AngleToAim.x);
-		if (isnan(AngleToAim.x) || isnan(AngleToAim.y))
-			return;
+			Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
 
-		if (Settings::enableSmoothing) {
-			AngleToAim -= Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
-			SmoothAim(AngleToAim, Settings::aimbotSmoothing);
-			AngleToAim += Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
-		}
+			Vector2 AngleToAim = Math::CalcAngle(Local, PlayerPos);
+			Normalize(AngleToAim.y, AngleToAim.x);
+			if (isnan(AngleToAim.x) || isnan(AngleToAim.y))
+				return;
 
-		if (Settings::enableCompensateRecoil) {
-			AngleToAim -= recoil_angles;
-		}
+			if (Settings::enableSmoothing) {
+				AngleToAim -= Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
+				SmoothAim(AngleToAim, Settings::aimbotSmoothing);
+				AngleToAim += Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
+			}
 
-		localPlayer->Player->setViewAngles(AngleToAim);
+			if (Settings::enableCompensateRecoil) {
+				//AngleToAim -= recoil_angles;
+			}
+
+			//std::cout << "Target " << "x: " << AngleToAim.x << " " << AngleToAim.y  << "distance " << Math::Calc3D_Dist(Local, PlayerPos) << "fov " << AimFov(BPlayer, Bone) << std::endl;
+			localPlayer->Player->setViewAngles(AngleToAim);
 	}
 }
