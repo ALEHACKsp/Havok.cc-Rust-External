@@ -621,7 +621,7 @@ public:
 		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
 			this->name = safe_str("stash");
 
-		else;
+		else
 			this->name = safe_str("resource");
 
 	}

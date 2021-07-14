@@ -75,13 +75,9 @@ namespace ESP {
 					static float screenY = GetSystemMetrics(SM_CYSCREEN);
 					if (distance < 300)
 					{
-						Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 10, pos.y - 10), ImColor(255, 255, 255), 1.5f);
+						//Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 10, pos.y - 10), ImColor(255, 255, 255), 1.5f);
 					}
 					Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
-
-					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 50 - text_size.y), std::to_string(curOre->ent), ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
-
-
 					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 					Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 				}
