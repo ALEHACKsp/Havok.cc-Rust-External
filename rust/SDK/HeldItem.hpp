@@ -75,12 +75,14 @@ public:
 	}
 
 	void noRecoil() {
-			const auto recoil_properties = Read<uintptr_t>(this->bp + 0x2D8); //	public RecoilProperties recoil;
-			if (!recoil_properties)
-				return;
+		const auto recoil_properties = Read<uintptr_t>(this->bp + 0x2D8); //	public RecoilProperties recoil;
+		if (!recoil_properties)
+			return;
 
-			for (int i = 0; i < 8; i++)
-				Write<float>(recoil_properties + 0x18 + i * 4, 0);
+		for (int i = 0; i < 8; i++)
+		{
+			Write<float>(recoil_properties + 0x18 + i * 4, (Settings::RCSpitch / 10) * 1.35);
+		}
 	}
 
 	void fatBullet()

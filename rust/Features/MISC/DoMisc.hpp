@@ -48,18 +48,16 @@ namespace Misc {
 
 
 				//Sky Shit
-				if (Settings::night_mode) localPlayer->Player->TestNight(Settings::time);
-				if (Settings::skyColorBool) localPlayer->Player->TestColor(Settings::SkyColor);
-				if (Settings::nightSky) localPlayer->Player->NightMode();
+				localPlayer->Player->TODCycle();
 
 				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
-				if (Settings::zoom) localPlayer->Movement->zoom();
+				//if (Settings::zoom) localPlayer->Movement->zoom();
 				if (Settings::waterLevel) localPlayer->Player->SetWater();
 				
 
 				if (heldItem->IsWeapon())
 				{
-					if (Settings::noRecoil) heldItem->noRecoil(); 
+					if (Settings::enableRCS) heldItem->noRecoil(); 
 					if (Settings::noSpread) heldItem->AntiSpread();
 					if (Settings::rapidFire) heldItem->rapidFire();
 					if (Settings::instantCompound) heldItem->instantCompound();
@@ -67,8 +65,6 @@ namespace Misc {
 					if (Settings::tapeoka) heldItem->instantEoka();
 					if (Settings::longhit) heldItem->setLonghit(5.f);
 					if (Settings::runhit) heldItem->RunHit();
-
-					heldItem->setNoAimCone();
 				}
 			}
 		}

@@ -14,6 +14,9 @@ namespace Settings {
 	extern int aimbotSmoothingValue;
 	extern bool aimbotSmoothing;
 
+	extern bool enableRCS;
+	extern int RCSpitch;
+	extern int RCSyaw;
 
 	extern bool enableVisuals;
 
@@ -58,7 +61,6 @@ namespace Settings {
 
 	extern bool shootInAir;
 
-	extern bool noRecoil;
 	extern bool noSpread;
 	extern bool rapidFire;
 	extern bool shootAnywhere;

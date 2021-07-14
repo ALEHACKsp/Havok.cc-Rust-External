@@ -12,6 +12,10 @@ namespace Settings {
 	int aimbotFov = 10;
 	int aimbotHitbox = 0;
 
+	bool enableRCS = false;
+	int RCSpitch = 50;
+	int RCSyaw = 50;
+
 	bool enableVisuals = false;
 	bool drawSkeleton = false;
 	bool drawBox = false;
@@ -29,7 +33,6 @@ namespace Settings {
 
 	bool bradleyESP = true;
 	bool shootAnywhere = false;
-	bool noRecoil = false;
 	bool noSpread = false;
 	bool rapidFire = false;
 	bool instantCompound = false;

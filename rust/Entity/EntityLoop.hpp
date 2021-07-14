@@ -94,7 +94,6 @@ namespace Entity {
 
 							if (stashstatus != 2048)
 								continue;
-							//std::cout << std::hex << curObject << std::endl;
 						}
 					}
 					

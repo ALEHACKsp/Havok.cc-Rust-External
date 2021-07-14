@@ -40,7 +40,11 @@ void MiscTab()
         {
             ImGui::SliderFloat5(("Rapid Fire Value"), &Settings::rapidfirevalue, 0.01, 0.09);
         }
-        ImGui::Checkbox(("No Recoil"), &Settings::noRecoil);
+        ImGui::Checkbox(("Enable RCS"), &Settings::enableRCS);
+        if (Settings::enableRCS)
+        {
+            ImGui::SliderInt5(("RCS Percentage"), &Settings::RCSpitch, 0, 100, "%.0f");
+        }
         ImGui::Checkbox(("No Spread"), &Settings::noSpread);
         ImGui::Checkbox(("Instant Compound"), &Settings::instantCompound);
         ImGui::Checkbox(("Instant Switch"), &Settings::fastSwitchWeapons);
@@ -50,19 +54,13 @@ void MiscTab()
         ImGui::Text(("Player Options"));
         ImGui::Checkbox(("Spider Climb"), &Settings::spiderClimb);
 
-        /*ImGui::Checkbox(("Speedhack"), &Settings::speedhack);
+        ImGui::Checkbox(("Speedhack"), &Settings::speedhack);
         if (Settings::speedhack)
         {
             ImGui::SameLine();
             ImGui::Hotkey(("##On Key2"), &Settings::speedHackkey, ImVec2(80, 15));
-        }*/
+        }
 
-       /* ImGui::Checkbox(("Walk On Water"), &Settings::walkOnWater);
-        if (Settings::walkOnWater)
-        {
-            ImGui::SameLine();
-            ImGui::Hotkey(("##On Key3"), &Settings::walkWaterKEY, ImVec2(80, 15));
-        }*/
         ImGui::Checkbox(("admin flag"), &Settings::adminFlag);
         ImGui::Checkbox(("TOD Changer"), &Settings::night_mode);
         if (Settings::night_mode)
@@ -179,7 +177,7 @@ void VisualTab()
         }
 
         ImGui::Spacing();
-        ImGui::SliderInt5(("Fov Changer"), &Settings::FovSlider, 90, 150);
+        ImGui::SliderInt5(("Fov Changer"), &Settings::FovSlider, 75, 150);
         if (ImGui::BeginCombo(("Other ESP"), ("")))
         {
             for (size_t i = 0; i < IM_ARRAYSIZE(Settings::selectedOres); i++) {

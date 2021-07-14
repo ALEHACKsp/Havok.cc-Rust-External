@@ -121,6 +121,7 @@ namespace Aimbot {
 		} return BonePos;
 	}
 
+
 	void Normalize(float& Yaw, float& Pitch) {
 		if (Pitch < -89) Pitch = -89;
 		else if (Pitch > 89) Pitch = 89;

@@ -282,10 +282,6 @@ public:
 		return std::string(name.begin(), name.end());
 	}
 
-	Vector3 getVelocity() {
-		return Read<Vector3>(this->playerModel + 0x21C); //private Vector3 newVelocity;
-	}
-
 	Vector3 getNewVelocity() {
 		return Read<Vector3>(this->playerModel + 0x21C); //private Vector3 newVelocity;
 	}
@@ -324,49 +320,13 @@ public:
 
 	void SetWater()
 	{
-			Write<float>(this->modelState + 0x14, 0.65f);
+		Write<float>(this->modelState + 0x14, 0.65f);
 	}
 
 
 #pragma region SkyClass+World
-	//Testing 
-	void TestNight(float time)
-	{
-		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
-		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
-		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10); //tagged object
-		DWORD64 ObjClass = Read<DWORD64>(GameObject + 0x30);
-		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
-		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
-		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
-
-		Write<float>(TodCycle + 0x10, time);
-	}
-
-
-	//sky color changer
-	void TestColor(float time)
-	{
-		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
-		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
-		DWORD64 GameObject = Read<DWORD64>(Obj + 0x10); //tagged object
-		DWORD64 ObjClass = Read<DWORD64>(GameObject + 0x30);
-		DWORD64 Entity1 = Read<DWORD64>(ObjClass + 0x18);
-		DWORD64 Dome = Read<DWORD64>(Entity1 + 0x28);
-		DWORD64 TodCycle = Read<DWORD64>(Dome + 0x38);
-
-
-		uint64_t test1 = Read<uint64_t>(GameObject + 0x30);//night
-		uint64_t test2 = Read<uint64_t>(test1 + 0x18); //world
-		uint64_t test3 = Read<uint64_t>(test2 + 0x28); //day
-		uint64_t AtmosphereParameters = Read<uint64_t>(test3 + 0x48); //light
-
-
-		Write<float>(AtmosphereParameters + 0x10, Settings::SkyColor);
-	}
-
-
-	void NightMode()
+	
+	void TODCycle()
 	{
 		DWORD64 ObjManager = Read<DWORD64>(uBase + 0x17C1F18); if (!ObjManager) return;
 		DWORD64 Obj = Read<DWORD64>(ObjManager + 0x8); (Obj && (Obj) != Read<DWORD64>(ObjManager)); Obj = Read<DWORD64>(Obj + 0x8);
@@ -389,12 +349,19 @@ public:
 		uint64_t TOD_CloudParamaters = Read<uint64_t>(test3 + 0x78);
 		uint64_t TOD_AmbientParameters = Read<uint64_t>(test3 + 0x90);
 
+		if (Settings::nightSky)
+		{
 
-		Write<float>(TOD_AmbientParameters + 0x18, 1.f);//AmbientMultiplier
-		Write<float>(TOD_NightParameters + 0x50, 6.f);//AmbientMultiplier
-		Write<float>(TOD_NightParameters + 0x54, 1.f);//ReflectionMultiplier
-		Write<float>(TOD_DayParameters + 0x50, 1.f);//AmbientMultiplier
-		Write<float>(TOD_DayParameters + 0x54, 1.f);//ReflectionMultiplier
+			Write<float>(TOD_AmbientParameters + 0x18, 1.f);//AmbientMultiplier
+			Write<float>(TOD_NightParameters + 0x50, 6.f);//AmbientMultiplier
+			Write<float>(TOD_NightParameters + 0x54, 1.f);//ReflectionMultiplier
+			Write<float>(TOD_DayParameters + 0x50, 1.f);//AmbientMultiplier
+			Write<float>(TOD_DayParameters + 0x54, 1.f);//ReflectionMultiplier
+		}
+		if (Settings::skyColorBool)
+		Write<float>(AtmosphereParameters + 0x10, Settings::SkyColor);
+		if (Settings::night_mode)
+		Write<float>(TodCycle + 0x10, Settings::time);
 	}
 #pragma endregion
 
@@ -517,12 +484,6 @@ public:
 			auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
 			auto staticFields = Read<DWORD64>(klass + 0xB8);
 			Write<float>(staticFields + 0x18, 20.f);//0x18 => m_camera
-		}
-		else
-		{
-			auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
-			auto staticFields = Read<DWORD64>(klass + 0xB8);
-			Write<float>(staticFields + 0x18, 90.f);//0x18 => m_camera
 		}
 	}
 
