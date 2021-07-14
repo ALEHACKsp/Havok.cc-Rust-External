@@ -543,24 +543,22 @@ public:
 			Write<Vector3>(this->playerMovement + 0xBC, Vector3(9999999, 9999999, 9999999));
 		}
 	}
-	//Set waterheight and to swimming
-	//set clothing reduct to -1
+
 	void FlyHack()
 	{
 		if (Settings::flyHackkk)
 		{
 			if (GetAsyncKeyState(Settings::flyhackKey))
 			{
-				Write<float>(this->modelState + 0x14, 0.65f);
-				Write<float>(this->modelState + 0x14, 3000);
-				Write<float>(this->playerMovement + 0x60, Settings::flyhackCapsuleHeight);
-				Write<float>(this->playerMovement + 0x64, Settings::flyhackCapsuleCenter);
+				Write<float>(this->playerMovement + 0x7C, Settings::flyhackSpeed);// public float gravityMultiplier; // 0x7C
+				Write<float>(this->playerMovement + 0x60, -300);// public float capsuleHeightDucked; // 0x68
+				Write<float>(this->playerMovement + 0x64, -300);// public float capsuleCenterDucked; // 0x6C
 			}
 			else
 			{
-				Write<float>(this->modelState + 0x14, 0);
-				Write<float>(this->playerMovement + 0x60, 1.79);
-				Write<float>(this->playerMovement + 0x64, 0.899);
+				Write<float>(this->playerMovement + 0x7C, 2.5f);// public float gravityMultiplier; // 0x7C
+				Write<float>(this->playerMovement + 0x60, 1.79f);// public float capsuleHeightDucked; // 0x68
+				Write<float>(this->playerMovement + 0x64, 0.899f);// public float capsuleCenterDucked; // 0x6C
 			}
 		}
 	}

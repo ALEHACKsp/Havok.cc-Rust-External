@@ -37,8 +37,6 @@ namespace Settings {
 	bool SuperJump = false;
 	
 	int flyhackKey = 0;
-	float flyhackCapsuleHeight = 1.79f;
-	float flyhackCapsuleCenter = 0.899f;
 	float flyhackSpeed = 0.f;
 	bool flyHackkk = false;
 

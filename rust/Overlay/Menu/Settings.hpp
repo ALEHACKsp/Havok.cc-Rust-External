@@ -36,8 +36,6 @@ namespace Settings {
 	extern bool longmed;
 
 	extern int flyhackKey;
-	extern float flyhackCapsuleHeight;
-	extern float flyhackCapsuleCenter;
 	extern float flyhackSpeed;
 	extern bool flyHackkk;
 

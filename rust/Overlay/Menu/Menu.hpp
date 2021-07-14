@@ -106,16 +106,7 @@ void MiscTab()
         }
         ImGui::Checkbox("FlyHack", &Settings::flyHackkk);
         ImGui::Hotkey("##Flyhack Key", &Settings::flyhackKey, ImVec2(80, 15));
-        ImGui::SliderFloat5(("Flyhack Speed"), &Settings::flyhackSpeed, 5, -5);
-        ImGui::SliderFloat5(("Flyhack Height"), &Settings::flyhackCapsuleHeight, 1.79, -10);
-        ImGui::SliderFloat5(("Flyhack Center"), &Settings::flyhackCapsuleCenter, 0.899, -10);
-
-        if (ImGui::Button("ResetFlyhack Values"))
-        {
-            Settings::flyhackCapsuleHeight = 1.79;
-            Settings::flyhackCapsuleCenter = 0.899;
-            Settings::flyhackSpeed = 2.5;
-        }
+        ImGui::SliderFloat5(("Flyhack Speed"), &Settings::flyhackSpeed, 1, -5);
 
         ImGui::EndChild();
     }
