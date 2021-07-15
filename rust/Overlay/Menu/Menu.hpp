@@ -17,6 +17,7 @@ void AimbotTab()
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 18);
         ImGui::SliderInt5("##Smoothing", &Settings::aimbotSmoothingValue, 0, 100);
         ImGui::SliderInt5("Aimbot FOV", &Settings::aimbotFov, 0, 360);
+        ImGui::SliderInt5("Aimbot Distance", &Settings::aimbotDistance, 0, 300);
 
         ImGui::PushItemWidth(ImGui::GetWindowWidth() - 340);
         ImGui::Spacing();

@@ -47,8 +47,9 @@ namespace Aimbot {
 				auto target = getTarget();
 				
 				if (GetAsyncKeyState(Settings::aimbotKey) && target) {
-					if(target->player)
-					AimbotTarget(target, bone);
+					auto distance = (int)Math::Distance(&localPlayer->Player->position, &target->position);
+					if(target->player && distance <= Settings::aimbotDistance)
+						AimbotTarget(target, bone);
 				}
 			}
 			else SleepEx(20, false); //550

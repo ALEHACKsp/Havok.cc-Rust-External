@@ -129,9 +129,9 @@ namespace Aimbot {
 		else if (Yaw > 360) Yaw -= 360;
 	}
 
-	void SmoothAim(Vector2& Angle, float smooth) {
-		Angle.x /= smooth;
-		Angle.y /= smooth;
+	void SmoothAim(Vector2& Angle) {
+		Angle.x /= Settings::aimbotSmoothing;
+		Angle.y /= Settings::aimbotSmoothing;
 	}
 
 	Vector4 calculate_quaternion(Vector3 euler)
@@ -228,7 +228,7 @@ namespace Aimbot {
 
 			if (Settings::enableSmoothing) {
 				AngleToAim -= Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
-				SmoothAim(AngleToAim, Settings::aimbotSmoothing);
+				SmoothAim(AngleToAim);
 				AngleToAim += Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
 			}
 

@@ -56,6 +56,7 @@ namespace Settings {
 	extern bool bradleyESP;
 	extern int LongNeckKey;
 	extern int flyKey;
+	extern int aimbotDistance;
 
 	extern bool adminFlag;
 

@@ -11,6 +11,7 @@ namespace Settings {
 	bool aimbotSmoothing = false;
 	int aimbotFov = 10;
 	int aimbotHitbox = 0;
+	int aimbotDistance = 50;
 
 	bool enableRCS = false;
 	int RCSpitch = 50;
