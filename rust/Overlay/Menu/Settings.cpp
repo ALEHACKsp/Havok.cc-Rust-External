@@ -102,12 +102,7 @@ namespace Settings {
 	int typeBox = 0;
 	bool pistol = true;
 
-	const char* boxTypes[] = { safe_str("Static Box"), safe_str("Corner Box"), safe_str("Filled Box") };
-
-	const char* bones[]{ safe_str("Head"), safe_str("Chest"), safe_str("Pelvis"), safe_str("Penis") };
-
-	const char* oresItems[]{ safe_str("Stone Ore"), safe_str("Sulfur Ore"), safe_str("Metal Ore"), safe_str("Hemp"), safe_str("Metal"), safe_str("Stone"), safe_str("Sulfur"), safe_str("Wood"), safe_str("Stash")};
-	bool selectedOres[9]{ false, false, false, false, false, false, false, false, false };
+	bool selectedOres[22]{ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
 
 	float drawColor_box[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_skeleton[4] = { 1.f, 1.f, 1.f, 1.f };

@@ -4851,7 +4851,7 @@ bool ImGui::BeginChildFrame(ImGuiID id, const ImVec2& size, ImGuiWindowFlags ext
 	ImGuiContext& g = *GImGui;
 	const ImGuiStyle& style = g.Style;
 	PushStyleColor(ImGuiCol_ChildBg, style.Colors[ImGuiCol_FrameBg]);
-	PushStyleVar(ImGuiStyleVar_ChildRounding, style.FrameRounding);
+	PushStyleVar(ImGuiStyleVar_ChildRounding, style.FrameRounding2);
 	PushStyleVar(ImGuiStyleVar_ChildBorderSize, style.FrameBorderSize);
 	PushStyleVar(ImGuiStyleVar_WindowPadding, style.FramePadding);
 	bool ret = BeginChild(id, size, true, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysUseWindowPadding | extra_flags);

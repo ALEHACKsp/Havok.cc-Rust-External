@@ -565,25 +565,51 @@ public:
 
 		if (this->name.find(safe_str("stone-ore")) != std::string::npos)
 			this->name = safe_str("stone ore");
-		else if (this->name.find(safe_str("sulfur-ore")) != std::string::npos)
-			this->name = safe_str("sulfur ore");
 		else if (this->name.find(safe_str("metal-ore")) != std::string::npos)
 			this->name = safe_str("metal ore");
-		else if (this->name.find(safe_str("hemp-collectable")) != std::string::npos)
-			this->name = safe_str("cloth");
-		else if (this->name.find(safe_str("metal-collectable")) != std::string::npos)
-			this->name = safe_str("metal");
+		else if (this->name.find(safe_str("sulfur-ore")) != std::string::npos)
+			this->name = safe_str("sulfur ore");
 		else if (this->name.find(safe_str("stone-collectable")) != std::string::npos)
 			this->name = safe_str("stone");
+		else if (this->name.find(safe_str("metal-collectable")) != std::string::npos)
+			this->name = safe_str("metal");
 		else if (this->name.find(safe_str("sulfur-collectable")) != std::string::npos)
 			this->name = safe_str("sulfur");
 		else if (this->name.find(safe_str("wood-collectable")) != std::string::npos)
 			this->name = safe_str("wood");
+		else if (this->name.find(safe_str("hemp-collectable")) != std::string::npos || this->name.find(safe_str("wood-collectable.prefab")) != std::string::npos)
+			this->name = safe_str("hemp");
 		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
 			this->name = safe_str("stash");
+		else if (this->name.find(safe_str("loot_barrel_1.prefab")) != std::string::npos || this->name.find(safe_str("loot_barrel_2.prefab")) != std::string::npos || this->name.find(safe_str("loot-barrel-1.prefab")) != std::string::npos || this->name.find(safe_str("loot-barrel-2.prefab")) != std::string::npos)
+			this->name = safe_str("barrel");
+		else if (this->name.find(safe_str("oil_barrel.prefab")) != std::string::npos)
+			this->name = safe_str("oil barrel");
+		else if (this->name.find(safe_str("crate_elite.prefab")) != std::string::npos)
+			this->name = safe_str("elite crate");
+		else if (this->name.find(safe_str("crate_normal.prefab")) != std::string::npos)
+			this->name = safe_str("military crate");
+		else if (this->name.find(safe_str("crate_normal_2_medical.prefab")) != std::string::npos)
+			this->name = safe_str("medical crate");
+		else if (this->name.find(safe_str("crate_normal_2.prefab")) != std::string::npos)
+			this->name = safe_str("regular crate");
+		else if (this->name.find(safe_str("crate_normal_2_food.prefab")) != std::string::npos)
+			this->name = safe_str("food crate");
+		else if (this->name.find(safe_str("crate_tools.prefab")) != std::string::npos)
+			this->name = safe_str("tool crate");
+		else if (this->name.find(safe_str("rowboat.prefab")) != std::string::npos)
+			this->name = safe_str("boat");
+		else if (this->name.find(safe_str("rhib.prefab")) != std::string::npos)
+			this->name = safe_str("rhib");
+		else if (this->name.find(safe_str("kayak.prefab")) != std::string::npos)
+			this->name = safe_str("kayak");
+		else if (this->name.find(safe_str("minicopter.prefab")) != std::string::npos)
+			this->name = safe_str("minicopter");
+		else if (this->name.find(safe_str("bradleyapc.prefab")) != std::string::npos)
+			this->name = safe_str("bradley");
 
 		else
-			this->name = safe_str("resource");
+			this->name = safe_str("Error");
 
 	}
 
