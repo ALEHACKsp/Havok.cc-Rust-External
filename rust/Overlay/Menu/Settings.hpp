@@ -36,6 +36,7 @@ namespace Settings {
 
 	extern bool longhit;
 	extern bool runhit;
+	extern bool thickBullettt;
 	extern bool longmed;
 
 	extern int flyhackKey;

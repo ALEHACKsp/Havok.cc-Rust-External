@@ -380,6 +380,13 @@ public:
 	}
 
 
+	void getBelt()
+	{
+
+		uint64_t itemsv = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 });
+	}
+
+
 HeldItem getHeldItem()
 {
 	int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;
@@ -500,7 +507,7 @@ public:
 		if (GetAsyncKeyState(Settings::jumpKey))
 		{
 			Write<float>(this->playerMovement + 0xC0, 0);
-			Write<float>(this->playerMovement + 0xC0, 0);
+			//Write<float>(this->playerMovement + 0xC0, 0);
 			Write<Vector3>(this->playerMovement + 0xBC, Vector3(9999999, 9999999, 9999999));
 		}
 	}

@@ -83,6 +83,7 @@ namespace Settings {
 
 	bool longhit;
 	bool runhit;
+	bool thickBullettt = false;
 	bool longmed;
 
 	float time = 12.f;

@@ -65,6 +65,7 @@ namespace Misc {
 					if (Settings::tapeoka) heldItem->instantEoka();
 					if (Settings::longhit) heldItem->setLonghit(5.f);
 					if (Settings::runhit) heldItem->RunHit();
+					if (Settings::thickBullettt) heldItem->fatBullet();
 				}
 			}
 		}

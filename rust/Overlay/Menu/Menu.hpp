@@ -23,6 +23,8 @@ void AimbotTab()
         ImGui::Spacing();
         const char* listbox_items[] = { "Head", "Chest", "Pevlis" };
         ImGui::ListBox("##Hitbox", &Settings::aimbotHitbox, listbox_items, IM_ARRAYSIZE(listbox_items));
+        ImGui::Checkbox("ThickBullet", &Settings::thickBullettt);
+
         ImGui::PopItemWidth();
 
         ImGui::EndChild();
