@@ -90,14 +90,7 @@ namespace Settings {
 
 	extern float FiledVIEWW;
 
-	extern const char* boxTypes[];
-
-	extern const char* bones[];
-
-	extern const char* oresItems[];
-
-	extern bool selectedOres[9];
-
+	extern bool selectedOres[22];
 	extern bool pistol;
 
 	extern float drawColor_box[4];

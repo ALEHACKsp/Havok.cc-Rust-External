@@ -5851,7 +5851,7 @@ bool ImGui::Selectable(const char* label, bool selected, ImGuiSelectableFlags fl
 	if (hovered || selected)
 	{
 		const ImU32 col = GetColorU32((held && hovered) ? ImGuiCol_HeaderActive : hovered ? ImGuiCol_HeaderHovered : ImGuiCol_Header);
-		RenderFrame(bb.Min, bb.Max, col, false, 0.0f);
+		RenderFrame(bb.Min, bb.Max, col, false, style.FrameRounding2);
 		RenderNavHighlight(bb, id, ImGuiNavHighlightFlags_TypeThin | ImGuiNavHighlightFlags_NoRounding);
 	}
 
@@ -5927,7 +5927,7 @@ bool ImGui::ListBoxHeader(const char* label, const ImVec2& size_arg)
 	if (label_size.x > 0)
 		RenderText(ImVec2(frame_bb.Max.x + style.ItemInnerSpacing.x, frame_bb.Min.y + style.FramePadding.y), label);
 
-	BeginChildFrame(id, frame_bb.GetSize());
+	BeginChildFrame(id, frame_bb.GetSize(), ImGuiWindowFlags_NoScrollbar);
 	return true;
 }
 

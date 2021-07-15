@@ -113,7 +113,29 @@ void MiscTab()
     }
 }
 const char* boxTypes[] = { ("Static Box"), ("Corner Box"), ("Filled Box") };
-const char* oresItems[] = { ("Stone Ore"), ("Sulfur Ore"), ("Metal Ore"), ("Hemp"), ("Metal"), ("Stone"), ("Sulfur"), ("Wood"), ("Stash") };
+const char* oresItems[] = {
+    "Stone Ore",
+    "Metal Ore",
+    "Sulfur Ore",
+    "Stone Collectable",
+    "Metal Collectable",
+    "Sulfur Collectable",
+    "Wood Collectable",
+    "Hemp Fibers",
+    "Stash",
+    "Barrel",
+    "Oil Barrel",
+    "Elite Crate",
+    "Military Crate",
+    "Medical Crate",
+    "Normal Crate",
+    "Food Crate",
+    "Tool Box",
+    "Boat",
+    "RHIB",
+    "kayak",
+    "Minicopter",
+    "Bradley" };
 void VisualTab()
 {
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 62);
@@ -128,7 +150,6 @@ void VisualTab()
             ImGui::Combo(("Box Type"), &Settings::typeBox, boxTypes, 3);
             ImGui::SliderInt5(("Distance##Distance1"), &Settings::boxDistance, 100, 300);
         }
-        ImGui::Spacing();
 
         ImGui::Checkbox(("Weapon ESP"), &Settings::drawWeapon);
         if (Settings::drawWeapon)
@@ -137,7 +158,6 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance123798"), &Settings::weaponDistance, 100, 300);
         }
 
-        ImGui::Spacing();
         ImGui::Checkbox(("Health"), &Settings::drawHealthBar), ImGui::ColorEdit4(("Health Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawHealthBar)
         {
@@ -145,7 +165,6 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance2"), &Settings::healthDistance, 100, 300);
         }
 
-        ImGui::Spacing();
         ImGui::Checkbox(("Skeleton"), &Settings::drawSkeleton); ImGui::ColorEdit4(("Skeleton Color"), Settings::drawColor_skeleton, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawSkeleton)
         {
@@ -153,7 +172,6 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance3"), &Settings::skeletonDistance, 100, 300);
         }
 
-        ImGui::Spacing();
         ImGui::Checkbox(("Name"), &Settings::drawName); ImGui::ColorEdit4(("Name Color"), Settings::drawColor_name, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawName)
         {
@@ -161,7 +179,6 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance4"), &Settings::nameDistance, 100, 300);
         }
 
-        ImGui::Spacing();
         ImGui::Checkbox(("Dead Players"), &Settings::corpseESP);
         if (Settings::corpseESP)
         {
@@ -169,7 +186,6 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance34"), &Settings::corpseESPdistance, 100, 300);
         }
 
-        ImGui::Spacing();
         ImGui::Checkbox(("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawCrosshair)
         {
@@ -179,17 +195,19 @@ void VisualTab()
             ImGui::SliderInt5("Thickness", &Settings::CrosshairThickness, 1, 24);
         }
 
-        ImGui::Spacing();
         ImGui::SliderInt5(("Fov Changer"), &Settings::FovSlider, 75, 150);
-        if (ImGui::BeginCombo(("Other ESP"), ("")))
+
+        ImGui::TextColored(ImColor(175, 0, 255, 255), "ESP Object List");
+        //ImGui::PushItemWidth(300);
+        if (ImGui::ListBoxHeader("##ESP Object List"))
         {
             for (size_t i = 0; i < IM_ARRAYSIZE(Settings::selectedOres); i++) {
                 ImGui::Selectable(oresItems[i], &Settings::selectedOres[i], ImGuiSelectableFlags_::ImGuiSelectableFlags_DontClosePopups);
             }
-
-            ImGui::EndCombo();
+            ImGui::ListBoxFooter();
         }
-        ImGui::PushItemWidth((ImGui::GetWindowWidth()));
+        //ImGui::PopItemWidth();
+        
         ImGui::EndChild();
     }
 }
@@ -200,6 +218,7 @@ void SettingsTab()
     ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
     ImGui::BeginChild("Settings", ImVec2(538, 368), true);
     {
+        
         ImGui::EndChild();
     }
 }

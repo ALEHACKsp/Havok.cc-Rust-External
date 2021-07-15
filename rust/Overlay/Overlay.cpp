@@ -36,6 +36,7 @@ void Overlay::Style()
 	//style.ChildWindowRounding = 0.0f;
 	style.FramePadding = ImVec2(4, 3);
 	style.FrameRounding = 0.0f;
+	style.FrameRounding2 = 4.0f;
 	style.ItemSpacing = ImVec2(8, 8);
 	style.ItemInnerSpacing = ImVec2(8, 8);
 	style.TouchExtraPadding = ImVec2(0, 0);
@@ -77,9 +78,9 @@ void Overlay::Style()
 	colors[ImGuiCol_SliderGrab] = ImVec4(1.00f, 1.00f, 1.00f, 0.30f);
 	colors[ImGuiCol_SliderGrabActive] = ImVec4(0.80f, 0.50f, 0.50f, 1.00f);
 	colors[ImGuiCol_Button] = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
-	colors[ImGuiCol_ButtonHovered] = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
+	colors[ImGuiCol_ButtonHovered] = ImColor(84, 0, 123, 255);
 	colors[ImGuiCol_ButtonActive] = ImColor(88, 0, 255, 255);
-	colors[ImGuiCol_Header] = ImColor(12, 12, 12, 255);
+	colors[ImGuiCol_Header] = ImColor(112, 0, 164, 255);
 	colors[ImGuiCol_HeaderHovered] = ImVec4(0.26f, 0.26f, 0.26f, 1.f);
 	colors[ImGuiCol_HeaderActive] = ImColor(0.2f, 0.2f, 0.2f, 1.f);
 	colors[ImGuiCol_ResizeGrip] = ImVec4(1.00f, 1.00f, 1.00f, 0.30f);

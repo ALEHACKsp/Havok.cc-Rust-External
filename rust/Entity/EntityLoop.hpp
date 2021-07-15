@@ -51,7 +51,7 @@ namespace Entity {
 				}
 
 				
-				if (prefebName.find(safe_str("assets/prefabs/misc/item drop/item_drop_backpack.prefab")) != std::string::npos || prefebName.find(safe_str("assets/prefabs/player/player_corpse.prefab")) != std::string::npos) {
+				else if (prefebName.find(safe_str("assets/prefabs/misc/item drop/item_drop_backpack.prefab")) != std::string::npos || prefebName.find(safe_str("assets/prefabs/player/player_corpse.prefab")) != std::string::npos) {
 					auto objectClass = Read<uintptr_t>(object + 0x30);
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
 					auto transform = Read<uintptr_t>(objectClass + 0x8);
@@ -60,43 +60,78 @@ namespace Entity {
 					t_corpseList->push_back(*CEntity); continue;
 				}
 
-				if (prefebName.find(safe_str("autospawn/resource/ores")) != std::string::npos || prefebName.find(safe_str("autospawn/collectable/")) != std::string::npos || prefebName.find(safe_str("deployable/small stash/")) != std::string::npos) {
+				else if (prefebName.find(safe_str("assets/")) != std::string::npos) {
 					if (prefebName.find(safe_str("stone-ore")) != std::string::npos) {
 						if (Settings::selectedOres[0] == false) continue;
 					}
-					else if (prefebName.find(safe_str("sulfur-ore")) != std::string::npos) {
+					else if (prefebName.find(safe_str("metal-ore")) != std::string::npos) {
 						if (Settings::selectedOres[1] == false) continue;
 					}
-					else if (prefebName.find(safe_str("metal-ore")) != std::string::npos) {
+					else if (prefebName.find(safe_str("sulfur-ore")) != std::string::npos) {
 						if (Settings::selectedOres[2] == false) continue;
 					}
-					else if (prefebName.find(safe_str("hemp-collectable")) != std::string::npos) {
+					else if (prefebName.find(safe_str("stone-collectable")) != std::string::npos) {
 						if (Settings::selectedOres[3] == false) continue;
 					}
 					else if (prefebName.find(safe_str("metal-collectable")) != std::string::npos) {
 						if (Settings::selectedOres[4] == false) continue;
 					}
-					else if (prefebName.find(safe_str("stone-collectable")) != std::string::npos) {
+					else if (prefebName.find(safe_str("sulfur-collectable")) != std::string::npos) {
 						if (Settings::selectedOres[5] == false) continue;
 					}
-					else if (prefebName.find(safe_str("sulfur-collectable")) != std::string::npos) {
+					else if (prefebName.find(safe_str("wood-collectable")) != std::string::npos) {
 						if (Settings::selectedOres[6] == false) continue;
 					}
-					else if (prefebName.find(safe_str("wood-collectable")) != std::string::npos) {
+					else if (prefebName.find(safe_str("hemp-collectable")) != std::string::npos || prefebName.find("hemp.entity.prefab") != std::string::npos) {
 						if (Settings::selectedOres[7] == false) continue;
 					}
 					else if (prefebName.find(safe_str("small_stash_deployed")) != std::string::npos) {
-						if (Settings::selectedOres[8] == false) 
-							continue;
-						else
+						if (Settings::selectedOres[8] == true)
 						{
 							uintptr_t stashstatus = Read<uintptr_t>(curObject + 0x130);
-
-							if (stashstatus != 2048)
-								continue;
+							if (stashstatus != 2048) continue;
 						}
+						else continue;
 					}
-					
+					else if (prefebName.find("loot_barrel_1.prefab") != std::string::npos || prefebName.find("loot_barrel_2.prefab") != std::string::npos || prefebName.find("loot-barrel-1.prefab") != std::string::npos || prefebName.find("loot-barrel-2.prefab") != std::string::npos) {
+						if (Settings::selectedOres[9] == false) continue;
+					}
+					else if (prefebName.find(safe_str("oil_barrel.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[10] == false) continue;
+					}
+					else if (prefebName.find(safe_str("crate_elite.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[11] == false) continue;
+					}
+					else if (prefebName.find(safe_str("crate_normal.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[12] == false) continue;
+					}
+					else if (prefebName.find(safe_str("crate_normal_2_medical.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[13] == false) continue;
+					}
+					else if (prefebName.find(safe_str("crate_normal_2.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[14] == false) continue;
+					}
+					else if (prefebName.find(safe_str("crate_normal_2_food.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[15] == false) continue;
+					}
+					else if (prefebName.find(safe_str("crate_tools.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[16] == false) continue;
+					}
+					else if (prefebName.find(safe_str("rowboat.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[17] == false) continue;
+					}
+					else if (prefebName.find(safe_str("rhib.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[18] == false) continue;
+					}
+					else if (prefebName.find(safe_str("kayak.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[19] == false) continue;
+					}
+					else if (prefebName.find(safe_str("minicopter.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[20] == false) continue;
+					}
+					else if (prefebName.find(safe_str("bradleyapc.prefab")) != std::string::npos) {
+						if (Settings::selectedOres[21] == false) continue;
+					}
 					else continue;
 
 					auto objectClass = Read<uintptr_t>(object + 0x30);
