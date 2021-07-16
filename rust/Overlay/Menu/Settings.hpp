@@ -3,6 +3,7 @@
 #include "../../SDK/Imports.hpp"
 
 namespace Settings {
+
 	//Aimbot:
 	extern int aimbotHitbox;
 	extern bool enableAimbot;

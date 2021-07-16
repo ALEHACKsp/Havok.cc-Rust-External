@@ -2,6 +2,9 @@
 #include "Settings.hpp"
 
 namespace Settings {
+
+
+
 	//Aimbot:
 	int aimbotSmoothingValue = 10;
 	int aimbotKey = 0x05;

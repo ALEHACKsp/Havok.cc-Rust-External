@@ -351,7 +351,6 @@ public:
 
 		if (Settings::nightSky)
 		{
-
 			Write<float>(TOD_AmbientParameters + 0x18, 1.f);//AmbientMultiplier
 			Write<float>(TOD_NightParameters + 0x50, 6.f);//AmbientMultiplier
 			Write<float>(TOD_NightParameters + 0x54, 1.f);//ReflectionMultiplier
@@ -511,12 +510,27 @@ public:
 		{
 			if (GetAsyncKeyState(Settings::flyhackKey))
 			{
-				Write<float>(this->playerMovement + 0x7C, Settings::flyhackSpeed);// public float gravityMultiplier; // 0x7C
+				Write<float>(this->modelState + 0x14, 2);//public float waterLevel; // 0x14
+				Write<float>(this->playerMovement + 0x7C, -2);//public float gravityMultiplier; // 0x7C
+				Write<float>(this->playerMovement + 0x78, -2);//public float gravityTestRadius; // 0x78
+				Write<float>(this->playerMovement + 0xB4, 0);//set_base_movement_velocity_x
+				Write<float>(this->playerMovement + 0xB8, 0);//set_base_movement_velocity_y
+
+				if(GetAsyncKeyState(VK_SPACE))//Acending
+					Write<float>(this->playerMovement + 0x7C, Settings::flyhackSpeed);//Gravity
+				else
+					Write<float>(this->playerMovement + 0x7C, 0);//Gravity
+
+				
+
+				//Flyhack bypass
 				Write<float>(this->playerMovement + 0x60, -300);// public float capsuleHeightDucked; // 0x68
 				Write<float>(this->playerMovement + 0x64, -300);// public float capsuleCenterDucked; // 0x6C
 			}
 			else
 			{
+				Write<float>(this->playerMovement + 0xB4, 0);//set_base_movement_velocity_x
+				Write<float>(this->playerMovement + 0xB8, 50);//set_base_movement_velocity_y
 				Write<float>(this->playerMovement + 0x7C, 2.5f);// public float gravityMultiplier; // 0x7C
 				Write<float>(this->playerMovement + 0x60, 1.79f);// public float capsuleHeightDucked; // 0x68
 				Write<float>(this->playerMovement + 0x64, 0.899f);// public float capsuleCenterDucked; // 0x6C
