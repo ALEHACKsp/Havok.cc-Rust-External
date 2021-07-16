@@ -173,6 +173,14 @@ public:
 		Write(this->player + 0x650, flag); //0x5F8 //public BasePlayer.PlayerFlags playerFlags;
 	}
 
+	void remove_flag(MStateFlags flag)
+	{
+		int flags = *reinterpret_cast<int*>((uintptr_t)this + 0x24);
+		flags &= ~(int)flags;
+
+		*reinterpret_cast<int*>((uintptr_t)this + 0x24) = flags;
+	}
+
 	void setModelFlag(MStateFlags flag) {
 		Write(this->modelState + 0x24, flag);
 	}
@@ -247,6 +255,10 @@ public:
 		}
 	}
 
+	bool mounted() {
+		return Read<bool>(this->player + 0x2B0);
+	}
+
 	bool isDead() {
 		return (this->health <= 0);
 	}
@@ -267,7 +279,7 @@ public:
 	}
 
 	uint64_t getMountedEntity() {
-		return Read<uint64_t>(this->player + 0x590);
+		return Read<uint64_t>(this->player + 0x5E8); //0x590
 	}
 
 	bool getModelFlag(MStateFlags flag) {
@@ -315,6 +327,13 @@ public:
 		{
 			Write<float>(this->player + 0x724, 0.15f);
 		}
+	}
+
+	void AutoShit()
+	{
+		auto mountable = Read<uint64_t>(this->player + 0x5E8);
+		if (mountable)
+			Write<bool>(mountable + 0x2B0, true);
 	}
 
 

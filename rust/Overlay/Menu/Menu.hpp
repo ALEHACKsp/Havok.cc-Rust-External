@@ -89,7 +89,7 @@ void MiscTab()
         {
             ImGui::SliderFloat5("value", &Settings::GravitySlider, 10, 0);
         }
-        ImGui::Checkbox("Fix Debug", &Settings::DebugFix);
+        ImGui::Checkbox("Hold Items While Mounted", &Settings::DebugFix);
         ImGui::Checkbox("Sleeping Model", &Settings::debugFlag);
         ImGui::Checkbox(("Bright Night"), &Settings::nightSky);
         ImGui::Checkbox(("Run Hit"), &Settings::runhit);

@@ -47,6 +47,14 @@ public:
 			return safe_str("nothing");
 	}
 
+	void hitID()
+	{
+		Write<int>(this->bp + 0x30, 698017942);
+		Write<int>(this->bp + 0x64, 2173623152);
+		Write<Vector3>(this->bp + 0x40, { -.1f, -.1f, 0 });
+		Write<Vector3>(this->bp + 0x34, { 0, -1, 0 });
+	}
+
 	void setNoAimCone() {
 		Write<float>(this->bp + 0x2D0, 0.f);
 		Write<float>(this->bp + 0x2D4, 0.f);

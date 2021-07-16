@@ -26,12 +26,13 @@ namespace Misc {
 
 				if (Settings::shootInAir)
 				{
-					localPlayer->Player->LongNeck();  localPlayer->Player->setModelFlag(MStateFlags::OnGround); localPlayer->Movement->alwaysShoot();
+					localPlayer->Player->LongNeck();  localPlayer->Movement->alwaysShoot();
 				}
 
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
 				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
 				if (Settings::debugFlag) localPlayer->Player->setModelFlag(MStateFlags::Sleeping);
+				//localPlayer->Player->remove_flag(MStateFlags::Flying);
 
 					
 				if (Settings::freeze) localPlayer->Player->isFrozen();
@@ -41,11 +42,12 @@ namespace Misc {
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
-				if (Settings::DebugFix) localPlayer->Movement->FixDebug();
-				
+				//if (Settings::DebugFix) localPlayer->Movement->FixDebug();
+				//localPlayer->Player->setModelFlag(MStateFlags::OnGround);
 				
 				localPlayer->Movement->FlyHack();
 
+				if (Settings::DebugFix) localPlayer->Player->AutoShit();
 
 				//Sky Shit
 				localPlayer->Player->TODCycle();
