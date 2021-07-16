@@ -9,6 +9,7 @@ void AimbotTab()
     ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
     ImGui::BeginChild("Aimbot", ImVec2(538, 368), true);
     {
+        ImGui::TextColored(ImColor(175, 0, 255, 255), ("Aimbot"));
         ImGui::Checkbox("Enable Aimbot", &Settings::enableAimbot);
         ImGui::Text("Aimbot Key"); ImGui::SameLine(); ImGui::Hotkey("##Aimbot Key", &Settings::aimbotKey, ImVec2(80, 15));
 
@@ -37,7 +38,7 @@ void MiscTab()
     ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
     ImGui::BeginChild("Misc", ImVec2(538, 368), true);
     {
-        ImGui::Text(("Weapon Options"));
+        ImGui::TextColored(ImColor(175, 0, 255, 255), ("Weapon Options"));
         ImGui::Checkbox(("Rapid Fire"), &Settings::rapidFire);
         if (Settings::rapidFire)
         {
@@ -54,7 +55,7 @@ void MiscTab()
 
         ImGui::Spacing();
 
-        ImGui::Text(("Player Options"));
+        ImGui::TextColored(ImColor(175, 0, 255, 255), ("Player Options"));
         ImGui::Checkbox(("Spider Climb"), &Settings::spiderClimb);
 
         ImGui::Checkbox(("Speedhack"), &Settings::speedhack);
@@ -106,9 +107,12 @@ void MiscTab()
 
         }
         ImGui::Checkbox("FlyHack", &Settings::flyHackkk);
-        ImGui::Hotkey("##Flyhack Key", &Settings::flyhackKey, ImVec2(80, 15));
-        ImGui::SliderFloat5(("Flyhack Speed"), &Settings::flyhackSpeed, 1, -5);
-
+        if (Settings::flyHackkk)
+        {
+            ImGui::Hotkey("##Flyhack Key", &Settings::flyhackKey, ImVec2(80, 15));
+            ImGui::SliderFloat(("speed"), &Settings::flyhackSpeed, 2, -200);
+        }
+        
         ImGui::EndChild();
     }
 }
@@ -153,38 +157,28 @@ void VisualTab()
 
         ImGui::Checkbox(("Weapon ESP"), &Settings::drawWeapon);
         if (Settings::drawWeapon)
-        {
-
             ImGui::SliderInt5(("Distance##Distance123798"), &Settings::weaponDistance, 100, 300);
-        }
+        
 
         ImGui::Checkbox(("Health"), &Settings::drawHealthBar), ImGui::ColorEdit4(("Health Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawHealthBar)
-        {
-
             ImGui::SliderInt5(("Distance##Distance2"), &Settings::healthDistance, 100, 300);
-        }
+        
 
         ImGui::Checkbox(("Skeleton"), &Settings::drawSkeleton); ImGui::ColorEdit4(("Skeleton Color"), Settings::drawColor_skeleton, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawSkeleton)
-        {
-
             ImGui::SliderInt5(("Distance##Distance3"), &Settings::skeletonDistance, 100, 300);
-        }
+        
 
         ImGui::Checkbox(("Name"), &Settings::drawName); ImGui::ColorEdit4(("Name Color"), Settings::drawColor_name, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawName)
-        {
-
             ImGui::SliderInt5(("Distance##Distance4"), &Settings::nameDistance, 100, 300);
-        }
+        
 
         ImGui::Checkbox(("Dead Players"), &Settings::corpseESP);
         if (Settings::corpseESP)
-        {
-
             ImGui::SliderInt5(("Distance##Distance34"), &Settings::corpseESPdistance, 100, 300);
-        }
+        
 
         ImGui::Checkbox(("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawCrosshair)
