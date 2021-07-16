@@ -19,6 +19,7 @@ namespace Settings {
 	extern int RCSpitch;
 	extern int RCSyaw;
 
+	extern bool niggaDebug;
 	extern bool enableVisuals;
 
 	extern bool drawSkeleton;

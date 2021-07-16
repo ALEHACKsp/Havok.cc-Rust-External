@@ -98,6 +98,13 @@ namespace Aimbot {
 		Angle.y /= Settings::aimbotSmoothing;
 	}
 
+
+	void newSmoothing(Vector2& Angle, float smooth)
+	{
+		Angle.x /= smooth;
+		Angle.y /= smooth;
+	}
+
 	void AimbotTarget(std::unique_ptr<BaseEntity>& BPlayer, BonesList Bone) {
 		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		Vector3 PlayerPos = Prediction(Local, BPlayer, Bone);
@@ -109,7 +116,8 @@ namespace Aimbot {
 
 		if (Settings::enableSmoothing) {
 			AngleToAim -= Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
-			SmoothAim(AngleToAim);
+			//SmoothAim(AngleToAim);
+			newSmoothing(AngleToAim, Settings::aimbotSmoothing);
 			AngleToAim += Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
 		}
 

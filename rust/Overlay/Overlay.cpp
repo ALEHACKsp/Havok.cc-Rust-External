@@ -181,6 +181,7 @@ void __fastcall Render::DrawString(int x, int y, const char* str, Color* color)
 	ImGui::GetOverlayDrawList()->AddText(ImVec2(x, y), ImGui::ColorConvertFloat4ToU32(ImVec4(color->R / 255.0, color->G / 255.0, color->B / 255.0, color->A / 255.0)), utf_8_2.c_str());
 }
 
+
 void __fastcall Overlay::Loop()
 {
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("OverWolf"), NULL };
@@ -252,6 +253,7 @@ void __fastcall Overlay::Loop()
 			ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoInputs);
 
 		ESP::Run();
+
 		//Render::DrawString(20, 25, "", &ColorClass.White);
 		//Render::DrawString(58, 25, ".", &ColorClass.Pink);
 		ImGui::End();

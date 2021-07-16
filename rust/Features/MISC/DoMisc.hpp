@@ -26,7 +26,7 @@ namespace Misc {
 
 				if (Settings::shootInAir)
 				{
-					localPlayer->Player->LongNeck();  localPlayer->Movement->alwaysShoot();
+					localPlayer->Player->LongNeck(); localPlayer->Player->setModelFlag(MStateFlags::OnGround); localPlayer->Movement->alwaysShoot();
 				}
 
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);

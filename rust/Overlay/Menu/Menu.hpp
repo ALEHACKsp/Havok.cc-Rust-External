@@ -190,6 +190,8 @@ void VisualTab()
         }
 
         ImGui::SliderInt5(("Fov Changer"), &Settings::FovSlider, 75, 150);
+        ImGui::Checkbox("Test", &Settings::niggaDebug);
+
 
         ImGui::TextColored(ImColor(175, 0, 255, 255), "ESP Object List");
         //ImGui::PushItemWidth(300);

@@ -26,6 +26,7 @@ namespace Settings {
 	bool drawCrosshair = false;
 	bool niggerCross = false;
 	bool drawHealthBar = false;
+	bool niggaDebug = false;
 	bool healthNiggers = false;
 	bool drawName = false;
 	bool waterLevel = false;

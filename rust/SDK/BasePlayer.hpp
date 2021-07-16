@@ -169,6 +169,11 @@ public:
 		Write<Vector2>(Read<uint64_t>(this->player + 0x4E0) + 0x3C, angles); //public PlayerInput input; | private Vector3 bodyAngles;
 	}
 
+	void set_aim_angles(Vector3 aim_angle) {
+		auto current = Read<uintptr_t>((uintptr_t)(this + 0x10));
+		Read<Vector3>(current + 0x18) = aim_angle;
+	}
+
 	void setPlayerFlag(BPlayerFlags flag) {
 		Write(this->player + 0x650, flag); //0x5F8 //public BasePlayer.PlayerFlags playerFlags;
 	}
@@ -335,6 +340,7 @@ public:
 		if (mountable)
 			Write<bool>(mountable + 0x2B0, true);
 	}
+
 
 
 	void SetWater()
