@@ -21,6 +21,7 @@ void AimbotTab()
         }
         ImGui::Spacing();
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 18);
+        ImGui::Spacing();
         ImGui::SliderInt5("Aimbot FOV", &Settings::aimbotFov, 0, 360);
         ImGui::SliderInt5("Aimbot Distance", &Settings::aimbotDistance, 0, 300);
 
