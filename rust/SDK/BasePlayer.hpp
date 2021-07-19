@@ -623,7 +623,7 @@ public:
 			this->name = safe_str("sulfur");
 		else if (this->name.find(safe_str("wood-collectable")) != std::string::npos)
 			this->name = safe_str("wood");
-		else if (this->name.find(safe_str("hemp-collectable")) != std::string::npos || this->name.find(safe_str("wood-collectable.prefab")) != std::string::npos)
+		else if (this->name.find(safe_str("hemp-collectable")) != std::string::npos || this->name.find(safe_str("hemp.entity.prefab")) != std::string::npos)
 			this->name = safe_str("hemp");
 		else if (this->name.find(safe_str("small_stash_deployed")) != std::string::npos)
 			this->name = safe_str("stash");
