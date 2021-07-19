@@ -73,8 +73,8 @@ public:
 	}
 
 	void setNoSway() {
-		Write<float>(this->bp + 0x2B8, 0.f);
-		Write<float>(this->bp + 0x2BC, 0.f);
+		Write<float>(this->bp + 0x2D0, 0.f);
+		Write<float>(this->bp + 0x2D4, 0.f);
 	}
 
 
@@ -93,6 +93,7 @@ public:
 		}
 	}
 
+
 	void fatBullet()
 	{
 		auto List = Read<DWORD64>(this->bp + 0x358); //private List<Projectile> createdProjectiles;
@@ -100,7 +101,7 @@ public:
 		for (int i = 0; i < 8; ++i)
 		{
 			UINT64 Item = Read<UINT64>(List + 0x20 + (i * 0x8));
-			Write<float>(Item + 0x2C, 1.5f);
+			Write<float>(Item + 0x2C, 0.65f);
 		}
 	}
 
