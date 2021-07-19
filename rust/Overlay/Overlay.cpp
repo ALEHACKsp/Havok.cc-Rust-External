@@ -186,7 +186,7 @@ void __fastcall Overlay::Loop()
 {
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("OverWolf"), NULL };
 	::RegisterClassEx(&wc);
-	HWND hwnd = ::CreateWindow(wc.lpszClassName, _T(""), WS_EX_TOPMOST | WS_POPUP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), NULL, NULL, wc.hInstance, NULL);
+	HWND hwnd = ::CreateWindow(wc.lpszClassName, _T(""), WS_EX_TOPMOST | WS_POPUP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), NULL, NULL, wc.hInstance, NULL, SW_HIDE);
 
 	//SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT); // clickable WS_EX_TRANSPARENT
 	SetLayeredWindowAttributes(hwnd, 0, 255, LWA_ALPHA);
@@ -364,45 +364,12 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-/*std::string string_To_UTF8(const std::string& str)
-{
-	int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
-
-	wchar_t* pwBuf = new wchar_t[nwLen + 1];
-	ZeroMemory(pwBuf, nwLen * 2 + 2);
-
-	::MultiByteToWideChar(CP_ACP, 0, str.c_str(), str.length(), pwBuf, nwLen);
-
-	int nLen = ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
-
-	char* pBuf = new char[nLen + 1];
-	ZeroMemory(pBuf, nLen + 1);
-
-	::WideCharToMultiByte(CP_UTF8, 0, pwBuf, nwLen, pBuf, nLen, NULL, NULL);
-
-	std::string retStr(pBuf);
-
-	delete[]pwBuf;
-	delete[]pBuf;
-
-	pwBuf = NULL;
-	pBuf = NULL;
-
-	return retStr;
-}*/
 
 void __fastcall Render::Line(ImVec2 pos, ImVec2 size, ImU32 color, float thickness)
 {
 	ImGui::GetWindowDrawList()->AddLine(pos, size, color, thickness);
 }
 
-/*void __fastcall Render::DrawString(int x, int y, const char* str, Color* color)
-{
-	ImFont a;
-	std::string utf_8_1 = std::string(str);
-	std::string utf_8_2 = string_To_UTF8(utf_8_1);
-	ImGui::GetOverlayDrawList()->AddText(ImVec2(x, y), ImGui::ColorConvertFloat4ToU32(ImVec4(color->R / 255.0, color->G / 255.0, color->B / 255.0, color->A / 255.0)), utf_8_2.c_str());
-}*/
 
 void __fastcall Render::DrawBox(ImVec2 pos, ImVec2 size, ImColor color)
 {

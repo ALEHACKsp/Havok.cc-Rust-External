@@ -86,7 +86,6 @@ namespace ESP {
 					if (!Utils::WorldToScreen(position, pos)) continue;
 					auto text_size = ImGui::CalcTextSize(nameStr.c_str());
 					auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
-					//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
 
 
 					static float screenX = GetSystemMetrics(SM_CXSCREEN);
@@ -154,26 +153,6 @@ namespace ESP {
 
 				if (Settings::drawSkeleton && distance < Settings::skeletonDistance)
 					DrawSkeleton(curEntity->player);
-
-				if (Settings::niggaDebug)
-				{
-					char vida[100];
-					char niggers[100];
-					char noob[100];
-					char bigHealth[256];
-					char bigfuck[256];
-					char bulletSpeed[100];
-					sprintf(vida, "Current Weapon: %s", curEntity->getHeldItem().GetItemName());
-					sprintf(niggers, "Player Name %s", curEntity->getName());
-					sprintf(noob, "Ammo Type %s", curEntity->getHeldItem().GetAmmoType());
-					sprintf(bigHealth, "Player Health %d", curEntity->player, curEntity->health);
-					sprintf(bulletSpeed, "%f %f %f", curEntity->getViewAngles().x, curEntity->getViewAngles().y, curEntity->getViewAngles().y);
-					Render::DrawString(840, 25, vida, &ColorClass.Red);
-					Render::DrawString(840, 45, noob, &ColorClass.Red);
-					Render::DrawString(840, 65, niggers, &ColorClass.Red);
-					Render::DrawString(840, 85, bigHealth, &ColorClass.Red);
-					Render::DrawString(840, 105, bulletSpeed, &ColorClass.Red);
-				}
 
 				if (Settings::drawBox && distance < Settings::boxDistance)
 					DrawBox(curEntity->player, curEntity->isSameTeam(localPlayer->Player));

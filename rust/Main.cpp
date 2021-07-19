@@ -6,7 +6,7 @@
 #include "Features/MISC/DoMisc.hpp"
 #include "Entity/EntityLoop.hpp"
 #include <xstring>
-
+#include <WinUser.h>
 
 
 
@@ -17,8 +17,11 @@ void CleanupRenderTarget()
 
 
 
+
+
 int main()
 {
+	ShowWindow(GetConsoleWindow(), SW_HIDE); // hides the console from task bar
 	SetConsoleTitleA("Loader");
 	HWND hwnd = nullptr;
 
