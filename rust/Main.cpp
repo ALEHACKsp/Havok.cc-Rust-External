@@ -5,6 +5,7 @@
 #include "Features/Aimbot/DoAimbot.hpp"
 #include "Features/MISC/DoMisc.hpp"
 #include "Entity/EntityLoop.hpp"
+#include <xstring>
 
 
 
@@ -18,13 +19,14 @@ void CleanupRenderTarget()
 
 int main()
 {
+	SetConsoleTitleA("Loader");
 	HWND hwnd = nullptr;
 
 	try
 	{
 		CleanPIDDBCacheTable();
 
-		std::cout << safe_str("-> Waiting for Rust to start") << std::endl;
+		std::cout << safe_str("Launch Rust") << std::endl;
 
 		while (!hwnd)
 		{
@@ -32,11 +34,11 @@ int main()
 			Sleep(50);
 		}
 
-		std::cout << safe_str("-> Game has been found! Press F3 when game loads in!") << std::endl;
+		std::cout << safe_str("Game has been found! Press F1 when game loads in!") << std::endl;
 
 		while (true)
 		{
-			if (GetAsyncKeyState(VK_F3))
+			if (GetAsyncKeyState(VK_F1))
 				break;
 
 			Sleep(50);

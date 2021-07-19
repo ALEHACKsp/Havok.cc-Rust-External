@@ -14,9 +14,13 @@ void AimbotTab()
         ImGui::Text("Aimbot Key"); ImGui::SameLine(); ImGui::Hotkey("##Aimbot Key", &Settings::aimbotKey, ImVec2(80, 15));
 
         ImGui::Spacing();
-        ImGui::Checkbox("Enable Smoothing", &Settings::aimbotSmoothing);
+        ImGui::Checkbox("Enable Smoothing", &Settings::enableSmoothing);
+        if (Settings::enableSmoothing)
+        {
+            ImGui::SliderFloat5(safe_str("smooth"), &Settings::aimSmoothing, 1, 100, safe_str("%.2f"));
+        }
+        ImGui::Spacing();
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 18);
-        ImGui::SliderInt5("##Smoothing", &Settings::aimbotSmoothingValue, 0, 100);
         ImGui::SliderInt5("Aimbot FOV", &Settings::aimbotFov, 0, 360);
         ImGui::SliderInt5("Aimbot Distance", &Settings::aimbotDistance, 0, 300);
 

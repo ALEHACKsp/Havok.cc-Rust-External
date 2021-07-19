@@ -109,15 +109,21 @@ namespace Aimbot {
 		Vector3 Local = Utils::GetBonePosition(localPlayer->Player->player, BonesList::neck);
 		Vector3 PlayerPos = Prediction(Local, BPlayer, Bone);
 
+
+		Vector2 recoil_angles = Vector2{ localPlayer->Player->getRecoilAngles().x, localPlayer->Player->getRecoilAngles().y };
+
+
+
 		Vector2 AngleToAim = Math::CalcAngle(Local, PlayerPos);
 		Normalize(AngleToAim.y, AngleToAim.x);
 		if (isnan(AngleToAim.x) || isnan(AngleToAim.y))
 			return;
 
+
+
 		if (Settings::enableSmoothing) {
 			AngleToAim -= Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
-			//SmoothAim(AngleToAim);
-			newSmoothing(AngleToAim, Settings::aimbotSmoothing);
+			newSmoothing(AngleToAim, Settings::aimSmoothing);
 			AngleToAim += Vector2{ localPlayer->Player->getViewAngles().x, localPlayer->Player->getViewAngles().y };
 		}
 
