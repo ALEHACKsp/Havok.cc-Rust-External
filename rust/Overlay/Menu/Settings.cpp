@@ -21,8 +21,6 @@ namespace Settings {
 	int RCSpitch = -50;
 	int RCSyaw = -50;
 
-	bool noSwaying = false;
-
 	bool enableVisuals = false;
 	bool drawSkeleton = false;
 	bool drawBox = false;

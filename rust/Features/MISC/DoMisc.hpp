@@ -42,6 +42,8 @@ namespace Misc {
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
+				//if (Settings::DebugFix) localPlayer->Movement->FixDebug();
+				//localPlayer->Player->setModelFlag(MStateFlags::OnGround);
 				
 				localPlayer->Movement->FlyHack();
 
@@ -59,7 +61,6 @@ namespace Misc {
 				{
 					if (Settings::enableRCS) heldItem->noRecoil(); 
 					if (Settings::noSpread) heldItem->AntiSpread();
-					if (Settings::noSwaying) heldItem->setNoSway();
 					if (Settings::rapidFire) heldItem->rapidFire();
 					if (Settings::instantCompound) heldItem->instantCompound();
 					if (Settings::fastSwitchWeapons) heldItem->fastSwitch();

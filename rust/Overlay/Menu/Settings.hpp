@@ -21,7 +21,6 @@ namespace Settings {
 	extern int RCSpitch;
 	extern int RCSyaw;
 
-	extern bool noSwaying;
 	extern float aimSmoothing;
 
 	extern bool niggaDebug;

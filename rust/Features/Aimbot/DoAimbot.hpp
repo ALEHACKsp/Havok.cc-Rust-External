@@ -27,11 +27,9 @@ namespace Aimbot {
 			case 1: bone = BonesList::spine1; break;
 			case 2: bone = BonesList::pelvis; break;
 			}
-			if (bone)
-			{
-				if (AimFov(curEntity, bone) < Settings::aimbotFov)
-					return curEntity;
-			}
+			if (AimFov(curEntity, bone) < Settings::aimbotFov)
+				return curEntity;
+
 		}
 	}
 

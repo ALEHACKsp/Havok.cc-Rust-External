@@ -56,7 +56,6 @@ void MiscTab()
             ImGui::SliderInt5(("RCS Percentage Y"), &Settings::RCSpitch, 0, -50, "%.0f");
         }
         ImGui::Checkbox(("No Spread"), &Settings::noSpread);
-        ImGui::Checkbox(("No Sway"), & Settings::noSwaying);
         ImGui::Checkbox(("Instant Compound"), &Settings::instantCompound);
         ImGui::Checkbox(("Instant Switch"), &Settings::fastSwitchWeapons);
 
