@@ -4,6 +4,8 @@
 
 namespace Settings {
 
+	extern float espColorMisc[4];
+
 	//Aimbot:
 	extern int aimbotHitbox;
 	extern bool enableAimbot;

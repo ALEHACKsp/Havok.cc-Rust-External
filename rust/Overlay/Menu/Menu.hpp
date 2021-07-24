@@ -52,7 +52,8 @@ void MiscTab()
         ImGui::Checkbox(("Enable RCS"), &Settings::enableRCS);
         if (Settings::enableRCS)
         {
-            ImGui::SliderInt5(("RCS Percentage"), &Settings::RCSpitch, 0, 100, "%.0f");
+            ImGui::SliderInt5(("RCS Percentage X"), &Settings::RCSyaw, 0, -50, "%.0f");
+            ImGui::SliderInt5(("RCS Percentage Y"), &Settings::RCSpitch, 0, -50, "%.0f");
         }
         ImGui::Checkbox(("No Spread"), &Settings::noSpread);
         ImGui::Checkbox(("No Sway"), & Settings::noSwaying);
@@ -201,6 +202,8 @@ void VisualTab()
 
         ImGui::TextColored(ImColor(175, 0, 255, 255), "ESP Object List");
         //ImGui::PushItemWidth(300);
+
+        ImGui::ColorEdit4(("Color"), Settings::espColorMisc, ImGuiColorEditFlags_NoInputs);
         if (ImGui::ListBoxHeader("##ESP Object List"))
         {
             for (size_t i = 0; i < IM_ARRAYSIZE(Settings::selectedOres); i++) {

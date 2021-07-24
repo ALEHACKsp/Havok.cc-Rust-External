@@ -48,6 +48,10 @@ namespace ESP {
 		auto current_tagged_base = Read<uintptr_t>(gBase + 0x08);
 		auto current_tagged_obj = Read<uintptr_t>(current_tagged_base + 0x10);
 
+
+
+		Render::Text(ImVec2(40, 25), "HAVOK", ImColor(179, 0, 189, 255), true, Overlay::fontMenu, 12);
+		Render::Text(ImVec2(77, 25), ".cc", ImColor(255,255,255, 255), true, Overlay::fontMenu, 12);
 		if (Settings::enableVisuals)
 		{
 			if (Settings::drawCrosshair)
@@ -56,7 +60,7 @@ namespace ESP {
 			if (Settings::niggerCross)
 				Nigger();
 
-
+			
 
 			if (Settings::enableAimbot)
 				Render::Circle(ImVec2(screenWidth / 2, screenHeight / 2), Settings::aimbotFov, ImColor(255, 255, 255));
@@ -86,17 +90,15 @@ namespace ESP {
 					if (!Utils::WorldToScreen(position, pos)) continue;
 					auto text_size = ImGui::CalcTextSize(nameStr.c_str());
 					auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
+					//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
 
 
 					static float screenX = GetSystemMetrics(SM_CXSCREEN);
 					static float screenY = GetSystemMetrics(SM_CYSCREEN);
-					if (distance < 300)
-					{
-						//Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 10, pos.y - 10), ImColor(255, 255, 255), 1.5f);
-					}
-					Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
-					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
-					Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+					ImU32 color = Render::FtIM(Settings::espColorMisc);
+					//Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), color);
+					Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, color, true, Overlay::playerName, Overlay::playerName->FontSize);
+					Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, color, true, Overlay::playerName, Overlay::playerName->FontSize);
 				}
 			}
 			
@@ -110,7 +112,7 @@ namespace ESP {
 
 				if (curCorpse->name.find("player/player_corpse") != std::string::npos || curCorpse->name.find("item drop/item_drop_backpack") != std::string::npos) {
 
-					std::string nameStr = "Dead Body";
+					std::string nameStr = "CORPSE";
 					std::string distanceStr = std::to_string(distance) + "M";
 
 					if (!Utils::WorldToScreen(position, pos)) continue;
@@ -121,8 +123,8 @@ namespace ESP {
 					{
 						static float screenX = GetSystemMetrics(SM_CXSCREEN);
 						static float screenY = GetSystemMetrics(SM_CYSCREEN);
-						Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
-						Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 2, pos.y - 2), ImColor(255, 255, 255), 1.5f);
+						//Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
+						//Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 2, pos.y - 2), ImColor(255, 255, 255), 1.5f);
 						Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
 					}
 				}
@@ -153,6 +155,8 @@ namespace ESP {
 
 				if (Settings::drawSkeleton && distance < Settings::skeletonDistance)
 					DrawSkeleton(curEntity->player);
+
+				
 
 				if (Settings::drawBox && distance < Settings::boxDistance)
 					DrawBox(curEntity->player, curEntity->isSameTeam(localPlayer->Player));

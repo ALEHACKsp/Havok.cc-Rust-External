@@ -4,7 +4,7 @@
 namespace Settings {
 
 
-
+	float espColorMisc[4] = { 1.f, 1.f, 1.f, 1.f };
 	//Aimbot:
 	int aimbotSmoothingValue = 10;
 	int aimbotKey = 0x05;
@@ -18,8 +18,8 @@ namespace Settings {
 	int aimbotDistance = 50;
 
 	bool enableRCS = false;
-	int RCSpitch = 50;
-	int RCSyaw = 50;
+	int RCSpitch = -50;
+	int RCSyaw = -50;
 
 	bool noSwaying = false;
 

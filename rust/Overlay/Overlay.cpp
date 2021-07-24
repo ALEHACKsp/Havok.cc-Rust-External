@@ -95,8 +95,7 @@ void Overlay::Style()
 	fontTitle = ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 12);
 	fontMenu = ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 12);
 	//playerName = ImGui::GetIO().Fonts->AddFontFromMemoryTTF(FontData::rawData_TeenyTinyPixls, 12, 9);
-	playerName = ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 12);
-
+	playerName = ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 10);
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
 	ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.PixelSnapH = true; icons_config.GlyphOffset = ImVec2(0.f, 12.0f);

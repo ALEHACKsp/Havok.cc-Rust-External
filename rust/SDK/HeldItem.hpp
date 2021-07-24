@@ -89,7 +89,10 @@ public:
 
 		for (int i = 0; i < 8; i++)
 		{
-			Write<float>(recoil_properties + 0x18 + i * 4, (Settings::RCSpitch / 10) * 1.35);
+			Write<float>(recoil_properties + 0x20, Settings::RCSpitch / 12 * 1.35);
+			Write<float>(recoil_properties + 0x24, Settings::RCSpitch / 12 * 1.35);
+			Write<float>(recoil_properties + 0x18, Settings::RCSyaw / 12 * 1.35);
+			Write<float>(recoil_properties + 0x1C, Settings::RCSyaw / 12 * 1.35);
 		}
 	}
 
