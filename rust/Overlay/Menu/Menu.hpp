@@ -23,6 +23,8 @@ void AimbotTab()
         ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 18);
         ImGui::Spacing();
         ImGui::SliderInt5("Aimbot FOV", &Settings::aimbotFov, 0, 360);
+
+        ImGui::Checkbox("Enable Distance", &Settings::enableAimbotDistance);
         ImGui::SliderInt5("Aimbot Distance", &Settings::aimbotDistance, 0, 300);
 
         ImGui::PushItemWidth(ImGui::GetWindowWidth() - 340);
@@ -197,19 +199,14 @@ void VisualTab()
 
 
         ImGui::TextColored(ImColor(175, 0, 255, 255), "ESP Object List");
-        //ImGui::PushItemWidth(300);
-
         ImGui::ColorEdit4(("Color"), Settings::espColorMisc, ImGuiColorEditFlags_NoInputs);
-        auto size = ( 200, 200 );
-        if (ImGui::ListBoxHeader("##ESP Object List"), size)
+        if (ImGui::ListBoxHeader("##ESP Object List"))
         {
             for (size_t i = 0; i < IM_ARRAYSIZE(Settings::selectedOres); i++) {
                 ImGui::Selectable(oresItems[i], &Settings::selectedOres[i], ImGuiSelectableFlags_::ImGuiSelectableFlags_DontClosePopups);
             }
             ImGui::ListBoxFooter();
         }
-        //ImGui::PopItemWidth();
-        
         ImGui::EndChild();
     }
 }

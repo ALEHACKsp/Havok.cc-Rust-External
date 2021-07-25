@@ -11,6 +11,7 @@ namespace Settings {
 	int zoomKey = 0;
 	bool zoom = false;
 	bool enableAimbot = false;
+	bool enableAimbotDistance = false;
 	bool aimbotSmoothing = false;
 	float aimSmoothing = 100;
 	int aimbotFov = 10;

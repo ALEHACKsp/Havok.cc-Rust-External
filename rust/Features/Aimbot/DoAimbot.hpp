@@ -57,8 +57,16 @@ namespace Aimbot {
 
 					if (GetAsyncKeyState(Settings::aimbotKey) && target) {
 						auto distance = (int)Math::Distance(&localPlayer->Player->position, &curEntity->position);
-						if (curEntity->player && distance <= Settings::aimbotDistance)
-							AimbotTarget(curEntity, bone);
+						if (Settings::enableAimbotDistance)
+						{
+							if (curEntity->player && distance <= Settings::aimbotDistance)
+								AimbotTarget(curEntity, bone);
+						}
+						else
+						{
+							if (curEntity->player)
+								AimbotTarget(curEntity, bone);
+						}
 					}
 				}
 			}

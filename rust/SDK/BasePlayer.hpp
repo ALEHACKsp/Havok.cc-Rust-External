@@ -682,7 +682,7 @@ public:
 	uintptr_t ent{};
 	uintptr_t trans{};
 	std::string name{};
-}; std::unique_ptr<std::vector<BaseWeaponESP>> weaponList;//scans for ores
+}; std::unique_ptr<std::vector<BaseWeaponESP>> weaponList;
 
 #pragma region LPClass
 

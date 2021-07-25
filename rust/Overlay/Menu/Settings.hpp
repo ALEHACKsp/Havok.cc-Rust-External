@@ -12,6 +12,7 @@ namespace Settings {
 	extern int aimbotFov;
 	extern int zoomKey;
 	extern bool zoom;
+	extern bool enableAimbotDistance;
 	extern bool waterLevel;
 	extern int aimbotKey;
 	extern int aimbotSmoothingValue;
