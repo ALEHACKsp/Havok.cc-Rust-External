@@ -22,8 +22,9 @@ namespace Settings {
 	extern int RCSyaw;
 
 	extern float aimSmoothing;
-
-	extern bool niggaDebug;
+	extern float DroppedItemCol[4];
+	extern bool enableDroppedItem;
+	extern int enableDroppedItemDistance;
 	extern bool enableVisuals;
 
 	extern bool drawSkeleton;
@@ -97,7 +98,7 @@ namespace Settings {
 
 	extern float FiledVIEWW;
 
-	extern bool selectedOres[22];
+	extern bool selectedOres[23];
 	extern bool pistol;
 
 	extern float drawColor_box[4];

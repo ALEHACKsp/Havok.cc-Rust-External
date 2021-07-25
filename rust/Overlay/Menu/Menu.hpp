@@ -146,7 +146,8 @@ const char* oresItems[] = {
     "RHIB",
     "kayak",
     "Minicopter",
-    "Bradley" };
+    "Bradley",
+    "Corpse" };
 void VisualTab()
 {
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 62);
@@ -162,16 +163,10 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance1"), &Settings::boxDistance, 100, 300);
         }
 
-        ImGui::Checkbox(("Weapon ESP"), &Settings::drawWeapon);
+        ImGui::Checkbox(("Weapon ESP"), &Settings::drawWeapon); ImGui::ColorEdit4(("Weapon Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawWeapon)
             ImGui::SliderInt5(("Distance##Distance123798"), &Settings::weaponDistance, 100, 300);
         
-
-        ImGui::Checkbox(("Health"), &Settings::drawHealthBar), ImGui::ColorEdit4(("Health Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
-        if (Settings::drawHealthBar)
-            ImGui::SliderInt5(("Distance##Distance2"), &Settings::healthDistance, 100, 300);
-        
-
         ImGui::Checkbox(("Skeleton"), &Settings::drawSkeleton); ImGui::ColorEdit4(("Skeleton Color"), Settings::drawColor_skeleton, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawSkeleton)
             ImGui::SliderInt5(("Distance##Distance3"), &Settings::skeletonDistance, 100, 300);
@@ -181,12 +176,14 @@ void VisualTab()
         if (Settings::drawName)
             ImGui::SliderInt5(("Distance##Distance4"), &Settings::nameDistance, 100, 300);
         
+        ImGui::Checkbox(("Health Bar"), &Settings::drawHealthBar);
+        if (Settings::drawHealthBar)
+            ImGui::SliderInt5(("Distance##Distance2"), &Settings::healthDistance, 100, 300);
 
-        ImGui::Checkbox(("Dead Players"), &Settings::corpseESP);
-        if (Settings::corpseESP)
-            ImGui::SliderInt5(("Distance##Distance34"), &Settings::corpseESPdistance, 100, 300);
+        ImGui::Checkbox(("Dropped Items"), &Settings::enableDroppedItem); ImGui::ColorEdit4(("Item Color"), Settings::DroppedItemCol, ImGuiColorEditFlags_NoInputs);
+        if (Settings::enableDroppedItem)
+            ImGui::SliderInt5(("Distance##Distance43234"), &Settings::enableDroppedItemDistance, 100, 300);
         
-
         ImGui::Checkbox(("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawCrosshair)
         {
@@ -197,14 +194,14 @@ void VisualTab()
         }
 
         ImGui::SliderInt5(("Fov Changer"), &Settings::FovSlider, 75, 150);
-        ImGui::Checkbox("Test", &Settings::niggaDebug);
 
 
         ImGui::TextColored(ImColor(175, 0, 255, 255), "ESP Object List");
         //ImGui::PushItemWidth(300);
 
         ImGui::ColorEdit4(("Color"), Settings::espColorMisc, ImGuiColorEditFlags_NoInputs);
-        if (ImGui::ListBoxHeader("##ESP Object List"))
+        auto size = ( 200, 200 );
+        if (ImGui::ListBoxHeader("##ESP Object List"), size)
         {
             for (size_t i = 0; i < IM_ARRAYSIZE(Settings::selectedOres); i++) {
                 ImGui::Selectable(oresItems[i], &Settings::selectedOres[i], ImGuiSelectableFlags_::ImGuiSelectableFlags_DontClosePopups);
@@ -230,8 +227,8 @@ void SettingsTab()
 #include "../fonts/icons.h"
 void __fastcall DrawMenu()
 {
-	ImGui::SetNextWindowSize(ImVec2(screenWidth, screenHeight));
-	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	ImGui::SetNextWindowSize(ImVec2(screenWidth + 15, screenHeight + 15));
+	ImGui::SetNextWindowPos(ImVec2(-10, -10));
 	ImGui::SetNextWindowBgAlpha(.5f);
 
 	ImGui::Begin(safe_str("Background"), (bool*)true, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_NoMove);

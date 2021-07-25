@@ -18,6 +18,7 @@ namespace Entity {
 			std::unique_ptr<std::vector<BaseEntity>> t_entList = std::make_unique<std::vector<BaseEntity>>();
 			std::unique_ptr<std::vector<EntityCorpse>> t_corpseList = std::make_unique<std::vector<EntityCorpse>>();
 			std::unique_ptr<std::vector<BaseMiscEntity>> t_oreList = std::make_unique<std::vector<BaseMiscEntity>>();
+			std::unique_ptr<std::vector<BaseWeaponESP>> t_weaponList = std::make_unique<std::vector<BaseWeaponESP>>();
 
 			auto unk1 = Read<uintptr_t>(BaseNetworkable + 0xB8);
 			auto clientEntities = Read<uintptr_t>(unk1);
@@ -32,7 +33,15 @@ namespace Entity {
 				auto object = Read<uintptr_t>(baseObject + 0x30);
 				auto tag = Read<WORD>(object + 0x54);
 				auto prefebName = ReadNative(object + 0x60);
-				
+			
+				auto ukn01 = Read<uintptr_t>(baseObject + 0x28);
+
+				auto ukn02 = Read<uintptr_t>(ukn01);
+				if (!ukn02)
+					continue;
+				auto entityClass = ReadNative(ukn02 + 0x10);
+
+
 				if (tag == player) { //6
 					auto objectClass = Read<uintptr_t>(object + 0x30);
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
@@ -140,17 +149,28 @@ namespace Entity {
 
 					t_oreList->push_back(*oreEntity); continue;
 				}
+				if (entityClass == "DroppedItem")
+				{
+					auto objectClass = Read<uintptr_t>(object + 0x30);
+					auto entity = Read<uintptr_t>(objectClass + 0x18);
+					auto transform = Read<uintptr_t>(objectClass + 0x8);
 
+					std::unique_ptr<BaseWeaponESP> weaponEntity = std::make_unique<BaseWeaponESP>(entity, transform, prefebName);
+
+					t_weaponList->push_back(*weaponEntity); continue;
+				}
 			}
 
 			entityList->clear();
 			corpseList->clear();
 			oreList->clear();
+			weaponList->clear();
 
 			Mutex->PlayerSync->lock();
 			*entityList = *t_entList;
 			*corpseList = *t_corpseList;
 			*oreList = *t_oreList;
+			*weaponList = *t_weaponList;
 			Mutex->PlayerSync->unlock();
 		}
 	}

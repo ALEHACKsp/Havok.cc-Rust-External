@@ -62,11 +62,13 @@ namespace ESP {
 			std::unique_ptr<std::vector<BaseEntity>> local_players = std::make_unique<std::vector<BaseEntity>>();
 			std::unique_ptr<std::vector<EntityCorpse>> local_corpse = std::make_unique<std::vector<EntityCorpse>>();
 			std::unique_ptr<std::vector<BaseMiscEntity>> local_ore = std::make_unique<std::vector<BaseMiscEntity>>();
+			std::unique_ptr<std::vector<BaseWeaponESP>> local_weapon = std::make_unique<std::vector<BaseWeaponESP>>();
 
 			Mutex->PlayerSync->lock();
 			*local_players = *entityList;
 			*local_corpse = *corpseList;
 			*local_ore = *oreList;
+			*local_weapon = *weaponList;
 			Mutex->PlayerSync->unlock();
 
 			for (unsigned long i = 0; i < local_ore->size(); ++i) {
@@ -78,7 +80,7 @@ namespace ESP {
 					Vector2 pos;
 
 					std::string nameStr = curOre->name;
-					std::string distanceStr = std::to_string(distance) + "M";
+					std::string distanceStr = std::to_string(distance) + "m";
 
 
 					if (!Utils::WorldToScreen(position, pos)) continue;
@@ -96,6 +98,33 @@ namespace ESP {
 				}
 			}
 			
+			for (unsigned long i = 0; i < local_weapon->size(); ++i) {
+				std::unique_ptr<BaseWeaponESP> curOre = std::make_unique<BaseWeaponESP>(local_weapon->at(i));
+				auto position = Read<Vector3>(curOre->trans + 0x90);//world position = 0x90
+				auto distance = (int)Math::Distance(&localPlayer->Player->position, &position);
+				if (distance < Settings::enableDroppedItemDistance)
+				{
+					Vector2 pos;
+
+					std::string nameStr = curOre->name;
+					std::string distanceStr = std::to_string(distance) + "m";
+
+
+					if (!Utils::WorldToScreen(position, pos)) continue;
+					auto text_size = ImGui::CalcTextSize(nameStr.c_str());
+					auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
+
+
+					static float screenX = GetSystemMetrics(SM_CXSCREEN);
+					static float screenY = GetSystemMetrics(SM_CYSCREEN);
+					ImU32 color = Render::FtIM(Settings::DroppedItemCol);
+					if (Settings::enableDroppedItem && distance <= Settings::weaponDistance)
+					{
+						Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, color, true, Overlay::playerName, Overlay::playerName->FontSize);
+						Render::Text(ImVec2(pos.x - text_sizeDistance.x / 2, pos.y + 21 - text_sizeDistance.y), distanceStr, color, true, Overlay::playerName, Overlay::playerName->FontSize);
+					}
+				}
+			}
 
 			for (unsigned long i = 0; i < local_corpse->size(); ++i) {
 				std::unique_ptr<EntityCorpse> curCorpse = std::make_unique<EntityCorpse>(local_corpse->at(i));
@@ -107,19 +136,19 @@ namespace ESP {
 				if (curCorpse->name.find("player/player_corpse") != std::string::npos || curCorpse->name.find("item drop/item_drop_backpack") != std::string::npos) {
 
 					std::string nameStr = "CORPSE";
-					std::string distanceStr = std::to_string(distance) + "M";
+					std::string distanceStr = std::to_string(distance) + "m";
 
 					if (!Utils::WorldToScreen(position, pos)) continue;
 
 					auto text_size = ImGui::CalcTextSize(nameStr.c_str());
-					//auto text_sizeDistance = ImGui::CalcTextSize(distanceStr.c_str());
-					if (Settings::corpseESP && distance < Settings::corpseESPdistance)
+					ImU32 color = Render::FtIM(Settings::espColorMisc);
+					if (Settings::selectedOres[22] && distance < 100)
 					{
 						static float screenX = GetSystemMetrics(SM_CXSCREEN);
 						static float screenY = GetSystemMetrics(SM_CYSCREEN);
 						//Render::DrawCornerBox(ImVec2(pos.x - 7, pos.y - 10), ImVec2(10, 10), ImColor(255, 255, 255));
 						//Render::Line2(ImVec2(screenX / 2, screenY / 2), ImVec2(pos.x - 2, pos.y - 2), ImColor(255, 255, 255), 1.5f);
-						Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, ImColor(255, 255, 255), true, Overlay::playerName, Overlay::playerName->FontSize);
+						Render::Text(ImVec2(pos.x - text_size.x / 2, pos.y + 12 - text_size.y), nameStr, color, true, Overlay::playerName, Overlay::playerName->FontSize);
 					}
 				}
 			}

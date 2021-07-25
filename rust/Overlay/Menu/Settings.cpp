@@ -21,13 +21,14 @@ namespace Settings {
 	int RCSpitch = -50;
 	int RCSyaw = -50;
 
+	bool enableDroppedItem = false;
+	int enableDroppedItemDistance = 100;
 	bool enableVisuals = false;
 	bool drawSkeleton = false;
 	bool drawBox = false;
 	bool drawCrosshair = false;
 	bool niggerCross = false;
 	bool drawHealthBar = false;
-	bool niggaDebug = false;
 	bool healthNiggers = false;
 	bool drawName = false;
 	bool waterLevel = false;
@@ -108,8 +109,9 @@ namespace Settings {
 	int typeBox = 0;
 	bool pistol = true;
 
-	bool selectedOres[22]{ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+	bool selectedOres[23]{ false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 
+	float DroppedItemCol[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_box[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_skeleton[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_crosshair[4] = { 1.f, 1.f, 1.f, 1.f };

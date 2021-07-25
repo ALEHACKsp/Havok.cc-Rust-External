@@ -52,6 +52,7 @@ int main()
 		entityList = std::make_unique<std::vector<BaseEntity>>();
 		corpseList = std::make_unique<std::vector<EntityCorpse>>();
 		oreList = std::make_unique<std::vector<BaseMiscEntity>>();
+		weaponList = std::make_unique<std::vector<BaseWeaponESP>>();
 		localPlayer = std::make_unique<LocalPlayer>();
 
 		pId = get_process_id(safe_str("RustClient.exe"));

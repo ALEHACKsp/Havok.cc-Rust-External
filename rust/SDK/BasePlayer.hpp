@@ -665,6 +665,25 @@ public:
 	std::string name{};
 }; std::unique_ptr<std::vector<BaseMiscEntity>> oreList;//scans for ores
 
+
+
+
+class BaseWeaponESP {
+public:
+	BaseWeaponESP() {}
+
+	BaseWeaponESP(uintptr_t _ent, uintptr_t _trans, std::string _name) {
+		this->ent = Read<uintptr_t>(_ent + 0x28);
+		this->trans = Read<uintptr_t>(_trans + 0x38);
+		this->name = _name;
+	}
+
+public:
+	uintptr_t ent{};
+	uintptr_t trans{};
+	std::string name{};
+}; std::unique_ptr<std::vector<BaseWeaponESP>> weaponList;//scans for ores
+
 #pragma region LPClass
 
 class LocalPlayer {

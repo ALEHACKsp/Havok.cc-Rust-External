@@ -33,7 +33,7 @@ public:
 		if (!wide_name.empty())
 			return std::string(wide_name.begin(), wide_name.end()).c_str();
 
-		std::cout <<  "Display name " << display_name << std::endl;
+		//std::cout <<  "Display name " << display_name << std::endl;
 
 		return safe_str("No Item");
 	}

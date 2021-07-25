@@ -2,14 +2,15 @@
 #include "Aimbot.hpp"
 BonesList bone;
 namespace Aimbot {
-	std::unique_ptr<BaseEntity> getTarget()
+	uintptr_t getTarget()
 	{
+		float LastFov = FLT_MAX;
 		std::unique_ptr<std::vector<BaseEntity>> local_players = std::make_unique<std::vector<BaseEntity>>();
+		uintptr_t Target;
 
 		Mutex->PlayerSync->lock();
 		*local_players = *entityList;
 		Mutex->PlayerSync->unlock();
-
 		for (unsigned long i = 0; i < local_players->size(); ++i) {
 			std::unique_ptr<BaseEntity> curEntity = std::make_unique<BaseEntity>(local_players->at(i));
 
@@ -27,24 +28,41 @@ namespace Aimbot {
 			case 1: bone = BonesList::spine1; break;
 			case 2: bone = BonesList::pelvis; break;
 			}
-			if (AimFov(curEntity, bone) < Settings::aimbotFov)
-				return curEntity;
-
+			auto CrosshairDistanceToPlayer = AimFov(curEntity, bone);
+			if (CrosshairDistanceToPlayer < LastFov && CrosshairDistanceToPlayer > 0.0f && CrosshairDistanceToPlayer <= Settings::aimbotFov)
+			{
+				LastFov = CrosshairDistanceToPlayer;
+				Target = curEntity->player;
+			}
 		}
+		return Target;
 	}
 
 	void DoAimbot() {
 		while (true) {
 			if (Settings::enableAimbot) {
-				auto target = getTarget();
-				
-				if (GetAsyncKeyState(Settings::aimbotKey) && target) {
-					auto distance = (int)Math::Distance(&localPlayer->Player->position, &target->position);
-					if(target->player && distance <= Settings::aimbotDistance)
-						AimbotTarget(target, bone);
+				uintptr_t target = getTarget();
+
+				std::unique_ptr<std::vector<BaseEntity>> local_players = std::make_unique<std::vector<BaseEntity>>();
+
+				Mutex->PlayerSync->lock();
+				*local_players = *entityList;
+				Mutex->PlayerSync->unlock();
+
+				for (unsigned long i = 0; i < local_players->size(); ++i) {
+					std::unique_ptr<BaseEntity> curEntity = std::make_unique<BaseEntity>(local_players->at(i));
+
+					if (curEntity->player != target)
+						continue;
+
+					if (GetAsyncKeyState(Settings::aimbotKey) && target) {
+						auto distance = (int)Math::Distance(&localPlayer->Player->position, &curEntity->position);
+						if (curEntity->player && distance <= Settings::aimbotDistance)
+							AimbotTarget(curEntity, bone);
+					}
 				}
 			}
-			else SleepEx(20, false); //550
+			else SleepEx(20, false);
 		}
 	}
 }
