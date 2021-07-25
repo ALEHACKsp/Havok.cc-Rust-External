@@ -3,6 +3,8 @@
 #include "Driver.hpp"
 #include "Utils.hpp"
 
+
+
 class HeldItem {
 public:
 
@@ -31,7 +33,7 @@ public:
 		if (!wide_name.empty())
 			return std::string(wide_name.begin(), wide_name.end()).c_str();
 
-		//std::cout <<  "Display name" << display_name << std::endl;
+		std::cout <<  "Display name " << display_name << std::endl;
 
 		return safe_str("No Item");
 	}
@@ -82,18 +84,10 @@ public:
 		Write<int>(this->bp + 0x299, 0);
 	}
 
-	void noRecoil() {
+	uintptr_t getRecoilProp() {
 		const auto recoil_properties = Read<uintptr_t>(this->bp + 0x2D8); //	public RecoilProperties recoil;
-		if (!recoil_properties)
-			return;
-
-		for (int i = 0; i < 8; i++)
-		{
-			Write<float>(recoil_properties + 0x20, Settings::RCSpitch / 12 * 1.35);
-			Write<float>(recoil_properties + 0x24, Settings::RCSpitch / 12 * 1.35);
-			Write<float>(recoil_properties + 0x18, Settings::RCSyaw / 12 * 1.35);
-			Write<float>(recoil_properties + 0x1C, Settings::RCSyaw / 12 * 1.35);
-		}
+		if (recoil_properties)
+			return recoil_properties;
 	}
 
 	void fatBullet()

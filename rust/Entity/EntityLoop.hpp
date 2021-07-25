@@ -6,10 +6,8 @@
 #include "../SDK/Imports.hpp"
 #include "../SDK/Driver.hpp"
 #pragma endregion
-
 namespace Entity {
 #pragma region PlayerChain
-
 	void EntityLoop() {
 		auto BaseNetworkable = IL2CPPScan(safe_str("BaseNetworkable"));
 
@@ -34,7 +32,7 @@ namespace Entity {
 				auto object = Read<uintptr_t>(baseObject + 0x30);
 				auto tag = Read<WORD>(object + 0x54);
 				auto prefebName = ReadNative(object + 0x60);
-
+				
 				if (tag == player) { //6
 					auto objectClass = Read<uintptr_t>(object + 0x30);
 					auto entity = Read<uintptr_t>(objectClass + 0x18);
@@ -126,7 +124,7 @@ namespace Entity {
 					else if (prefebName.find(safe_str("kayak.prefab")) != std::string::npos) {
 						if (Settings::selectedOres[19] == false) continue;
 					}
-					else if (prefebName.find(safe_str("minicopter.prefab")) != std::string::npos) {
+					else if (prefebName.find(safe_str("minicopter.entity.prefab")) != std::string::npos) {
 						if (Settings::selectedOres[20] == false) continue;
 					}
 					else if (prefebName.find(safe_str("bradleyapc.prefab")) != std::string::npos) {
@@ -142,6 +140,7 @@ namespace Entity {
 
 					t_oreList->push_back(*oreEntity); continue;
 				}
+
 			}
 
 			entityList->clear();

@@ -95,14 +95,15 @@ void MiscTab()
         {
             ImGui::SliderFloat5("value", &Settings::GravitySlider, 10, 0);
         }
-        ImGui::Checkbox("Hold Items While Mounted", &Settings::DebugFix);
+        ImGui::Checkbox("Debug Camera Fix", &Settings::DebugFix);
+        ImGui::Checkbox("Hold Items While Mounted", &Settings::ShootMounted);
         ImGui::Checkbox("Sleeping Model", &Settings::debugFlag);
         ImGui::Checkbox(("Bright Night"), &Settings::nightSky);
         ImGui::Checkbox(("Run Hit"), &Settings::runhit);
         ImGui::Checkbox(("Zoom"), &Settings::zoom);
         if (Settings::zoom)
         {
-            ImGui::Hotkey(("##On Key1"), &Settings::zoomKey, ImVec2(80, 15));
+            ImGui::Hotkey(("##On Key4"), &Settings::zoomKey, ImVec2(80, 15));
         }
         ImGui::Checkbox("Player Swim", &Settings::waterLevel);
         ImGui::Checkbox("Run Anywhere", &Settings::sprinttt);
@@ -116,7 +117,7 @@ void MiscTab()
         if (Settings::flyHackkk)
         {
             ImGui::Hotkey("##Flyhack Key", &Settings::flyhackKey, ImVec2(80, 15));
-            ImGui::SliderFloat(("speed"), &Settings::flyhackSpeed, 2, -200);
+            ImGui::SliderFloat5(("speed"), &Settings::flyhackSpeed, 2, -200);
         }
         
         ImGui::EndChild();

@@ -28,6 +28,7 @@ namespace Settings {
 
 	extern bool drawSkeleton;
 	extern bool drawBox;
+	extern bool ShootMounted;
 	extern bool drawCrosshair;
 	extern bool drawHealthBar;
 	extern bool drawName;

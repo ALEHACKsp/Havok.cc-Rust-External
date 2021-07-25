@@ -391,7 +391,12 @@ public:
 
 
 
-
+	void FixDebug()
+	{
+		DWORD64 Client = Read<DWORD64>(get_module_base_address(("GameAssembly.dll")) + 0x3233158 + 0xB8);//ConVar_Client_c*
+		Write<float>(Client + 0x2C, 1.f);// camspeed
+		Write<float>(Client + 0x20, 1.f);// camlerp
+	}
 
 
 	void LongNeck()
@@ -518,12 +523,7 @@ public:
 		}
 	}
 
-	void FixDebug()
-	{
-		DWORD64 Client = Read<DWORD64>(get_module_base_address(("GameAssembly.dll")) + 0x3233158 + 0xB8);//ConVar_Client_c*
-		Write<float>(Client + 0x2C, 1.f);// camspeed
-		Write<float>(Client + 0x20, 1.f);// camlerp
-	}
+	
 
 
 
@@ -551,7 +551,7 @@ public:
 				if(GetAsyncKeyState(VK_SPACE))//Acending
 					Write<float>(this->playerMovement + 0x7C, Settings::flyhackSpeed);//Gravity
 				else
-					Write<float>(this->playerMovement + 0x7C, 0);//Gravity
+					Write<float>(this->playerMovement + 0x7C, 0.1);//Gravity
 
 				
 
@@ -649,7 +649,7 @@ public:
 			this->name = safe_str("RHIB");
 		else if (this->name.find(safe_str("kayak.prefab")) != std::string::npos)
 			this->name = safe_str("KAYAK");
-		else if (this->name.find(safe_str("minicopter.prefab")) != std::string::npos)
+		else if (this->name.find(safe_str("minicopter.entity.prefab")) != std::string::npos)
 			this->name = safe_str("MINICOPTER");
 		else if (this->name.find(safe_str("bradleyapc.prefab")) != std::string::npos)
 			this->name = safe_str("BRADLEY");

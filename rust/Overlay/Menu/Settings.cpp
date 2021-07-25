@@ -148,4 +148,6 @@ namespace Settings {
 	bool skyColorBool = false;
 	bool nightSky = false;
 	bool sprinttt = false;
+
+	bool ShootMounted = false;
 }
