@@ -19,6 +19,7 @@ void CleanupRenderTarget()
 
 int main()
 {
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
 	SetConsoleTitleA("Loader");
 	HWND hwnd = nullptr;
 
@@ -63,7 +64,7 @@ int main()
 		std::thread entity_thread(Entity::EntityLoop);
 		std::thread aimbot_thread(Aimbot::DoAimbot);
 		std::thread misc_thread(Misc::DoMisc);
-
+		
 
 
 		overlay_thread.join();
