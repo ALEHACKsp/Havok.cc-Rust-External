@@ -54,13 +54,13 @@ namespace Settings {
 
 	extern bool thirdperson;
 
-	extern bool speedhack;
+	extern bool fastKill;
 	extern bool crosshairScoped;
 	extern int CrosshairLength;
 	extern int CrosshairGap;
 	extern int CrosshairThickness;
 	extern float time;
-	extern int speedHackkey;
+	extern int fastKillKey;
 	extern int corpseESPdistance;
 	extern int jumpKey;
 	extern bool bradleyESP;

@@ -96,9 +96,9 @@ namespace Settings {
 	float time = 12.f;
 
 	bool shootInAir = false;
-	bool speedhack = false;
+	bool fastKill = false;
 	int corpseESPdistance = 100;
-	int speedHackkey = 0;
+	int fastKillKey = 0;
 	bool thirdperson = false;
 
 	bool fastSwitchWeapons = false;
