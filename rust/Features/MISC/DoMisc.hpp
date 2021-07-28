@@ -152,14 +152,8 @@ namespace Misc {
 			for (unsigned long i = 0; i < local_players->size(); ++i)	{
 				*heldItem = localPlayer->Player->getHeldItem();
 
-				if (Settings::speedhack && GetAsyncKeyState(Settings::speedHackkey))
-				{
-					localPlayer->Movement->speedHack(-1); // fast
-				}
-				else if (!GetAsyncKeyState(Settings::speedHackkey))
-				{
-					localPlayer->Movement->speedHack(0);
-				}
+				if (Settings::speedhack && GetAsyncKeyState(Settings::speedHackkey))	localPlayer->Movement->KillHack();
+				
 
 				if (Settings::shootInAir)
 				{

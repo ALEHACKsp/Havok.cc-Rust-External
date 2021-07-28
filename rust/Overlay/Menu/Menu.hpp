@@ -2,7 +2,6 @@
 #include "Overlay.hpp"
 #include "../SDK/Imports.hpp"
 #include "Settings.hpp"
-
 void AimbotTab()
 {
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 62);
@@ -66,11 +65,11 @@ void MiscTab()
         ImGui::TextColored(ImColor(175, 0, 255, 255), ("Player Options"));
         ImGui::Checkbox(("Spider Climb"), &Settings::spiderClimb);
 
-        ImGui::Checkbox(("Speedhack"), &Settings::speedhack);
-        if (Settings::speedhack)
+        ImGui::Checkbox(("Fast Kill"), &Settings::fastKill);
+        if (Settings::fastKill)
         {
             ImGui::SameLine();
-            ImGui::Hotkey(("##On Key2"), &Settings::speedHackkey, ImVec2(80, 15));
+            ImGui::Hotkey(("##On Key2"), &Settings::fastKillKey, ImVec2(80, 15));
         }
 
         ImGui::Checkbox(("admin flag"), &Settings::adminFlag);
@@ -217,7 +216,8 @@ void SettingsTab()
     ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10);
     ImGui::BeginChild("Settings", ImVec2(538, 368), true);
     {
-        
+        if (ImGui::Button("EXIT CHEAT"))
+            exit(-1);
         ImGui::EndChild();
     }
 }

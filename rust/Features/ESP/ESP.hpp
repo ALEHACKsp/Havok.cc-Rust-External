@@ -176,6 +176,8 @@ namespace ESP {
 
 				if (curEntity->health < 0.00f) continue;
 
+				if (curEntity->isDead()) continue;
+
 				if (Settings::drawSkeleton && distance < Settings::skeletonDistance)
 					DrawSkeleton(curEntity->player);
 

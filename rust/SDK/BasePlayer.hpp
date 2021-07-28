@@ -531,7 +531,6 @@ public:
 		if (GetAsyncKeyState(Settings::jumpKey))
 		{
 			Write<float>(this->playerMovement + 0xC0, 0);
-			//Write<float>(this->playerMovement + 0xC0, 0);
 			Write<Vector3>(this->playerMovement + 0xBC, Vector3(9999999, 9999999, 9999999));
 		}
 	}
@@ -573,6 +572,13 @@ public:
 	void spiderClimb() {
 		Write<float>(this->playerMovement + 0xBC, 0.f);
 		Write<float>(this->playerMovement + 0xC0, 0.f);
+	}
+
+	void KillHack()
+	{
+		Write<bool>(this->playerMovement + 0x143, true);
+		Write<Vector3>(this->playerMovement + 0xDC, Vector3(0, -20, 0));
+		Write<float>(this->playerMovement + 0xC4, 0.f);
 	}
 
 	void Gravity()
