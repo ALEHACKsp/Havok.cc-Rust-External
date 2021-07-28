@@ -7,9 +7,19 @@
 #include "Entity/EntityLoop.hpp"
 #include <xstring>
 
+
+
+
+void CleanupRenderTarget()
+{
+	//put clean up code in here to clean fps cache etc eventually builds up memory
+}
+
+
+
 int main()
 {
-	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
 	SetConsoleTitleA("Loader");
 	HWND hwnd = nullptr;
 
@@ -54,7 +64,7 @@ int main()
 		std::thread entity_thread(Entity::EntityLoop);
 		std::thread aimbot_thread(Aimbot::DoAimbot);
 		std::thread misc_thread(Misc::DoMisc);
-
+		
 
 
 		overlay_thread.join();
