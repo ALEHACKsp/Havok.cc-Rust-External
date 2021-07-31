@@ -86,7 +86,9 @@ namespace Settings {
 	bool infinateJump = false;
 
 	bool adminFlag = false;
-	bool debugFlag = false;
+	bool SpeedHack = false;
+	float SpeedHackSpeed = 0;
+	int SpeedHackKey = 0;
 
 	bool longhit;
 	bool runhit;
@@ -117,7 +119,7 @@ namespace Settings {
 	float drawColor_skeleton[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_crosshair[4] = { 1.f, 1.f, 1.f, 1.f };
 	float drawColor_name[4] = { 1.f, 1.f, 1.f, 1.f };
-	float drawColor_health[4] = { 1.f, 1.f, 1.f, 1.f };
+	float drawColor_weapon[4] = { 1.f, 1.f, 1.f, 1.f };
 
 	float drawColor_friendly[4] = { 0.332143, 0.779874, 0.2011, 1 };
 
@@ -150,7 +152,7 @@ namespace Settings {
 	float SkyColor = 1;
 	bool skyColorBool = false;
 	bool nightSky = false;
-	bool sprinttt = false;
+	bool testingBool = false;
 
 	bool ShootMounted = false;
 }

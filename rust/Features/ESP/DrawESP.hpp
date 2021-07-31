@@ -103,7 +103,7 @@ namespace ESP {
 		wchar_t res[256];
 		if (Utils::WorldToScreen(Feet, tempFeet)) {
 			auto text_size = ImGui::CalcTextSize(buffer.c_str());
-			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, (tempFeet.y + 15)- text_size.y), buffer, Render::FtIM(Settings::drawColor_health), true, Overlay::weaponName);
+			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, (tempFeet.y + 15)- text_size.y), buffer, Render::FtIM(Settings::drawColor_weapon), true, Overlay::weaponName);
 		}
 	}
 
@@ -118,7 +118,7 @@ namespace ESP {
 		if (Utils::WorldToScreen(Feet, tempFeet) && Utils::WorldToScreen(Head, tempHead)) {
 			auto text_size = ImGui::CalcTextSize(full_str.c_str());
 
-			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), full_str, Render::FtIM(Settings::drawColor_health), true, Overlay::playerName);
+			Render::Text(ImVec2(tempFeet.x - text_size.x / 2, tempHead.y - text_size.y), full_str, Render::FtIM(Settings::drawColor_weapon), true, Overlay::playerName);
 		}
 	}
 

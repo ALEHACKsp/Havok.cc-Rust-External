@@ -150,10 +150,17 @@ namespace Misc {
 				Mutex->PlayerSync->unlock();
 
 			for (unsigned long i = 0; i < local_players->size(); ++i)	{
+				if (Settings::SpeedHack && GetAsyncKeyState(Settings::SpeedHackKey))
+					Write<float>(localPlayer->Player->player + 0x724, Settings::SpeedHackSpeed);
+				else
+					Write<float>(localPlayer->Player->player + 0x724, 0);
+
+				#pragma region Features
+
 				*heldItem = localPlayer->Player->getHeldItem();
 
-				if (Settings::fastKill && GetAsyncKeyState(Settings::fastKillKey))	localPlayer->Movement->KillHack();
-				
+				if (Settings::fastKill && GetAsyncKeyState(Settings::fastKillKey))
+					localPlayer->Movement->KillHack();
 
 				if (Settings::shootInAir)
 				{
@@ -162,20 +169,18 @@ namespace Misc {
 
 				if (Settings::thirdperson) localPlayer->Player->setPlayerFlag(BPlayerFlags::ThirdPersonViewmode);
 				if (Settings::adminFlag) localPlayer->Player->setPlayerFlag(BPlayerFlags::IsAdmin);
-				if (Settings::debugFlag) localPlayer->Player->setModelFlag(MStateFlags::Sleeping);
-				//localPlayer->Player->remove_flag(MStateFlags::Flying);
 
-					
+
+
+
+
 				if (Settings::freeze) localPlayer->Player->isFrozen();
-
-
 				if (Settings::SuperJump) localPlayer->Movement->Gravity();
 				if (Settings::infinateJump) localPlayer->Movement->infiniteJump();
 				if (Settings::walkOnWater) localPlayer->Movement->walkOnWater();
 				if (Settings::spiderClimb) localPlayer->Movement->spiderClimb();
-				//if (Settings::DebugFix) localPlayer->Movement->FixDebug();
-				//localPlayer->Player->setModelFlag(MStateFlags::OnGround);
-				
+				if (Settings::DebugFix) localPlayer->Movement->FixDebug();
+
 				localPlayer->Movement->FlyHack();
 
 				if (Settings::ShootMounted) localPlayer->Player->AutoShit();
@@ -187,11 +192,11 @@ namespace Misc {
 				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
 				//if (Settings::zoom) localPlayer->Movement->zoom();
 				if (Settings::waterLevel) localPlayer->Player->SetWater();
-				
+
 
 				if (heldItem->IsWeapon())
 				{
-					 doRecoil(heldItem->getRecoilProp());
+					doRecoil(heldItem->getRecoilProp());
 					if (Settings::noSpread) heldItem->AntiSpread();
 					if (Settings::rapidFire) heldItem->rapidFire();
 					if (Settings::instantCompound) heldItem->instantCompound();
@@ -201,6 +206,8 @@ namespace Misc {
 					if (Settings::runhit) heldItem->RunHit();
 					if (Settings::thickBullettt) heldItem->fatBullet();
 				}
+				#pragma endregion
+				
 			}
 		}
 	}

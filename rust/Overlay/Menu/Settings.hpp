@@ -106,7 +106,7 @@ namespace Settings {
 	extern float drawColor_skeleton[4];
 	extern float drawColor_crosshair[4];
 	extern float drawColor_name[4];
-	extern float drawColor_health[4];
+	extern float drawColor_weapon[4];
 
 	extern float drawColor_friendly[4];
 
@@ -139,9 +139,11 @@ namespace Settings {
 
 	extern bool thickBullet;
 	extern bool DebugFix;
-	extern bool debugFlag;
+	extern bool SpeedHack;
+	extern int SpeedHackKey;
+	extern float SpeedHackSpeed;
 	extern float SkyColor;
 	extern bool skyColorBool;
 	extern bool nightSky;
-	extern bool sprinttt;
+	extern bool testingBool;
 };

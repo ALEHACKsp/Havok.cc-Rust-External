@@ -2,6 +2,52 @@
 #include "Overlay.hpp"
 #include "../SDK/Imports.hpp"
 #include "Settings.hpp"
+
+
+void configSam()
+{
+    Settings::enableAimbot = TRUE;
+    Settings::enableAimbotDistance = TRUE;
+    Settings::enableDroppedItem = TRUE;
+    Settings::enableVisuals = TRUE;
+    Settings::enableRCS = TRUE;
+    Settings::drawBox = TRUE;
+    Settings::drawWeapon = TRUE;
+    Settings::drawName = TRUE;
+    Settings::drawCrosshair = TRUE;
+    Settings::adminFlag = TRUE;
+    Settings::drawHealthBar = TRUE;
+    Settings::thickBullettt = TRUE;
+    Settings::nightSky = TRUE;
+    Settings::SpeedHack = TRUE;
+
+    Settings::SpeedHackKey = 0x43;
+    Settings::SpeedHackSpeed = -1;
+    Settings::aimbotDistance = 120;
+    Settings::boxDistance = 200;
+    Settings::nameDistance = 200;
+    Settings::weaponDistance = 200;
+    Settings::enableDroppedItemDistance = 100;
+
+    Settings::RCSpitch = -10;
+    Settings::RCSyaw = -10;
+    Settings::aimbotFov = 60;
+
+    Settings::CrosshairLength = 14;
+    Settings::CrosshairGap = 0;
+    Settings::CrosshairThickness = 2;
+    
+
+    Settings::drawColor_box[0] = 1; Settings::drawColor_box[1] = 0; Settings::drawColor_box[2] = 0; Settings::drawColor_box[3] = 1;
+    Settings::drawColor_name[0] = 1; Settings::drawColor_name[1] = 0; Settings::drawColor_name[2] = 0; Settings::drawColor_name[3] = 1;
+    Settings::drawColor_weapon[0] = 1;Settings::drawColor_weapon[1] = 1;Settings::drawColor_weapon[2] = 1;Settings::drawColor_weapon[3] = 1;
+    Settings::DroppedItemCol[0] = 1;Settings::DroppedItemCol[1] = 0.943396;Settings::DroppedItemCol[2] = 0;Settings::DroppedItemCol[3] = 1;
+    Settings::espColorMisc[0] = 0.867925;Settings::espColorMisc[1] = 0;Settings::espColorMisc[2] = 1;Settings::espColorMisc[3] = 1;
+
+}
+
+
+
 void AimbotTab()
 {
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 62);
@@ -98,7 +144,12 @@ void MiscTab()
         }
         ImGui::Checkbox("Debug Camera Fix", &Settings::DebugFix);
         ImGui::Checkbox("Hold Items While Mounted", &Settings::ShootMounted);
-        ImGui::Checkbox("Sleeping Model", &Settings::debugFlag);
+        ImGui::Checkbox("Speed Hack", &Settings::SpeedHack);
+        if (Settings::SpeedHack)
+        {
+            ImGui::Hotkey(("##On Key69"), &Settings::SpeedHackKey, ImVec2(80, 15));
+            ImGui::SliderFloat("Speed", &Settings::SpeedHackSpeed, 10, -10);
+        }
         ImGui::Checkbox(("Bright Night"), &Settings::nightSky);
         ImGui::Checkbox(("Run Hit"), &Settings::runhit);
         ImGui::Checkbox(("Zoom"), &Settings::zoom);
@@ -107,7 +158,6 @@ void MiscTab()
             ImGui::Hotkey(("##On Key4"), &Settings::zoomKey, ImVec2(80, 15));
         }
         ImGui::Checkbox("Player Swim", &Settings::waterLevel);
-        ImGui::Checkbox("Run Anywhere", &Settings::sprinttt);
         ImGui::Checkbox("Infinate Jump", &Settings::infinateJump);
         if (Settings::infinateJump)
         {
@@ -164,7 +214,7 @@ void VisualTab()
             ImGui::SliderInt5(("Distance##Distance1"), &Settings::boxDistance, 100, 300);
         }
 
-        ImGui::Checkbox(("Weapon ESP"), &Settings::drawWeapon); ImGui::ColorEdit4(("Weapon Color"), Settings::drawColor_health, ImGuiColorEditFlags_NoInputs);
+        ImGui::Checkbox(("Weapon ESP"), &Settings::drawWeapon); ImGui::ColorEdit4(("Weapon Color"), Settings::drawColor_weapon, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawWeapon)
             ImGui::SliderInt5(("Distance##Distance123798"), &Settings::weaponDistance, 100, 300);
         
@@ -184,7 +234,7 @@ void VisualTab()
         ImGui::Checkbox(("Dropped Items"), &Settings::enableDroppedItem); ImGui::ColorEdit4(("Item Color"), Settings::DroppedItemCol, ImGuiColorEditFlags_NoInputs);
         if (Settings::enableDroppedItem)
             ImGui::SliderInt5(("Distance##Distance43234"), &Settings::enableDroppedItemDistance, 100, 300);
-        
+
         ImGui::Checkbox(("Crosshair"), &Settings::drawCrosshair); ImGui::ColorEdit4(("Crosshair Color"), Settings::drawColor_crosshair, ImGuiColorEditFlags_NoInputs);
         if (Settings::drawCrosshair)
         {
@@ -218,6 +268,17 @@ void SettingsTab()
     {
         if (ImGui::Button("EXIT CHEAT"))
             exit(-1);
+        if (ImGui::Button("Load Config"))
+            configSam();
+        /*
+        if (ImGui::Button("print Colors"))
+        {
+            std::cout << Settings::drawColor_box[0] << " " << Settings::drawColor_box[1] << " " << Settings::drawColor_box[2] << " " << Settings::drawColor_box[3] << std::endl;
+            std::cout << Settings::drawColor_name[0] << " " << Settings::drawColor_name[1] << " " << Settings::drawColor_name[2] << " " << Settings::drawColor_name[3] << std::endl;
+            std::cout << Settings::drawColor_weapon[0] << " " << Settings::drawColor_weapon[1] << " " << Settings::drawColor_weapon[2] << " " << Settings::drawColor_weapon[3] << std::endl;
+            std::cout << Settings::DroppedItemCol[0] << " " << Settings::DroppedItemCol[1] << " " << Settings::DroppedItemCol[2] << " " << Settings::DroppedItemCol[3] << std::endl;
+            std::cout << Settings::espColorMisc[0] << " " << Settings::espColorMisc[1] << " " << Settings::espColorMisc[2] << " " << Settings::espColorMisc[3] << std::endl;
+        }*/
         ImGui::EndChild();
     }
 }

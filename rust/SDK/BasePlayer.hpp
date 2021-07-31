@@ -459,7 +459,7 @@ public:
 	bool isCalled{};
 	std::wstring nameW{};
 	Vector3 position{};
-	uint32_t playerFlags{};
+	int32_t playerFlags{};
 	int entityFlags{};
 	uint64_t playerModel{};
 	uint64_t modelState{};
