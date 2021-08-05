@@ -5,3 +5,4 @@ rust/imgui.ini
 rust/vmprotect sdk/
 rust/x64
 rust.zip
+*.exe
