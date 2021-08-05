@@ -168,7 +168,7 @@ void MiscTab()
         if (Settings::flyHackkk)
         {
             ImGui::Hotkey("##Flyhack Key", &Settings::flyhackKey, ImVec2(80, 15));
-            ImGui::SliderFloat5(("speed"), &Settings::flyhackSpeed, 2, -200);
+            ImGui::SliderFloat5(("speed"), &Settings::flyhackSpeed, 6, -5);
         }
         
         ImGui::EndChild();

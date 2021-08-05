@@ -64,7 +64,7 @@ enum class BTimeCategory {
 
 #pragma region OffsetStuff
 
-#define ConVar_Graphics_c 0x3231F60
+#define ConVar_Graphics_c 0x32732A0
 
 #pragma endregion
 
@@ -147,12 +147,12 @@ public:
 		this->player = Read<uintptr_t>(_ent + 0x28); //Entity
 		this->visualState = Read<uintptr_t>(_trans + 0x38);
 
-		this->playerFlags = Read<int32_t>(_ent + 0x650); //public BasePlayer.PlayerFlags playerFlags;
+		this->playerFlags = Read<int32_t>(_ent + 0x658); //public BasePlayer.PlayerFlags playerFlags;
 		this->name = ReadNative(_obj + 0x60);
 		this->entityFlags = Read<int32_t>(_ent + 0x130);
 
 		this->playerModel = Read<uintptr_t>(this->player + 0x4C0); //BasePlayer -> public PlayerModel playerModel;
-		this->modelState = Read<uintptr_t>(this->player + 0x5E0); //0x588 // public ModelState modelState;
+		this->modelState = Read<uintptr_t>(this->player + 0x5E8); //0x588 // public ModelState modelState;
 
 		this->position = Read<Vector3>(this->visualState + 0x90); //internal Vector3 position;
 		this->health = Read<float>(this->player + 0x224);//private float _health;
@@ -175,7 +175,7 @@ public:
 	}
 
 	void setPlayerFlag(BPlayerFlags flag) {
-		Write(this->player + 0x650, flag); //0x5F8 //public BasePlayer.PlayerFlags playerFlags;
+		Write(this->player + 0x658, flag); //0x5F8 //public BasePlayer.PlayerFlags playerFlags;
 	}
 
 	void remove_flag(MStateFlags flag)
@@ -228,8 +228,8 @@ public:
 
 
 	bool isSameTeam(std::unique_ptr<BaseEntity>& localPlayer) {
-		auto localTeam = Read<uint32_t>(localPlayer->player + 0x590);//public PlayerTeam clientTeam;
-		auto playerTeam = Read<uint32_t>(this->player + 0x590); //0x580
+		auto localTeam = Read<uint32_t>(localPlayer->player + 0x5A0);//public PlayerTeam clientTeam;
+		auto playerTeam = Read<uint32_t>(this->player + 0x598); //public ulong currentTeam; // 0x598
 
 		if (localTeam == 0 || playerTeam == 0)
 			return false;
@@ -272,7 +272,7 @@ public:
 
 	uint64_t getUserID()
 	{
-		return Read<uint64_t>(this->player + 0x698); //public ulong userID;
+		return Read<uint64_t>(this->player + 0x6A0); //public ulong userID;
 	}
 
 	int getDistance(std::unique_ptr<BaseEntity>& player) {
@@ -393,7 +393,7 @@ public:
 
 	void FixDebug()
 	{
-		DWORD64 Client = Read<DWORD64>(get_module_base_address(("GameAssembly.dll")) + 0x3233158 + 0xB8);//ConVar_Client_c*
+		DWORD64 Client = Read<DWORD64>(get_module_base_address(("GameAssembly.dll")) + 0x3274518 + 0xB8);//ConVar_Client_c*
 		Write<float>(Client + 0x2C, 1.f);// camspeed
 		Write<float>(Client + 0x20, 1.f);// camlerp
 	}
@@ -403,16 +403,9 @@ public:
 	{
 		if (GetAsyncKeyState(Settings::LongNeckKey))
 		{
-			DWORD64 eyes = Read<DWORD64>(this->player + 0x658);
+			DWORD64 eyes = Read<DWORD64>(this->player + 0x660);
 			Write<Vector3>(eyes + 0x38, Vector3(0, (0.8f), 0));
 		}
-	}
-
-
-	void getBelt()
-	{
-
-		uint64_t itemsv = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 });
 	}
 
 
@@ -420,7 +413,7 @@ HeldItem getHeldItem()
 {
 	int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;
 
-	uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x660, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
+	uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x668, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
 
 	//std::cout << "Held weapon: found :" <<  items << std::endl;
 
@@ -443,7 +436,7 @@ HeldItem getHeldItem()
 }
 
 std::wstring getPlayerName() {
-	std::wstring name = ReadUnicode(Read<uint64_t>(this->player + 0x6B0) + 0x14); //BasePlayer -> protected string _displayName
+	std::wstring name = ReadUnicode(Read<uint64_t>(this->player + 0x6B8) + 0x14); //BasePlayer -> protected string _displayName
 
 	if (name.find(safe_strW(L"Scientist")) == 0)
 		return safe_strW(L"Scientist");
@@ -541,37 +534,32 @@ public:
 		{
 			if (GetAsyncKeyState(Settings::flyhackKey))
 			{
-				Write<float>(this->modelState + 0x14, 2);//public float waterLevel; // 0x14
-				Write<float>(this->playerMovement + 0x7C, -2);//public float gravityMultiplier; // 0x7C
-				Write<float>(this->playerMovement + 0x78, -2);//public float gravityTestRadius; // 0x78
-				Write<float>(this->playerMovement + 0xB4, 0);//set_base_movement_velocity_x
-				Write<float>(this->playerMovement + 0xB8, 0);//set_base_movement_velocity_y
+				Write<float>(this->modelState + 0x14, 2);//public float waterLevel
+				Write<float>(this->playerMovement + 0x80, -2);//public float gravityTestRadius
+				Write<float>(this->playerMovement + 0xC8, 0);//groundAngle
+				Write<float>(this->playerMovement + 0xC4, 0);//groundAngleNew
+				Write<float>(this->playerMovement + 0x68, -300);// public float capsuleHeight
+				Write<float>(this->playerMovement + 0x6C, -300);// public float capsuleCenter
 
-				if(GetAsyncKeyState(VK_SPACE))//Acending
-					Write<float>(this->playerMovement + 0x7C, Settings::flyhackSpeed);//Gravity
+				if(GetAsyncKeyState(VK_SPACE))
+					Write<float>(this->playerMovement + 0x84, Settings::flyhackSpeed);
 				else
-					Write<float>(this->playerMovement + 0x7C, 0.1);//Gravity
-
-				
-
-				//Flyhack bypass
-				Write<float>(this->playerMovement + 0x60, -300);// public float capsuleHeightDucked; // 0x68
-				Write<float>(this->playerMovement + 0x64, -300);// public float capsuleCenterDucked; // 0x6C
+					Write<float>(this->playerMovement + 0x84, 0.1);
 			}
 			else
 			{
-				Write<float>(this->playerMovement + 0xB4, 0);//set_base_movement_velocity_x
-				Write<float>(this->playerMovement + 0xB8, 50);//set_base_movement_velocity_y
-				Write<float>(this->playerMovement + 0x7C, 2.5f);// public float gravityMultiplier; // 0x7C
-				Write<float>(this->playerMovement + 0x60, 1.79f);// public float capsuleHeightDucked; // 0x68
-				Write<float>(this->playerMovement + 0x64, 0.899f);// public float capsuleCenterDucked; // 0x6C
+				Write<float>(this->playerMovement + 0xC8, 0);//GroundAngle
+				Write<float>(this->playerMovement + 0xC4, 50);//GroundAngleNew
+				Write<float>(this->playerMovement + 0x84, 2.5f);// public float gravityMultiplier; // 0x7C
+				Write<float>(this->playerMovement + 0x68, 1.79f);// public float capsuleHeightDucked; // 0x68
+				Write<float>(this->playerMovement + 0x6C, 0.899f);// public float capsuleCenterDucked; // 0x6C
 			}
 		}
 	}
 
 	void spiderClimb() {
-		Write<float>(this->playerMovement + 0xBC, 0.f);
-		Write<float>(this->playerMovement + 0xC0, 0.f);
+		Write<float>(this->playerMovement + 0xC4, 0.f);
+		Write<float>(this->playerMovement + 0xC8, 0.f);
 	}
 
 	void KillHack()
@@ -588,12 +576,12 @@ public:
 
 	void walkOnWater() {
 		if (GetAsyncKeyState(Settings::walkWaterKEY)) {
-			Write<float>(this->playerMovement + 0xB4, 0.f);//groundAngle
-			Write<float>(this->playerMovement + 0xB8, 0.f);//groundAngleNew
-			Write<float>(this->playerMovement + 0x74, 0.f);//gravityMultiplier
+			Write<float>(this->playerMovement + 0xC4, 0.f);//groundAngle
+			Write<float>(this->playerMovement + 0xC8, 0.f);//groundAngleNew
+			Write<float>(this->playerMovement + 0x84, 0.f);//gravityMultiplier
 		}
 		else {
-			Write<float>(this->playerMovement + 0x74, 2.5f);//gravityMultiplier
+			Write<float>(this->playerMovement + 0x84, 2.5f);//gravityMultiplier
 		}
 	}
 

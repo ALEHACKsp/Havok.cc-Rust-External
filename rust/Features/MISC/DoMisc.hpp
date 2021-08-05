@@ -151,9 +151,9 @@ namespace Misc {
 
 			for (unsigned long i = 0; i < local_players->size(); ++i)	{
 				if (Settings::SpeedHack && GetAsyncKeyState(Settings::SpeedHackKey))
-					Write<float>(localPlayer->Player->player + 0x724, Settings::SpeedHackSpeed);
+					Write<float>(localPlayer->Player->player + 0x72C, Settings::SpeedHackSpeed);
 				else
-					Write<float>(localPlayer->Player->player + 0x724, 0);
+					Write<float>(localPlayer->Player->player + 0x72C, 0); //public float clothingMoveSpeedReduction;
 
 				#pragma region Features
 
