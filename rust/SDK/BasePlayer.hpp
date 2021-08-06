@@ -411,7 +411,7 @@ public:
 
 HeldItem getHeldItem()
 {
-	int active_weapon_id = Read<int>(this->player + 0x5C8); //private uint clActiveItem;
+	int active_weapon_id = Read<int>(this->player + 0x5D0); //private uint clActiveItem;
 
 	uint64_t items = ReadChain<uint64_t>(this->player, { (uint64_t)0x668, (uint64_t)0x28, (uint64_t)0x38, 0x10 }); //public PlayerInventory inventory;
 
@@ -564,9 +564,9 @@ public:
 
 	void KillHack()
 	{
-		Write<bool>(this->playerMovement + 0x143, true);
-		Write<Vector3>(this->playerMovement + 0xDC, Vector3(0, -20, 0));
-		Write<float>(this->playerMovement + 0xC4, 0.f);
+		Write<bool>(this->playerMovement + 0x14B, true);//private bool wasFalling
+		Write<Vector3>(this->playerMovement + 0xE4, Vector3(0, -20, 0));//private Vector3 previousVelocity
+		Write<float>(this->playerMovement + 0xCC, 0.f);//private float groundTime
 	}
 
 	void Gravity()
