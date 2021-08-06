@@ -1,5 +1,9 @@
 #pragma once
 
+
+
+
+
 #pragma region Includes
 #include "Imports.hpp"
 #include "Driver.hpp"
@@ -60,16 +64,11 @@ enum class BTimeCategory {
 
 #pragma endregion
 
-
-
 #pragma region OffsetStuff
 
 #define ConVar_Graphics_c 0x32732A0
 
 #pragma endregion
-
-
-
 
 #pragma region BList
 
@@ -228,8 +227,8 @@ public:
 
 
 	bool isSameTeam(std::unique_ptr<BaseEntity>& localPlayer) {
-		auto localTeam = Read<uint32_t>(localPlayer->player + 0x5A0);//public PlayerTeam clientTeam;
-		auto playerTeam = Read<uint32_t>(this->player + 0x598); //public ulong currentTeam; // 0x598
+		auto localTeam = Read<uint32_t>(localPlayer->player + 0x598);
+		auto playerTeam = Read<uint32_t>(this->player + 0x598);
 
 		if (localTeam == 0 || playerTeam == 0)
 			return false;
@@ -489,16 +488,12 @@ public:
 	EntityMovment() {}
 
 	EntityMovment(uintptr_t player) {        //0x4D0
-		this->playerMovement = Read<uintptr_t>(player + 0x4E8); //public BaseMovement movement;
+		this->playerMovement = Read<uintptr_t>(player + O::BaseMovement); 
 	}
 
 	void alwaysShoot() {
 		Write<float>(this->playerMovement + 0x48, 1);
 	}
-
-	
-
-
 
 	void setFov() {
 		auto klass = Read<DWORD64>(gBase + ConVar_Graphics_c); //ConVar.Graphics_TypeInfo
@@ -534,39 +529,39 @@ public:
 		{
 			if (GetAsyncKeyState(Settings::flyhackKey))
 			{
-				Write<float>(this->modelState + 0x14, 2);//public float waterLevel
-				Write<float>(this->playerMovement + 0x80, -2);//public float gravityTestRadius
-				Write<float>(this->playerMovement + 0xC8, 0);//groundAngle
-				Write<float>(this->playerMovement + 0xC4, 0);//groundAngleNew
-				Write<float>(this->playerMovement + 0x68, -300);// public float capsuleHeight
-				Write<float>(this->playerMovement + 0x6C, -300);// public float capsuleCenter
+				Write<float>(this->modelState + O::waterLevel, 2);
+				Write<float>(this->playerMovement + O::gravityTestRadius, -2);
+				Write<float>(this->playerMovement + O::groundAngle, 0);
+				Write<float>(this->playerMovement + O::groundAngleNew, 0);
+				Write<float>(this->playerMovement + O::capsuleHeight, -300);
+				Write<float>(this->playerMovement + O::capsuleCenter, -300);
 
 				if(GetAsyncKeyState(VK_SPACE))
-					Write<float>(this->playerMovement + 0x84, Settings::flyhackSpeed);
+					Write<float>(this->playerMovement + O::gravityMultiplier, Settings::flyhackSpeed);
 				else
-					Write<float>(this->playerMovement + 0x84, 0.1);
+					Write<float>(this->playerMovement + O::gravityMultiplier, 0.1);
 			}
 			else
 			{
-				Write<float>(this->playerMovement + 0xC8, 0);//GroundAngle
-				Write<float>(this->playerMovement + 0xC4, 50);//GroundAngleNew
-				Write<float>(this->playerMovement + 0x84, 2.5f);// public float gravityMultiplier; // 0x7C
-				Write<float>(this->playerMovement + 0x68, 1.79f);// public float capsuleHeightDucked; // 0x68
-				Write<float>(this->playerMovement + 0x6C, 0.899f);// public float capsuleCenterDucked; // 0x6C
+				Write<float>(this->playerMovement + O::groundAngle, 0);
+				Write<float>(this->playerMovement + O::groundAngleNew, 50);
+				Write<float>(this->playerMovement + O::gravityMultiplier, 2.5f);
+				Write<float>(this->playerMovement + O::capsuleHeight, 1.79f);
+				Write<float>(this->playerMovement + O::capsuleCenter, 0.899f);
 			}
 		}
 	}
 
 	void spiderClimb() {
-		Write<float>(this->playerMovement + 0xC4, 0.f);
-		Write<float>(this->playerMovement + 0xC8, 0.f);
+		Write<float>(this->playerMovement + O::groundAngle, 0.f);
+		Write<float>(this->playerMovement + O::groundAngleNew, 0.f);
 	}
 
 	void KillHack()
 	{
-		Write<bool>(this->playerMovement + 0x14B, true);//private bool wasFalling
-		Write<Vector3>(this->playerMovement + 0xE4, Vector3(0, -20, 0));//private Vector3 previousVelocity
-		Write<float>(this->playerMovement + 0xCC, 0.f);//private float groundTime
+		Write<bool>(this->playerMovement + O::wasFalling, true);
+		Write<Vector3>(this->playerMovement + O::previousVelocity, Vector3(0, -20, 0));
+		Write<float>(this->playerMovement + O::groundTime, 0.f);
 	}
 
 	void Gravity()
@@ -576,12 +571,12 @@ public:
 
 	void walkOnWater() {
 		if (GetAsyncKeyState(Settings::walkWaterKEY)) {
-			Write<float>(this->playerMovement + 0xC4, 0.f);//groundAngle
-			Write<float>(this->playerMovement + 0xC8, 0.f);//groundAngleNew
-			Write<float>(this->playerMovement + 0x84, 0.f);//gravityMultiplier
+			Write<float>(this->playerMovement + O::groundAngle, 0.f);//groundAngle
+			Write<float>(this->playerMovement + O::groundAngleNew, 0.f);//groundAngleNew
+			Write<float>(this->playerMovement + O::gravityMultiplier, 0.f);//gravityMultiplier
 		}
 		else {
-			Write<float>(this->playerMovement + 0x84, 2.5f);//gravityMultiplier
+			Write<float>(this->playerMovement + O::gravityMultiplier, 2.5f);//gravityMultiplier
 		}
 	}
 

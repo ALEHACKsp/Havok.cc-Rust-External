@@ -3,7 +3,30 @@
 #include "Driver.hpp"
 #include "Utils.hpp"
 
+namespace O {
+	uintptr_t BaseMovement = 0x4E8;// public BaseMovement movement;
+	uintptr_t waterLevel = 0x24;// public float waterLevel
+	uintptr_t gravityTestRadius = 0x80;// public float gravityTestRadius
+	uintptr_t groundAngle = 0xC8;// groundAngle
+	uintptr_t groundAngleNew = 0xC4;// groundAngleNew
+	uintptr_t capsuleHeight = 0x68;// public float capsuleHeight
+	uintptr_t capsuleCenter = 0x6C;// public float capsuleCenter
+	uintptr_t gravityMultiplier = 0x84;// public float gravityMultiplier;
+	uintptr_t wasFalling = 0x00;// private bool wasFalling
+	uintptr_t previousVelocity = 0xE4;// private Vector3 previousVelocity
+	uintptr_t groundTime = 0xCC;// private float groundTime
+	uintptr_t clothingMoveSpeedReduction = 0x72C;// public float clothingMoveSpeedReduction;
+	uintptr_t heldEntity = 0x98;// private EntityRef heldEntity;
+	uintptr_t recoil = 0x2D8;// public RecoilProperties recoil;
+	uintptr_t primaryMagazine = 0x2B8;//0x2A0 = public BaseProjectile.Magazine primaryMagazine;
 
+	uintptr_t aimSway = 0x2D0;// public float aimSway;
+	uintptr_t aimSwaySpeed = 0x2D4;// public float aimSwaySpeed;
+	uintptr_t aimCone = 0x2E8;// public float aimCone;
+	uintptr_t hipAimCone = 0x2EC;// public float hipAimCone;
+	uintptr_t aimconePenaltyPerShot = 0x2F0;// public float aimconePenaltyPerShot;
+	uintptr_t aimConePenaltyMax = 0x2F4;// public float aimConePenaltyMax;
+}
 
 class HeldItem {
 public:
@@ -15,11 +38,11 @@ public:
 
 		this->name = GetItemName();
 
-		this->bp = Read<uintptr_t>(this->ent + 0x98); //private EntityRef heldEntity;
+		this->bp = Read<uintptr_t>(this->ent + O::heldEntity);
 
-		this->recoil_properties = Read<uintptr_t>(this->bp + 0x2D8); //	public RecoilProperties recoil;
+		this->recoil_properties = Read<uintptr_t>(this->bp + O::recoil);
 
-		this->primary_mag = Read<uint64_t>(this->bp + 0x2B8);//0x2A0 = public BaseProjectile.Magazine primaryMagazine;
+		this->primary_mag = Read<uint64_t>(this->bp + O::primaryMagazine);
 	}
 
 	std::string GetItemName()
@@ -49,20 +72,13 @@ public:
 			return safe_str("nothing");
 	}
 
-	void hitID()
-	{
-		Write<int>(this->bp + 0x30, 698017942);
-		Write<int>(this->bp + 0x64, 2173623152);
-		Write<Vector3>(this->bp + 0x40, { -.1f, -.1f, 0 });
-		Write<Vector3>(this->bp + 0x34, { 0, -1, 0 });
-	}
-
 	void setNoAimCone() {
-		Write<float>(this->bp + 0x2D0, 0.f);
-		Write<float>(this->bp + 0x2D4, 0.f);
-		Write<float>(this->bp + 0x2D8, 0.f);
-		Write<float>(this->bp + 0x2DC, 0.f);
-		Write<float>(this->bp + 0x2E8, 0.f);
+		Write<float>(this->bp + O::aimCone, 0.f);
+		Write<float>(this->bp + O::aimConePenaltyMax, 0.f);
+		Write<float>(this->bp + O::aimconePenaltyPerShot, 0.f);
+		Write<float>(this->bp + O::aimSway, 0.f);
+		Write<float>(this->bp + O::aimSwaySpeed, 0.f);
+		Write<float>(this->bp + O::hipAimCone, 0.f);
 	}
 
 	void AntiSpread()
@@ -85,7 +101,7 @@ public:
 	}
 
 	uintptr_t getRecoilProp() {
-		const auto recoil_properties = Read<uintptr_t>(this->bp + 0x2D8); //	public RecoilProperties recoil;
+		const auto recoil_properties = Read<uintptr_t>(this->bp + O::recoil);
 		if (recoil_properties)
 			return recoil_properties;
 	}
@@ -100,7 +116,7 @@ public:
 			Write<float>(Item + 0x2C, 1.5f);
 		}
 	}
-
+	
 	void rapidFire() {
 			Write<float>(this->bp + 0x1F4, Settings::rapidfirevalue);
 			Write<bool>(this->bp + 0x298, true); //this is automatic fire

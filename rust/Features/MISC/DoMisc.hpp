@@ -151,9 +151,9 @@ namespace Misc {
 
 			for (unsigned long i = 0; i < local_players->size(); ++i)	{
 				if (Settings::SpeedHack && GetAsyncKeyState(Settings::SpeedHackKey))
-					Write<float>(localPlayer->Player->player + 0x72C, Settings::SpeedHackSpeed);
+					Write<float>(localPlayer->Player->player + O::clothingMoveSpeedReduction, Settings::SpeedHackSpeed);
 				else
-					Write<float>(localPlayer->Player->player + 0x72C, 0); //public float clothingMoveSpeedReduction;
+					Write<float>(localPlayer->Player->player + O::clothingMoveSpeedReduction, 0); //public float clothingMoveSpeedReduction;
 
 				#pragma region Features
 
@@ -189,7 +189,7 @@ namespace Misc {
 				//Sky Shit
 				localPlayer->Player->TODCycle();
 
-				if (Settings::FovSlider > 75) localPlayer->Movement->setFov();
+				if (Settings::FovSlider >= 75) localPlayer->Movement->setFov();
 				//if (Settings::zoom) localPlayer->Movement->zoom();
 				if (Settings::waterLevel) localPlayer->Player->SetWater();
 
