@@ -26,3 +26,9 @@ i added him to my project to later find out that he knew nothing about cheat dev
 
 
 https://prnt.sc/1ph05gq
+
+
+
+proof of him logging into tokens and shit 
+
+https://prnt.sc/1ph0v46
