@@ -23,3 +23,6 @@ but you dont know how basic shit works hahaha
 
 
 i added him to my project to later find out that he knew nothing about cheat development and onece you ask him questions he puts up a show and cannot provide anything about coding he is a paster 
+
+
+https://prnt.sc/1ph05gq
