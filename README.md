@@ -14,6 +14,8 @@ notSam is not the sole dev of this he is a ratter + scammer
 notSam#0133 (356428844963725314) 
 ratting + scamming tokens
 
+https://prnt.sc/1pgwrs6
+
 https://prnt.sc/1pgev8e
 
 i thought it was your source man ????
